@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Eros</string>
+    <string name="user_name">Username</string>
+    <string name="user_email">Email</string>
+    <string name="user_password">Password</string>
+    <string name="appbanner">appBanner</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="profile">profile</string>
+    <string name="individual">individual</string>
+    <string name="company">company</string>
+    <string name="sample_txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="submit">Submit</string>
+    <string name="user_profile_page">User Profile Page</string>
+    <string name="messages_page">Messages Page</string>
+    <string name="notifications_page">Notifications Page</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="datemainpicture">DateMainPicture</string>
+    <string name="textview">TextView</string>
+    <string name="date_description">Date Description</string>
+    <string name="gallery">Gallery</string>
+    <string name="location">location</string>
+    <string name="gallery_photo">Gallery Photo</string>
+    <string name="image_full_view">Image Full View</string>
+    <string name="user_profile_photo">user_profile_photo</string>
+    <string name="b">B</string>
+</resources>

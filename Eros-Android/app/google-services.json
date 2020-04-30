@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "377701245367",
+    "firebase_url": "https://eros-995f5.firebaseio.com",
+    "project_id": "eros-995f5",
+    "storage_bucket": "eros-995f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377701245367:android:4ccc362a669b4a679bc832",
+        "android_client_info": {
+          "package_name": "com.visionarytech.eros"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377701245367-chlu588n3erl278is3li88kh2cos90li.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.visionarytech.eros",
+            "certificate_hash": "c77d36f161288c206583aa18362abfb5832115d1"
+          }
+        },
+        {
+          "client_id": "377701245367-rkbqkfpcpp9msvcalqqt02005tgo68va.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFA7Xi-HEi3Gen5UDSPA8fstaESHp5k5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377701245367-rkbqkfpcpp9msvcalqqt02005tgo68va.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

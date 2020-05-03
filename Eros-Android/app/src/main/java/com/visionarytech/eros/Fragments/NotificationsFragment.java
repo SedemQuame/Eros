@@ -12,15 +12,15 @@ import androidx.fragment.app.Fragment;
 import com.visionarytech.eros.R;
 
 public class NotificationsFragment extends Fragment {
-    View v;
+  View v;
 
-    public NotificationsFragment() {
-    }
+  public NotificationsFragment() {
+  }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.notifications_fragment, container, false);
-        return v;
-    }
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    v = inflater.inflate(R.layout.notifications_fragment, container, false);
+    return v;
+  }
 }

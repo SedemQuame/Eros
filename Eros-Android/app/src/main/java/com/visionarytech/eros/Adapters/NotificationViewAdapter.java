@@ -11,17 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.visionarytech.eros.MessageItems;
+import com.visionarytech.eros.NotificationModel;
 import com.visionarytech.eros.R;
 
 import java.util.List;
 
-public class MessageNotification extends RecyclerView.Adapter<MessageNotification.RequestNotifications> {
+public class NotificationViewAdapter extends RecyclerView.Adapter<NotificationViewAdapter.RequestNotifications> {
 
     Context mContext;
-    List<MessageItems> mData;
+    List<NotificationModel> mData;
 
-    public MessageNotification(Context mContext, List<MessageItems> mData) {
+    public NotificationViewAdapter(Context mContext, List<NotificationModel> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -30,7 +30,7 @@ public class MessageNotification extends RecyclerView.Adapter<MessageNotificatio
     @Override
     public RequestNotifications onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
-        v = LayoutInflater.from(mContext).inflate(R.layout.message_items, parent, false);
+        v = LayoutInflater.from(mContext).inflate(R.layout.fragment_notification_item, parent, false);
 
         RequestNotifications requestHolder = new RequestNotifications(v);
 
@@ -42,7 +42,6 @@ public class MessageNotification extends RecyclerView.Adapter<MessageNotificatio
         holder.messageTextView.setText(mData.get(position).getMessage());
         holder.timeSinceRequest.setText(mData.get(position).getTime());
         holder.requesterProfilePicture.setImageResource(mData.get(position).getRequesterProfilePhoto());
-
     }
 
     @Override

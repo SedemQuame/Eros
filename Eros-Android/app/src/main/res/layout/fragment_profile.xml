@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".Fragments.ProfileFragment">
 
     <ScrollView
@@ -24,8 +25,8 @@
 
                 <com.mikhaellopez.circularimageview.CircularImageView
                     android:id="@+id/circularImageView"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/woman2"
                     app:civ_border_color="#EEEEEE"

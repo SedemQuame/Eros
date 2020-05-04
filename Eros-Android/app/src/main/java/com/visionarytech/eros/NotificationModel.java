@@ -1,14 +1,14 @@
 package com.visionarytech.eros;
 
-public class MessageItems {
+public class NotificationModel {
     private String message;
     private String time;
     private int requesterProfilePhoto;
 
-    public MessageItems() {
+    public NotificationModel() {
     }
 
-    public MessageItems(String message, String time, int requesterProfilePhoto) {
+    public NotificationModel(String message, String time, int requesterProfilePhoto) {
         this.message = message;
         this.time = time;
         this.requesterProfilePhoto = requesterProfilePhoto;

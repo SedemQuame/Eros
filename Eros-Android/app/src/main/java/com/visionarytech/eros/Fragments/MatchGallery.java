@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.visionarytech.eros.GalleryPhoto;
+import com.visionarytech.eros.Models.GalleryPhoto;
 import com.visionarytech.eros.Adapters.GalleryViewAdapter;
 import com.visionarytech.eros.R;
 

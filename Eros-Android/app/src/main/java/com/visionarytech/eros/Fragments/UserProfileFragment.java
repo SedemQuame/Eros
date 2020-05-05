@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.visionarytech.eros.Dates;
+import com.visionarytech.eros.Models.Dates;
 import com.visionarytech.eros.R;
 import com.visionarytech.eros.Adapters.RecyclerViewAdapter;
 

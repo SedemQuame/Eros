@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.visionarytech.eros.Adapters.NotificationViewAdapter;
-import com.visionarytech.eros.NotificationModel;
+import com.visionarytech.eros.Models.Notifications;
 import com.visionarytech.eros.R;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.List;
 public class NotificationsFragment extends Fragment {
   View v;
   private RecyclerView recyclerView;
-  private List<NotificationModel> listOfRequests;
+  private List<Notifications> listOfRequests;
 
   public NotificationsFragment() {
   }
@@ -44,10 +44,10 @@ public class NotificationsFragment extends Fragment {
     listOfRequests = new ArrayList<>();
     String template1 = ", sent you a message request";
     String template2 = ", liked your a picture.";
-    listOfRequests.add(new NotificationModel("Anthony Marshall" + template1, "31 mins ago", R.drawable.man1));
-    listOfRequests.add(new NotificationModel("Dede Ayew" + template1, "12 mins ago", R.drawable.man2));
-    listOfRequests.add(new NotificationModel("Tony Stark" + template2, "17 mins ago", R.drawable.man3));
-    listOfRequests.add(new NotificationModel("Andre Ward" + template1, "13 mins ago", R.drawable.man4));
-    listOfRequests.add(new NotificationModel("Mante SpiritMan" + template2, "16 mins ago", R.drawable.man5));
+    listOfRequests.add(new Notifications("Anthony Marshall" + template1, "31 mins ago", R.drawable.man1));
+    listOfRequests.add(new Notifications("Dede Ayew" + template1, "12 mins ago", R.drawable.man2));
+    listOfRequests.add(new Notifications("Tony Stark" + template2, "17 mins ago", R.drawable.man3));
+    listOfRequests.add(new Notifications("Andre Ward" + template1, "13 mins ago", R.drawable.man4));
+    listOfRequests.add(new Notifications("Mante SpiritMan" + template2, "16 mins ago", R.drawable.man5));
   }
 }

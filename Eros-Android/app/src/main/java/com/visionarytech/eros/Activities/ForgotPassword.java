@@ -1,4 +1,4 @@
-package com.visionarytech.eros;
+package com.visionarytech.eros.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.visionarytech.eros.Activities.LoginActivity;
+import com.visionarytech.eros.R;
 
 public class ForgotPassword extends AppCompatActivity implements View.OnClickListener {
 

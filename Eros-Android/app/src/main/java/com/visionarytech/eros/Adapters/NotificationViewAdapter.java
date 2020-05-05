@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.visionarytech.eros.NotificationModel;
+import com.visionarytech.eros.Models.Notifications;
 import com.visionarytech.eros.R;
 
 import java.util.List;
@@ -19,9 +19,9 @@ import java.util.List;
 public class NotificationViewAdapter extends RecyclerView.Adapter<NotificationViewAdapter.RequestNotifications> {
 
     Context mContext;
-    List<NotificationModel> mData;
+    List<Notifications> mData;
 
-    public NotificationViewAdapter(Context mContext, List<NotificationModel> mData) {
+    public NotificationViewAdapter(Context mContext, List<Notifications> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }

@@ -1,4 +1,4 @@
-package com.visionarytech.eros;
+package com.visionarytech.eros.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-public class GalleryPhotoItemFullView extends AppCompatActivity {
+import com.visionarytech.eros.R;
+
+public class PhotoItemActivity extends AppCompatActivity {
     ImageView fullPhotoImageView;
 
     @Override

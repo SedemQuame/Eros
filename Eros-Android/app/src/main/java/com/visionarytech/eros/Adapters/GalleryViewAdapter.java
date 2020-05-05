@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.visionarytech.eros.GalleryPhoto;
-import com.visionarytech.eros.GalleryPhotoItemFullView;
+import com.visionarytech.eros.Models.GalleryPhoto;
+import com.visionarytech.eros.Activities.PhotoItemActivity;
 import com.visionarytech.eros.R;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class GalleryViewAdapter extends RecyclerView.Adapter<GalleryViewAdapter.
         holder.datesPhotoItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, GalleryPhotoItemFullView.class);
+                Intent intent = new Intent(mContext, PhotoItemActivity.class);
                 intent.putExtra("photoId", mData.get(position).getPhoto());
                 mContext.startActivity(intent);
             }

@@ -42,6 +42,7 @@
 
                 <Button
                     android:id="@+id/button2"
+                    style="@android:style/Widget.DeviceDefault.Light.Button.Small"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/round_button"
@@ -54,15 +55,56 @@
                     app:layout_constraintVertical_bias="0.85" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <FrameLayout
-                android:id="@+id/userBioSetter"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/userViewSetter"
+                <TextView
+                    android:id="@+id/bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Bio"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/bioEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/plain"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/views"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Views"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/viewsEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/plain"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -74,7 +116,10 @@
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Work Experience" />
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Work"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/editText"
@@ -97,7 +142,10 @@
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Education" />
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="School"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/editText3"
@@ -119,7 +167,10 @@
                     android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_email" />
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/user_email"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/editText4"
@@ -141,7 +192,10 @@
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Phone" />
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Phone"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/editText5"
@@ -163,7 +217,10 @@
                     android:id="@+id/textView15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Religion" />
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Religion"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/editText6"
@@ -178,34 +235,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="8">
 
                 <Button
                     android:id="@+id/logOutButton"
+                    style="@android:style/Widget.Material.Light.Button.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="4dp"
-                    android:layout_weight="3"
-                    android:background="@drawable/button"
+                    android:layout_weight="4"
                     android:text="logout"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#000000" />
 
                 <Button
                     android:id="@+id/deleteAccountButton"
+                    style="@android:style/Widget.Material.Light.Button.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="12dp"
-                    android:layout_weight="3"
-                    android:background="@drawable/button"
+                    android:layout_weight="4"
                     android:text="delete account"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#000000" />
             </LinearLayout>
 
         </LinearLayout>

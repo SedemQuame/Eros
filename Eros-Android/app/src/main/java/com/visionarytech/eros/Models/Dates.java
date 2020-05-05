@@ -1,4 +1,4 @@
-package com.visionarytech.eros;
+package com.visionarytech.eros.Models;
 
 public class Dates {
     private String userId;

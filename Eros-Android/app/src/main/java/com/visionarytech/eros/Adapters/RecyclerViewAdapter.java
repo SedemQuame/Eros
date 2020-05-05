@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.visionarytech.eros.Activities.MatchProfileActivity;
-import com.visionarytech.eros.Dates;
+import com.visionarytech.eros.Models.Dates;
 import com.visionarytech.eros.R;
 
 import java.util.List;

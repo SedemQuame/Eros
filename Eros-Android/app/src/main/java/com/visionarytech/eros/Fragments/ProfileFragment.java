@@ -32,18 +32,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
-
-        // Inflate the layout for this fragment
-        Fragment bioSetterBox = new InfoBoxFragment("My views");
-        FragmentTransaction bioTransaction = getChildFragmentManager().beginTransaction();
-        bioTransaction.add(R.id.userBioSetter, bioSetterBox).commit();
-
-        Fragment viewSetterBox = new InfoBoxFragment("Bio");
-        FragmentTransaction viewTransaction = getChildFragmentManager().beginTransaction();
-        viewTransaction.add(R.id.userViewSetter, viewSetterBox).commit();
-
         v = inflater.inflate(R.layout.fragment_profile, container, false);
-
 
         logOut = v.findViewById(R.id.logOutButton);
         logOut.setOnClickListener(this);

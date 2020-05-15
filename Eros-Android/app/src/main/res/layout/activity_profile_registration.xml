@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:noHistory="true"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/textViewProfileRegistration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/profile_builder"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/builder_subtitle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/genderDialogTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/completion_progress"
+            android:textAlignment="textStart"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/_0_100"
+            android:textAlignment="textEnd"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/lookingForDialogTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_vertical"
+            android:text="@string/about_me"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/buttonAboutMe"
+            style="@android:style/Widget.Holo.Light.ImageButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2"
+            android:background="@drawable/button"
+            android:contentDescription="@string/about_me_img"
+            android:src="@drawable/ic_person" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/ageRangeDialogTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_vertical"
+            android:text="@string/social_background"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/buttonSocialBackground"
+            style="@android:style/Widget.Holo.Light.ImageButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2"
+            android:background="@drawable/button"
+            android:contentDescription="@string/social_background_img"
+            android:src="@drawable/ic_social" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/textViewContactInfo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_vertical"
+            android:text="@string/contact_information"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/buttonContactInformation"
+            style="@android:style/Widget.Holo.Light.ImageButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2"
+            android:background="@drawable/button"
+            android:contentDescription="@string/contact_information_img"
+            android:src="@drawable/ic_contact" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/textViewPreferences"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_vertical"
+            android:text="@string/preferences"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/buttonPreferences"
+            style="@android:style/Widget.Holo.Light.ImageButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2"
+            android:background="@drawable/button"
+            android:contentDescription="@string/preferences_img"
+            android:src="@drawable/ic_preferences" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/next" />
+
+</LinearLayout>

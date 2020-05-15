@@ -17,6 +17,16 @@
             android:orientation="vertical"
             android:paddingBottom="30dp">
 
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Profile"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="21sp" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,18 +44,15 @@
                     app:civ_shadow="true"
                     app:civ_shadow_color="#3d3d3d"
                     app:civ_shadow_radius="10"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.50" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/button2"
-                    style="@android:style/Widget.DeviceDefault.Light.Button.Small"
+                    style="@android:style/Widget.Material.Button.Small"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/round_button"
                     android:text="S"
                     app:layout_constraintBottom_toBottomOf="@+id/circularImageView"
                     app:layout_constraintEnd_toEndOf="@+id/circularImageView"
@@ -53,6 +60,19 @@
                     app:layout_constraintStart_toStartOf="@+id/circularImageView"
                     app:layout_constraintTop_toTopOf="@+id/circularImageView"
                     app:layout_constraintVertical_bias="0.85" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/user_name"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/circularImageView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -62,11 +82,22 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="About Me"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="21sp" />
+
+                <TextView
                     android:id="@+id/bio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Bio"
+                    android:textAlignment="textStart"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
@@ -92,6 +123,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Views"
+                    android:textAlignment="textStart"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
@@ -113,11 +145,22 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/meta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Social Background"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="21sp" />
+
+                <TextView
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Work"
+                    android:textAlignment="textStart"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
@@ -144,6 +187,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:text="School"
+                    android:textAlignment="textStart"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
@@ -164,11 +208,49 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Religion"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/editText6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/plain"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Contact Information"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="21sp" />
+
+                <TextView
                     android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:text="@string/user_email"
+                    android:textAlignment="textStart"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
@@ -194,6 +276,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Phone"
+                    android:textAlignment="textStart"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
@@ -210,34 +293,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="Religion"
-                    android:textColor="#000000"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/editText6"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/plain"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:textSize="24sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="15dp"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:weightSum="8">
 

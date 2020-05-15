@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
-    android:layout_marginTop="4dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingLeft="8dp"
+    android:paddingTop="4dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="4dp">
 
 
     <ImageView
@@ -52,7 +54,7 @@
 
     <Button
         android:id="@+id/messageRequesterBtn"
-        style="@style/Widget.AppCompat.Button.Colored"
+        style="@android:style/Widget.Material.Light.Button.Small"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_weight="3"

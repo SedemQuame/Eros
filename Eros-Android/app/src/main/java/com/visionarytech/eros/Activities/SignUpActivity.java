@@ -84,7 +84,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 if (task.isSuccessful()) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success");
-                    Intent intent = new Intent(getApplicationContext(), ProspectsActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), ProfileRegistration.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();

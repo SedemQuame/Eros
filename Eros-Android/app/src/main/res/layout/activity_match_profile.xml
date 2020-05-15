@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
             app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
             app:toolbarId="@+id/toolbar">
 
@@ -81,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/location"
                 android:textColor="#000000"
                 android:textSize="18sp" />
@@ -91,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Bio"
+                android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
@@ -101,14 +103,18 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="8dp"
                 android:text="lorem ipsum dolor sit amet"
+                android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#000000"
                 android:textSize="14sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Info"
+                android:text="Views"
+                android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
@@ -118,16 +124,101 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="lorem ipsum dolor sit amet"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="School"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="TextView"
+                    android:textAlignment="textEnd" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Work"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="TextView"
+                    android:textAlignment="textEnd" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Religion"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="TextView"
+                    android:textAlignment="textEnd" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/gallery"
+                android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
@@ -135,7 +226,71 @@
                 android:id="@+id/gallery"
                 android:name="com.visionarytech.eros.Fragments.MatchGallery"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_weight="4"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Contact Information"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/user_email"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="TextView"
+                    android:textAlignment="textEnd" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Phone Number"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="TextView"
+                    android:textAlignment="textEnd" />
+            </LinearLayout>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

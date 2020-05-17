@@ -3,10 +3,7 @@ package com.visionarytech.eros.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
-
-import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.tabs.TabLayout;
 import com.visionarytech.eros.Fragments.NotificationsFragment;
 import com.visionarytech.eros.Fragments.ProfileFragment;

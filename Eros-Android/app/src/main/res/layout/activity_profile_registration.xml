@@ -9,27 +9,45 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <TextView
-        android:id="@+id/textViewProfileRegistration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/profile_builder"
-        android:textAlignment="textStart"
-        android:textColor="#000000"
-        android:textSize="24sp" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/builder_subtitle" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewProfileRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/profile_builder"
+            android:textAlignment="textStart"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/builder_subtitle"
+            android:textColor="#636e72"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="This increases your chances of getting a better match."
+            android:textColor="#636e72"
+            android:textSize="14sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
         android:orientation="vertical">
 
         <TextView
@@ -37,10 +55,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/completion_progress"
+            android:text="Progress"
             android:textAlignment="textStart"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Fill the progress bar below, by completing your profile"
+            android:textColor="#636e72"
+            android:textSize="16sp" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -48,144 +75,173 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="2"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/_0_100"
+                android:textAlignment="center"
+                android:textColor="#636e72"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="96dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/_0_100"
-            android:textAlignment="textEnd"
-            android:textColor="#000000" />
-    </LinearLayout>
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal"
+            android:weightSum="10">
 
+            <TextView
+                android:id="@+id/lookingForDialogTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_vertical"
+                android:text="@string/about_me"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:weightSum="10">
+            <ImageButton
+                android:id="@+id/buttonAboutMe"
+                style="@android:style/Widget.Holo.Light.ImageButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:background="@drawable/button"
+                android:contentDescription="@string/about_me_img"
+                android:src="@drawable/ic_person" />
 
-        <TextView
-            android:id="@+id/lookingForDialogTextView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center_vertical"
-            android:text="@string/about_me"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/buttonAboutMe"
-            style="@android:style/Widget.Holo.Light.ImageButton"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="2"
-            android:background="@drawable/button"
-            android:contentDescription="@string/about_me_img"
-            android:src="@drawable/ic_person" />
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal"
+            android:weightSum="10">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textViewPreferences"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_vertical"
+                android:text="@string/preferences"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:weightSum="10">
+            <ImageButton
+                android:id="@+id/buttonPreferences"
+                style="@android:style/Widget.Holo.Light.ImageButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:background="@drawable/button"
+                android:contentDescription="@string/preferences_img"
+                android:src="@drawable/ic_preferences" />
 
-        <TextView
-            android:id="@+id/ageRangeDialogTextView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center_vertical"
-            android:text="@string/social_background"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/buttonSocialBackground"
-            style="@android:style/Widget.Holo.Light.ImageButton"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="2"
-            android:background="@drawable/button"
-            android:contentDescription="@string/social_background_img"
-            android:src="@drawable/ic_social" />
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal"
+            android:weightSum="10">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/ageRangeDialogTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_vertical"
+                android:text="@string/social_background"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:weightSum="10">
+            <ImageButton
+                android:id="@+id/buttonSocialBackground"
+                style="@android:style/Widget.Holo.Light.ImageButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:background="@drawable/button"
+                android:contentDescription="@string/social_background_img"
+                android:src="@drawable/ic_social" />
 
-        <TextView
-            android:id="@+id/textViewContactInfo"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center_vertical"
-            android:text="@string/contact_information"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/buttonContactInformation"
-            style="@android:style/Widget.Holo.Light.ImageButton"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="2"
-            android:background="@drawable/button"
-            android:contentDescription="@string/contact_information_img"
-            android:src="@drawable/ic_contact" />
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal"
+            android:weightSum="10">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textViewContactInfo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_vertical"
+                android:text="@string/contact_information"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:weightSum="10">
+            <ImageButton
+                android:id="@+id/buttonContactInformation"
+                style="@android:style/Widget.Holo.Light.ImageButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:background="@drawable/button"
+                android:contentDescription="@string/contact_information_img"
+                android:src="@drawable/ic_contact" />
 
-        <TextView
-            android:id="@+id/textViewPreferences"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
-            android:fontFamily="@font/roboto_medium"
-            android:gravity="center_vertical"
-            android:text="@string/preferences"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-
-        <ImageButton
-            android:id="@+id/buttonPreferences"
-            style="@android:style/Widget.Holo.Light.ImageButton"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="2"
-            android:background="@drawable/button"
-            android:contentDescription="@string/preferences_img"
-            android:src="@drawable/ic_preferences" />
-
+        </LinearLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/buttonNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:text="@string/next" />
 
 </LinearLayout>

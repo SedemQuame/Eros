@@ -14,12 +14,15 @@
         android:text="My Contact Information"
         android:textAlignment="textStart"
         android:textColor="#000000"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tell the community a little bit about yourself." />
+        android:fontFamily="@font/roboto_medium"
+        android:text="How would you want a possible match to contact you?"
+        android:textColor="#636e72"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,57 +31,59 @@
         android:layout_marginBottom="8dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/emailDialogTextView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Email"
-            android:textAlignment="textStart"
-            android:textColor="#000000"
-            android:textSize="14sp" />
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextDialogEmail"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/plain"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="24sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/emailDialogTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Email"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="14sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical">
+            <EditText
+                android:id="@+id/editTextDialogEmail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/plain"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="24sp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/phoneDialogTextView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Phone"
-            android:textAlignment="textStart"
-            android:textColor="#000000"
-            android:textSize="14sp" />
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextDialogPhone"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/plain"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="24sp" />
+            <TextView
+                android:id="@+id/phoneDialogTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Phone"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/editTextDialogPhone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/plain"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="24sp" />
+        </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonNext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="next" />
 
 </LinearLayout>

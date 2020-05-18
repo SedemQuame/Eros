@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import com.visionarytech.eros.Fragments.AboutMeDialog;
 import com.visionarytech.eros.Fragments.ContactInformationDialog;
@@ -14,11 +15,14 @@ import com.visionarytech.eros.Fragments.PreferenceDialog;
 import com.visionarytech.eros.Fragments.SocialBackgroundDialog;
 import com.visionarytech.eros.R;
 
-public class ProfileRegistration extends AppCompatActivity {
+public class ProfileRegistration extends AppCompatActivity implements
+        AboutMeDialog.AboutDialogListener, PreferenceDialog.PreferencesDialogListener,
+        ContactInformationDialog.ContactInformationDialogListener, SocialBackgroundDialog.SocialBackgroundDialogListener {
     private ImageButton buttonAboutMe;
     private ImageButton buttonSocialBackground;
     private ImageButton buttonContactInformation;
     private ImageButton buttonPreferences;
+    private ProgressBar progressBar;
     private Button buttonNext;
 
 
@@ -38,6 +42,8 @@ public class ProfileRegistration extends AppCompatActivity {
         buttonContactInformation = findViewById(R.id.buttonContactInformation);
         buttonPreferences = findViewById(R.id.buttonPreferences);
         buttonNext = findViewById(R.id.buttonNext);
+        progressBar = findViewById(R.id.progressBar);
+
 
 //        adding onClickListeners to buttons
         buttonAboutMe.setOnClickListener(new View.OnClickListener() {
@@ -97,5 +103,10 @@ public class ProfileRegistration extends AppCompatActivity {
     private void openPreferencesDialog(){
         PreferenceDialog preferenceDialog = new PreferenceDialog();
         preferenceDialog.show(getSupportFragmentManager(), "Preferences");
+    }
+
+    @Override
+    public void updateProgressBar(int progressNumber) {
+        progressBar.incrementProgressBy(progressNumber);
     }
 }

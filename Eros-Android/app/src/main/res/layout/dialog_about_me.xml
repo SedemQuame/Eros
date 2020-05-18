@@ -14,12 +14,15 @@
         android:text="About Me"
         android:textAlignment="textStart"
         android:textColor="#000000"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tell the community a little bit about yourself." />
+        android:fontFamily="@font/roboto_medium"
+        android:text="Tell the community a little bit about yourself."
+        android:textColor="#636e72"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,57 +31,60 @@
         android:layout_marginBottom="8dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/bioDialogTextView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Bio"
-            android:textAlignment="textStart"
-            android:textColor="#000000"
-            android:textSize="14sp" />
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextDialogBio"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/plain"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="24sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/bioDialogTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Bio"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="14sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical">
+            <EditText
+                android:id="@+id/editTextDialogBio"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/plain"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="24sp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/viewsDialogTextView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Views"
-            android:textAlignment="textStart"
-            android:textColor="#000000"
-            android:textSize="14sp" />
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextDialogViews"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/plain"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="24sp" />
+            <TextView
+                android:id="@+id/viewsDialogTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Views"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/editTextDialogViews"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/plain"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="24sp" />
+        </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonNext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="next" />
 
 </LinearLayout>

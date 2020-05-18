@@ -80,215 +80,269 @@
                 android:id="@+id/datesLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/location"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Bio"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/datesBio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="8dp"
-                android:text="lorem ipsum dolor sit amet"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Views"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="lorem ipsum dolor sit amet"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#000000" />
+                android:textColor="#636e72"
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
-                android:weightSum="8">
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="0dp"
+                    android:id="@+id/textView30"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="School"
+                    android:text="@string/about_me"
+                    android:textColor="#636e72"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Bio"
                     android:textAlignment="textStart"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="0dp"
+                    android:id="@+id/datesBio"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="TextView"
-                    android:textAlignment="textEnd" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
-                android:weightSum="8">
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Work"
+                    android:text="lorem ipsum dolor sit amet"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Views"
                     android:textAlignment="textStart"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="0dp"
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="TextView"
-                    android:textAlignment="textEnd" />
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="lorem ipsum dolor sit amet"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
-                android:weightSum="8">
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/textView31"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Religion"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:text="@string/social_background"
+                    android:textColor="#636e72"
+                    android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="TextView"
-                    android:textAlignment="textEnd" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="8">
 
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Work"
+                        android:textAlignment="textStart"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="TextView"
+                        android:textAlignment="textEnd"
+                        android:textColor="#636e72" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="8">
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Religion"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="TextView"
+                        android:textAlignment="textEnd"
+                        android:textColor="#636e72" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="8">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="School"
+                        android:textAlignment="textStart"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="TextView"
+                        android:textAlignment="textEnd"
+                        android:textColor="#636e72" />
+                </LinearLayout>
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/gallery"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-
-            <fragment
-                android:id="@+id/gallery"
-                android:name="com.visionarytech.eros.Fragments.MatchGallery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_weight="4"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Contact Information"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="8">
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView25"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/textView24"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/user_email"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:text="Contact Information"
+                    android:textAlignment="textStart"
+                    android:textColor="#636e72"
+                    android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/textView26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="TextView"
-                    android:textAlignment="textEnd" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="8">
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/user_email"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="TextView"
+                        android:textAlignment="textEnd"
+                        android:textColor="#636e72" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="8">
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Phone Number"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="TextView"
+                        android:textAlignment="textEnd"
+                        android:textColor="#636e72" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
-                android:weightSum="8">
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Phone Number"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:text="@string/gallery"
+                    android:textAlignment="textStart"
+                    android:textColor="#636e72"
+                    android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/textView28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="TextView"
-                    android:textAlignment="textEnd" />
+                <fragment
+                    android:id="@+id/gallery"
+                    android:name="com.visionarytech.eros.Fragments.MatchGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
             </LinearLayout>
 
         </LinearLayout>

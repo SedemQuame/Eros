@@ -2,6 +2,7 @@ package com.visionarytech.eros.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ public class PreferenceDialog extends AppCompatDialogFragment {
     private EditText editTextDialogGender;
     private EditText editTextDialogLookingFor;
     private EditText editTextDialogAgeRange;
+    private PreferencesDialogListener listener;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -25,7 +27,18 @@ public class PreferenceDialog extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.dialog_preferences, null);
 
 //        adding to view ro alertDialog
-        builder.setView(view);
+        builder.setView(view)
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }}).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+//                  Update Registration Progress By 25%;
+                    listener.updateProgressBar(25);
+                }
+        });
 
 
 //        attaching view references to variables.
@@ -34,5 +47,20 @@ public class PreferenceDialog extends AppCompatDialogFragment {
         editTextDialogAgeRange = view.findViewById(R.id.editTextDialogAgeRange);
 
         return builder.create();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            listener = (PreferencesDialogListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "must implement aboutDialogListener");
+        }
+    }
+
+    public interface PreferencesDialogListener{
+        void updateProgressBar(int progressNumber);
     }
 }

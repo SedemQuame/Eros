@@ -1,46 +1,51 @@
 // jshint esversion:6
 // ================================ creating list application route ===================================//
+const user = require(`../controllers/user.controller`);
+
 module.exports = app => {
-    const user = require('../controllers/user.controller');
 
-    //========================================== app users routes ============================================//
-    app.route('/createNewUserAccount')
-        .post(user.createNewAccount);
+    app.all(`/defaultDisplay`, (req,res) => {
+            res.send({msg: `Eros Server Side.`});
+        });
 
-    app.route('/deleteExistingAccount')
+//     //========================================== app users routes ============================================//
+    app.route(`/createNewUserAccount/aboutMe/:bio.:views/preferences/:gender.:ageRange.:lookingFor/socialBackground/:work.:religion.:school/contactInformation/:email.:phone`)
+       .post(user.createNewUserAccount);
+
+    app.route(`/deleteExistingAccount/userDocId/:id`)
         .post(user.deleteExistingAccount);
 
 // ==================================================
-    app.route('/getAllUsers')
+    app.route(`/getAllUsers`)
         .post(user.getAllUsers);
 
-    app.route('/getAllUsersWithMatchingPreferences')
+    app.route(`/getAllUsersWithMatchingPreferences`)
         .post(user.getAllUsersWithMatchingPreferences);
 
 // ==================================================
-    app.route('/requestMessageFromPossibleMatch')
+    app.route(`/requestMessageFromPossibleMatch`)
         .post(user.requestMessageFromPossibleMatch);
 
-    app.route('/likePictureOfPossibleMatch')
+    app.route(`/likePictureOfPossibleMatch`)
         .post(user.likePictureOfPossibleMatch);
         
-    app.route('/deletePicturePostedOnPlatform')
+    app.route(`/deletePicturePostedOnPlatform`)
         .post(user.deletePicturePostedOnPlatform);
 
 // ==================================================
 // Modifying User Attributes.
-    app.route('/modifyUserName')
+    app.route(`/modifyUserName`)
         .post(user.modifyUserName);
 
-    app.route('/modifyContactDetails')
+    app.route(`/modifyContactDetails`)
         .post(user.modifyContactDetails);
 
-    app.route('/changeProfileImg')
+    app.route(`/changeProfileImg`)
         .post(user.changeProfileImg);
 
-    app.route('/modifyPreferences')
+    app.route(`/modifyPreferences`)
         .post(user.modifyPreferences);
 
-    app.route('/modifySocialBackground')
+    app.route(`/modifySocialBackground`)
         .post(user.modifySocialBackground);
 };

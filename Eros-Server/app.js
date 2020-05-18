@@ -17,9 +17,9 @@ const connectDB = async () => {
 };
 
 connectDB().then(() => {
-    console.log('DB Connected....');
+    console.log(`Connected to Db ...`);
 }).catch(() => {
-    console.log('DB Not Connected....');
+    console.log(`Could not connect to Db ...`);
 });
 
 //creating app
@@ -29,24 +29,20 @@ const app = express();
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: false}));
-app.use(fileupload(), bodyParser.urlencoded({ extended: true }));
-
-
-// serving static files in express
-app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({extended: false}));
 
 
 //====================================== requiring list routes ========================================//
-require('./routes/user.route')(app);
+require('./routes/user.routes')(app);
 
 // define a simple route
-app.get('/', (req, res) => {
-    res.redirect('/create');
+app.all('/', (req, res) => {
+    res.redirect('/defaultDisplay');
 });
 
 // listening port
 let port = process.env.PORT || 8080;
 app.listen(port, function() {
-    console.log(`Elector app started on port: ${port}`);
+    console.log(`App started on port: ${port}`);
+    console.log(`http://localhost:8080/defaultDisplay`);
 });

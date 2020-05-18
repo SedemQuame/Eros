@@ -43,10 +43,11 @@ const userSchema = mongoose.Schema({
     name: {type: String},
     age: {type: Number},
     profileImg: {type: String},
+    firebaseUID: {type: String},
     aboutMe: aboutMeSchema,
+    preferences: preferenceSchema,
     socialBackground: socialBackgroundSchema,
     contactInformation: contactInformationSchema,
-    preferences: preferenceSchema,
     mediaList: [media],
     notifications: [notificationSchema],
 });

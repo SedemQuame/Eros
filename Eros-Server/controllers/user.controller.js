@@ -3,9 +3,13 @@
 
 //====================================== requiring modules ===========================================//
 // node modules
+// Load the full build.
+const _ = require('lodash');
 
 // custom models
 const user = require(`../models/user.models`).user;
+const preferences = require(`../models/user.models`).preferences;
+
 
 //================================== creating HTTP handler methods ==================================//
 
@@ -62,30 +66,94 @@ exports.deleteExistingAccount = (req, res) => {
         );
 };
 
+exports.addNewPicture = (req, res) => {
+    user.findById(`5ec38afd28d1071be8bb19d8`)
+        .then(doc => {
+            doc.mediaList.push({
+                assetUrl: `https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60`,
+                assetType: `Image`,
+                numberOfLikes: 0
+            });
+            doc.save();
+            res.send({msg: `Successfully added a new Image.`});
+        }).catch(
+            err => {
+                res.send({
+                    msg: `Unable to add new picture.`,
+                    err: err
+                });
+            }
+        );
+};
+
 // Querying User Accounts
 // ======================
 // todo => optimise function.
 exports.getAllUsers = (req, res) => {   
     user.find({})
         .then(docs => {
-            res.send({users: docs})
+            res.send({users: docs});
         }).catch(err => {
             res.send({msg: `Unable fetch user data. Try again later`})
-        })
+        });
 };
 
-exports.getAllUsersWithMatchingPreferences = (req, res) => {   
-    res.send({msg: `nothing to show.`})
+// todo => pass field data into function
+exports.getAllUsersWithMatchingPreferences = (req, res) => {
+    user.find({
+        'preferences.lookingFor': 'female'
+    }).where('age').gte(25).lte(38)
+        .then(docs => {
+            console.log(docs);
+            res.send({preferences: docs.filter(doc => doc.preferences.lookingFor == 'male')})
+        }).catch(err => {
+            console.log(err);
+        });
 };
 
 // Person To Person Requests
 // =========================
+
 exports.requestMessageFromPossibleMatch = (req, res) => {   
-    res.send({msg: `nothing to show.`})
+    user.findById({_id: `5ec38b5128d1071be8bb19e2`})
+        .then(doc => {
+            doc.notifications.push({
+                from: `5ec38b7828d1071be8bb19ec`,
+                subject: `Love profession then things.`,
+            });
+            doc.save();
+            res.send({
+                msg: `Successfully added request to queue.`
+            });
+        }).catch(err => {
+            res.send({
+                msg: `Unable to request message from user.`,
+                err: err
+            });
+        });
 };
 
 exports.likePictureOfPossibleMatch = (req, res) => {   
-    res.send({msg: `nothing to show.`})
+    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+        .then(doc => {
+           doc.mediaList.map(
+               media => {
+                   if(media[`_id`] == `5ec3a556f9d0142890737bbe`){
+                       console.log(media.numberOfLikes);
+                       media.numberOfLikes = media.numberOfLikes + 1;
+                   }
+               }
+           );
+           doc.save();
+           res.send({
+                msg: `Like Recorded`
+           });
+        }).catch(err => {
+            res.send({
+                msg: `Unable to like Image.`,
+                err: err
+            });
+        });
 };
 
 
@@ -93,11 +161,27 @@ exports.likePictureOfPossibleMatch = (req, res) => {
 // =====================================
 
 exports.deletePicturePostedOnPlatform = (req, res) => {   
-    res.send({msg: `nothing to show.`})
+    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+        .then(doc => {
+        _.remove(doc.mediaList, (media) => {
+            return (media[`_id`] == `5ec3a556f9d0142890737bbe`);
+        });
+        // doc.save();
+        console.log(doc);
+        
+        res.send({
+                msg: `Image Deleted.`
+        });
+        }).catch(err => {
+            res.send({
+                msg: `Unable to delete Image.`,
+                err: err
+            });
+        });
 };
 
 exports.modifyUserName = (req, res) => {   
-    res.send({msg: `nothing to show.`})
+    res.send({msg: `nothing to show.`});
 };
 
 exports.modifyContactDetails = (req, res) => {   

@@ -28,6 +28,7 @@ const preferenceSchema = mongoose.Schema({
 const media = mongoose.Schema({
     assetUrl: {type: String},
     assetType: {type: String},
+    numberOfLikes: {type: Number, default: 0}
 });
 
 const notificationSchema = mongoose.Schema({
@@ -55,5 +56,6 @@ const userSchema = mongoose.Schema({
 // exporting user schema.
 module.exports = {
     user: mongoose.model('user', userSchema),
+    // preferences: mongoose.model('preferences', userSchema.preferenceSchema),
     userSchema: userSchema
 };

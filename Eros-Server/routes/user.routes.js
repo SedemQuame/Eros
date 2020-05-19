@@ -12,6 +12,9 @@ module.exports = app => {
     app.route(`/createNewUserAccount/aboutMe/:bio.:views/preferences/:gender.:ageRange.:lookingFor/socialBackground/:work.:religion.:school/contactInformation/:email.:phone`)
        .post(user.createNewUserAccount);
 
+    app.route(`/addNewPicture`)
+       .post(user.addNewPicture);
+
     app.route(`/deleteExistingAccount/userDocId/:id`)
         .post(user.deleteExistingAccount);
 

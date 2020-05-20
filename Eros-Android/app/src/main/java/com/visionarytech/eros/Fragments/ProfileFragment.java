@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.visionarytech.eros.Activities.LoginActivity;
 import com.visionarytech.eros.R;
 
@@ -25,6 +32,8 @@ import com.visionarytech.eros.R;
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends Fragment implements View.OnClickListener {
+    SharedPreferences sharedPref;
+    private static final String TAG = "ProfileFragment";
     View v;
     private TextView username;
 
@@ -38,6 +47,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private EditText email;
     private EditText phone;
 
+    private Button deleteAccount;
     private Button logOut;
     private FirebaseAuth mAuth;
 
@@ -63,7 +73,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 //        Setting value for editTextViews in fragment with values from shared preferences.
         Context context = getActivity();
-        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
+        sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
 
         username.setText(sharedPref.getString("Username", null));
 
@@ -76,8 +86,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         phone.setText(sharedPref.getString("Phone", null));
 
         logOut = v.findViewById(R.id.logOutButton);
+        deleteAccount = v.findViewById(R.id.deleteAccountButton);
         logOut.setOnClickListener(this);
-
+        deleteAccount.setOnClickListener(this);
         return v;
     }
 
@@ -87,7 +98,27 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case (R.id.logOutButton):
                 mAuth.signOut();
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                break;
+            case (R.id.deleteAccountButton):
+//                mAuth.signOut();
+                FirebaseUser user = mAuth.getCurrentUser();
+//                todo: Must work on successfully deleting user account.
+                user.delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "onComplete: Account deleted.");
+                                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }else{
+                                    Log.d(TAG, "onComplete: Account not deleted.");
+                                }
+                            }
+                        });
                 break;
         }
     }

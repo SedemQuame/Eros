@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,12 +22,19 @@ public class PreferenceDialog extends AppCompatDialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-//        return super.onCreateDialog(savedInstanceState);
+//          return super.onCreateDialog(savedInstanceState);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_preferences, null);
 
-//        adding to view ro alertDialog
+
+
+//          attaching view references to variables.
+        editTextDialogGender = view.findViewById(R.id.editTextDialogGender);
+        editTextDialogLookingFor = view.findViewById(R.id.editTextDialogLookingFor);
+        editTextDialogAgeRange = view.findViewById(R.id.editTextDialogAgeRange);
+
+//          adding to view ro alertDialog
         builder.setView(view)
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
@@ -35,17 +43,20 @@ public class PreferenceDialog extends AppCompatDialogFragment {
                 }}).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-//                  Update Registration Progress By 25%;
+//                      Storing Data In Shared Preferences.
+                    Context context = getActivity();
+                    SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
+//                      Creating Editor For Shared Preferences.
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("Gender", editTextDialogGender.getText().toString());
+                    editor.putString("LookingFor", editTextDialogLookingFor.getText().toString());
+                    editor.putString("AgeRange", editTextDialogAgeRange.getText().toString());
+//                      Saving New User Preferences.
+                    editor.apply();
+//                      Update Registration Progress By 25%;
                     listener.updateProgressBar(25);
                 }
         });
-
-
-//        attaching view references to variables.
-        editTextDialogGender = view.findViewById(R.id.editTextDialogGender);
-        editTextDialogLookingFor = view.findViewById(R.id.editTextDialogLookingFor);
-        editTextDialogAgeRange = view.findViewById(R.id.editTextDialogAgeRange);
-
         return builder.create();
     }
 

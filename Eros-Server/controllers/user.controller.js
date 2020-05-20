@@ -113,7 +113,6 @@ exports.getAllUsersWithMatchingPreferences = (req, res) => {
 
 // Person To Person Requests
 // =========================
-
 exports.requestMessageFromPossibleMatch = (req, res) => {   
     user.findById({_id: `5ec38b5128d1071be8bb19e2`})
         .then(doc => {
@@ -159,7 +158,6 @@ exports.likePictureOfPossibleMatch = (req, res) => {
 
 // Manipulating Account Assets & Details
 // =====================================
-
 exports.deletePicturePostedOnPlatform = (req, res) => {   
     user.findById({_id: `5ec38afd28d1071be8bb19d8`})
         .then(doc => {
@@ -168,6 +166,9 @@ exports.deletePicturePostedOnPlatform = (req, res) => {
         });
         // doc.save();
         console.log(doc);
+
+        // todo: write server side code for deleting the picture
+        // on the storage platform.
         
         res.send({
                 msg: `Image Deleted.`

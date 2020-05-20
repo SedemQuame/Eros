@@ -29,9 +29,9 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
-        emailAddressEdtView = findViewById(R.id.emailAddressEdtView);
+        emailAddressEdtView = findViewById(R.id.emailAddressEditView);
 
-        resetPasswordBtn = findViewById(R.id.resetPasswordBtn);
+        resetPasswordBtn = findViewById(R.id.resetPasswordButton);
         resetPasswordBtn.setOnClickListener(this);
 
         routeToLogin = findViewById(R.id.routeToLogin);
@@ -74,7 +74,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case(R.id.resetPasswordBtn):
+            case(R.id.resetPasswordButton):
 //                Call function to reset password with email address.
                 resetPassword();
                 break;

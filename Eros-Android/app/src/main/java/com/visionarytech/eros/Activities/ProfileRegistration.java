@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.visionarytech.eros.Fragments.AboutMeDialog;
 import com.visionarytech.eros.Fragments.ContactInformationDialog;
@@ -24,6 +25,8 @@ public class ProfileRegistration extends AppCompatActivity implements
     private ImageButton buttonPreferences;
     private ProgressBar progressBar;
     private Button buttonNext;
+    private TextView progressText;
+    private int progressValue;
 
 
     @Override
@@ -43,6 +46,7 @@ public class ProfileRegistration extends AppCompatActivity implements
         buttonPreferences = findViewById(R.id.buttonPreferences);
         buttonNext = findViewById(R.id.buttonNext);
         progressBar = findViewById(R.id.progressBar);
+        progressText = findViewById(R.id.progressText);
 
 
 //        adding onClickListeners to buttons
@@ -108,5 +112,11 @@ public class ProfileRegistration extends AppCompatActivity implements
     @Override
     public void updateProgressBar(int progressNumber) {
         progressBar.incrementProgressBy(progressNumber);
+        progressValue += progressNumber;
+//        updating progressText
+
+        if(progressValue < 100){
+            progressText.setText(new StringBuilder().append(progressValue).append("/100").toString());
+        }
     }
 }

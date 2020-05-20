@@ -109,7 +109,7 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/bioEdt"
+                        android:id="@+id/bioEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/plain"
@@ -134,7 +134,7 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/viewsEdt"
+                        android:id="@+id/viewsEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/plain"
@@ -177,7 +177,7 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/editText"
+                        android:id="@+id/workEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/plain"
@@ -203,7 +203,7 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/editText3"
+                        android:id="@+id/schoolEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/plain"
@@ -228,7 +228,7 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/editText6"
+                        android:id="@+id/religionEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/plain"
@@ -272,7 +272,7 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/editText4"
+                        android:id="@+id/emailAddressEditView"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/plain"
@@ -297,7 +297,7 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/editText5"
+                        android:id="@+id/phoneEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/plain"

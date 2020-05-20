@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.visionarytech.eros.Activities.LoginActivity;
@@ -25,6 +26,8 @@ import com.visionarytech.eros.R;
  */
 public class ProfileFragment extends Fragment implements View.OnClickListener {
     View v;
+    private TextView username;
+
     private EditText bio;
     private EditText views;
 //    ==========================
@@ -34,7 +37,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 //    ==========================
     private EditText email;
     private EditText phone;
-
 
     private Button logOut;
     private FirebaseAuth mAuth;
@@ -49,6 +51,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         v = inflater.inflate(R.layout.fragment_profile, container, false);
 
 //        Referencing views in the fragment view.
+        username = v.findViewById(R.id.usernameTextView);
+
         bio = v.findViewById(R.id.bioEditText);
         views = v.findViewById(R.id.viewsEditText);
         work = v.findViewById(R.id.workEditText);
@@ -61,6 +65,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         Context context = getActivity();
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
 
+        username.setText(sharedPref.getString("Username", null));
 
         bio.setText(sharedPref.getString("Bio", null));
         views.setText(sharedPref.getString("Views", null));

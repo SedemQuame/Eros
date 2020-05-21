@@ -182,21 +182,57 @@ exports.deletePicturePostedOnPlatform = (req, res) => {
 };
 
 exports.modifyUserName = (req, res) => {   
-    res.send({msg: `nothing to show.`});
+    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+        .then(doc => {
+            doc.name = 'New name';
+            doc.save();
+            res.send({
+                msg: `Successfully changed user name.`
+            });
+        }).catch(err => {
+            res.send({
+                msg: `Unable to change user name.`,
+                err: err
+            });
+        });
 };
 
 exports.modifyContactDetails = (req, res) => {   
-    res.send({msg: `nothing to show.`})
+    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+        .then(doc => {
+            doc.contactInformation.phoneNumber = 'New Phone Number';
+            doc.save();
+            res.send({
+                msg: `Successfully changed phone number.`
+            });
+        }).catch(err => {
+            res.send({
+                msg: `Unable to change phone number.`,
+                err: err
+            });
+        });
 };
 
 exports.changeProfileImg = (req, res) => {   
-    res.send({msg: `nothing to show.`})
+    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+        .then(doc => {
+
+        })
+        .catch();
 };
 
 exports.modifyPreferences = (req, res) => {   
-    res.send({msg: `nothing to show.`})
+    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+        .then(doc => {
+
+        })
+        .catch();
 };
 
 exports.modifySocialBackground = (req, res) => {   
-    res.send({msg: `nothing to show.`})
+    user.findById({_id: `5ec38afd28d1071be8bb19d8`})
+        .then(doc => {
+
+        })
+        .catch();
 };

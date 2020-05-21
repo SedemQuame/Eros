@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,240 +10,331 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textViewProfileRegistration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/profile_builder"
-            android:textAlignment="textStart"
-            android:textColor="#000000"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/builder_subtitle"
-            android:textColor="#636e72"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textView32"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="This increases your chances of getting a better match."
-            android:textColor="#636e72"
-            android:textSize="14sp" />
-    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="4dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/genderDialogTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Progress"
-            android:textAlignment="textStart"
-            android:textColor="#000000"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textView33"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Fill the progress bar below, by completing your profile"
-            android:textColor="#636e72"
-            android:textSize="16sp" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="10">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView34"
-                android:layout_width="0dp"
+                android:id="@+id/textViewProfileRegistration"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="8" />
-
-            <TextView
-                android:id="@+id/progressText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_weight="2"
                 android:fontFamily="@font/roboto_medium"
-                android:text="@string/_0_100"
-                android:textAlignment="center"
+                android:text="@string/profile_builder"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/builder_subtitle"
                 android:textColor="#636e72"
                 android:textSize="16sp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="96dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:orientation="horizontal"
-            android:weightSum="10">
 
             <TextView
-                android:id="@+id/lookingForDialogTextView"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
+                android:id="@+id/textView32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
-                android:gravity="center_vertical"
-                android:text="@string/about_me"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:id="@+id/buttonAboutMe"
-                style="@android:style/Widget.Holo.Light.ImageButton"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="2"
-                android:background="@drawable/button"
-                android:contentDescription="@string/about_me_img"
-                android:src="@drawable/ic_person" />
-
+                android:text="This increases your chances of getting a better match."
+                android:textColor="#636e72"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:orientation="horizontal"
-            android:weightSum="10">
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewPreferences"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
+                android:id="@+id/genderDialogTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
-                android:gravity="center_vertical"
-                android:text="@string/preferences"
+                android:text="Progress"
+                android:textAlignment="textStart"
                 android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Fill the progress bar below, by completing your profile"
+                android:textColor="#636e72"
                 android:textSize="16sp" />
 
-            <ImageButton
-                android:id="@+id/buttonPreferences"
-                style="@android:style/Widget.Holo.Light.ImageButton"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="2"
-                android:background="@drawable/button"
-                android:contentDescription="@string/preferences_img"
-                android:src="@drawable/ic_preferences" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8" />
+
+                <TextView
+                    android:id="@+id/progressText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/_0_100"
+                    android:textAlignment="center"
+                    android:textColor="#636e72"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
         </LinearLayout>
+
 
         <LinearLayout
-            android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:orientation="horizontal"
-            android:weightSum="10">
+            android:layout_marginTop="4dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/ageRangeDialogTextView"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:fontFamily="@font/roboto_medium"
-                android:gravity="center_vertical"
-                android:text="@string/social_background"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+            <LinearLayout
+                android:id="@+id/aboutMe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
 
-            <ImageButton
-                android:id="@+id/buttonSocialBackground"
-                style="@android:style/Widget.Holo.Light.ImageButton"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="2"
-                android:background="@drawable/button"
-                android:contentDescription="@string/social_background_img"
-                android:src="@drawable/ic_social" />
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_person" />
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/lookingForDialogTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="9"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/about_me"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="9"
+                        android:text="TextView" />
+                </LinearLayout>
+
+                <!--            <ImageButton-->
+                <!--                android:id="@+id/buttonAboutMe"-->
+                <!--                style="@android:style/Widget.Holo.Light.ImageButton"-->
+                <!--                android:layout_width="0dp"-->
+                <!--                android:layout_height="40dp"-->
+                <!--                android:layout_weight="2"-->
+                <!--                android:background="@drawable/button"-->
+                <!--                android:contentDescription="@string/about_me_img"-->
+                <!--                android:src="@drawable/ic_person" />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/socialBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_preferences" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/textViewPreferences"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="8"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/preferences"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textView38"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+                </LinearLayout>
+
+                <!--            <ImageButton-->
+                <!--                android:id="@+id/buttonPreferences"-->
+                <!--                style="@android:style/Widget.Holo.Light.ImageButton"-->
+                <!--                android:layout_width="0dp"-->
+                <!--                android:layout_height="40dp"-->
+                <!--                android:layout_weight="2"-->
+                <!--                android:background="@drawable/button"-->
+                <!--                android:contentDescription="@string/preferences_img"-->
+                <!--                android:src="@drawable/ic_preferences" />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contactInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_social" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/ageRangeDialogTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/social_background"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:text="TextView" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/preferences"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_contact" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/textViewContactInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/contact_information"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:orientation="horizontal"
-            android:weightSum="10">
-
-            <TextView
-                android:id="@+id/textViewContactInfo"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:fontFamily="@font/roboto_medium"
-                android:gravity="center_vertical"
-                android:text="@string/contact_information"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:id="@+id/buttonContactInformation"
-                style="@android:style/Widget.Holo.Light.ImageButton"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="2"
-                android:background="@drawable/button"
-                android:contentDescription="@string/contact_information_img"
-                android:src="@drawable/ic_contact" />
-
-        </LinearLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/buttonNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/next" />
-
-</LinearLayout>
+        android:layout_gravity="bottom"
+        android:text="@string/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="55dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

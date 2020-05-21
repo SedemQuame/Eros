@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,10 +20,10 @@ import com.visionarytech.eros.R;
 public class ProfileRegistration extends AppCompatActivity implements
         AboutMeDialog.AboutDialogListener, PreferenceDialog.PreferencesDialogListener,
         ContactInformationDialog.ContactInformationDialogListener, SocialBackgroundDialog.SocialBackgroundDialogListener {
-    private ImageButton buttonAboutMe;
-    private ImageButton buttonSocialBackground;
-    private ImageButton buttonContactInformation;
-    private ImageButton buttonPreferences;
+    private LinearLayout aboutMe;
+    private LinearLayout socialBackground;
+    private LinearLayout contactInformation;
+    private LinearLayout preferences;
     private ProgressBar progressBar;
     private Button buttonNext;
     private TextView progressText;
@@ -40,38 +41,38 @@ public class ProfileRegistration extends AppCompatActivity implements
         setContentView(R.layout.activity_profile_registration);
 
 //        storing references in the view to variables, here.
-        buttonAboutMe = findViewById(R.id.buttonAboutMe);
-        buttonSocialBackground = findViewById(R.id.buttonSocialBackground);
-        buttonContactInformation = findViewById(R.id.buttonContactInformation);
-        buttonPreferences = findViewById(R.id.buttonPreferences);
-        buttonNext = findViewById(R.id.buttonNext);
         progressBar = findViewById(R.id.progressBar);
         progressText = findViewById(R.id.progressText);
 
+        aboutMe = findViewById(R.id.aboutMe);
+        socialBackground = findViewById(R.id.socialBackground);
+        contactInformation = findViewById(R.id.contactInformation);
+        preferences = findViewById(R.id.preferences);
 
+        buttonNext = findViewById(R.id.buttonNext);
 //        adding onClickListeners to buttons
-        buttonAboutMe.setOnClickListener(new View.OnClickListener() {
+        aboutMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openAboutMeDialog();
             }
         });
 
-        buttonSocialBackground.setOnClickListener(new View.OnClickListener() {
+        socialBackground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openSocialBackgroundDialog();
             }
         });
 
-        buttonContactInformation.setOnClickListener(new View.OnClickListener() {
+        contactInformation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openContactInformationDialog();
             }
         });
 
-        buttonPreferences.setOnClickListener(new View.OnClickListener() {
+        preferences.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openPreferencesDialog();

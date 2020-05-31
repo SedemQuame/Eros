@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.visionarytech.eros.Networks.RequestHandler;
 import com.visionarytech.eros.R;
 
 public class PreferenceDialog extends AppCompatDialogFragment {
@@ -19,6 +20,7 @@ public class PreferenceDialog extends AppCompatDialogFragment {
     private EditText editTextDialogLookingFor;
     private EditText editTextDialogAgeRange;
     private PreferencesDialogListener listener;
+    private static String BASE_URL = "";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -53,6 +55,9 @@ public class PreferenceDialog extends AppCompatDialogFragment {
                     editor.putString("AgeRange", editTextDialogAgeRange.getText().toString());
 //                      Saving New User Preferences.
                     editor.apply();
+//                    Building REQUEST_URL
+//                    Passing User Details to RequestHandler.
+                    RequestHandler handler = new RequestHandler(getContext(), "", "");
 //                      Update Registration Progress By 25%;
                     listener.updateProgressBar(25);
                 }

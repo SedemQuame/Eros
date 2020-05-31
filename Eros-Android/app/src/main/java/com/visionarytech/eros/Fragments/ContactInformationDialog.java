@@ -13,12 +13,14 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.visionarytech.eros.Networks.RequestHandler;
 import com.visionarytech.eros.R;
 
 public class ContactInformationDialog extends AppCompatDialogFragment {
     private EditText editTextDialogEmail;
     private EditText editTextDialogPhone;
     private ContactInformationDialogListener listener;
+    private static String BASE_URL = "";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -47,6 +49,9 @@ public class ContactInformationDialog extends AppCompatDialogFragment {
                     editor.putString("Phone", editTextDialogPhone.getText().toString());
 //                      Saving New User Preferences.
                     editor.apply();
+//                    Building REQUEST_URL
+//                    Passing User Details to RequestHandler.
+                    RequestHandler handler = new RequestHandler(getContext(), "", "");
 //                      Update Registration Progress By 25%;
                     listener.updateProgressBar(25);
                 }

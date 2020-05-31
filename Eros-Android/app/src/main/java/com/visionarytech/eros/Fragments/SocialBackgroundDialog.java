@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.visionarytech.eros.Networks.RequestHandler;
 import com.visionarytech.eros.R;
 
 public class SocialBackgroundDialog extends AppCompatDialogFragment {
@@ -19,6 +20,7 @@ public class SocialBackgroundDialog extends AppCompatDialogFragment {
     private EditText editTextDialogSchool;
     private EditText editTextDialogReligion;
     private SocialBackgroundDialogListener listener;
+    private static String BASE_URL = "";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -49,6 +51,9 @@ public class SocialBackgroundDialog extends AppCompatDialogFragment {
                     editor.putString("Religion", editTextDialogReligion.getText().toString());
 //                      Saving New User Preferences.
                     editor.apply();
+//                    Building REQUEST_URL
+//                    Passing User Details to RequestHandler.
+                    RequestHandler handler = new RequestHandler(getContext(), "", "");
 //                      Update Registration Progress By 25%;
                     listener.updateProgressBar(25);
                 }

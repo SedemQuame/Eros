@@ -1,25 +1,38 @@
 package com.visionarytech.eros.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.visionarytech.eros.Fragments.AboutMeDialog;
 import com.visionarytech.eros.Fragments.ContactInformationDialog;
 import com.visionarytech.eros.Fragments.PreferenceDialog;
 import com.visionarytech.eros.Fragments.SocialBackgroundDialog;
+import com.visionarytech.eros.Networks.RequestHandler;
 import com.visionarytech.eros.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URLEncoder;
 
 public class ProfileRegistration extends AppCompatActivity implements
         AboutMeDialog.AboutDialogListener, PreferenceDialog.PreferencesDialogListener,
         ContactInformationDialog.ContactInformationDialogListener, SocialBackgroundDialog.SocialBackgroundDialogListener {
+    private static final String TAG = "ProfileRegistration";
+    private final String BASE_URL = "https://guarded-beach-22346.herokuapp.com";
     private LinearLayout aboutMe;
     private LinearLayout socialBackground;
     private LinearLayout contactInformation;
@@ -29,6 +42,22 @@ public class ProfileRegistration extends AppCompatActivity implements
     private TextView progressText;
     private int progressValue;
 
+    // Method to encode a string value using `UTF-8` encoding scheme
+    public static String encode(String url) {
+
+        try {
+
+            String encodeURL = URLEncoder.encode(url, "UTF-8");
+
+            return encodeURL;
+
+        } catch (UnsupportedEncodingException e) {
+
+            return "Issue while encoding" + e.getMessage();
+
+        }
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -82,6 +111,38 @@ public class ProfileRegistration extends AppCompatActivity implements
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Store user details in the shared server.
+                Context context = getApplicationContext();
+                SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), MODE_PRIVATE);
+
+                StringBuilder REQUEST_URL = new StringBuilder("");
+                REQUEST_URL.append("/createNewUserAccount/userName/")
+                        .append(sharedPref.getString("Username", null))
+                        .append("/aboutMe/")
+                        .append(sharedPref.getString("Bio", null))
+                        .append(".")
+                        .append(sharedPref.getString("Views", null))
+                        .append("/preferences/")
+                        .append(sharedPref.getString("Gender", null))
+                        .append(".")
+                        .append(sharedPref.getString("AgeRange", null))
+                        .append(".")
+                        .append(sharedPref.getString("LookingFor", null))
+                        .append("/socialBackground/")
+                        .append(sharedPref.getString("Work", null))
+                        .append(".")
+                        .append(sharedPref.getString("Religion", null))
+                        .append(".")
+                        .append(sharedPref.getString("School", null))
+                        .append("/contactInformation/")
+                        .append(sharedPref.getString("Email", null))
+                        .append(".")
+                        .append(sharedPref.getString("Phone", null));
+
+
+                RequestHandler handler = new RequestHandler(getApplicationContext(), REQUEST_URL.toString(), "POST");
+                handler.execute();
+
                 Intent intent = new Intent(getApplicationContext(), ProspectsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -90,22 +151,23 @@ public class ProfileRegistration extends AppCompatActivity implements
         });
     }
 
-    private void openAboutMeDialog(){
+    //      Creating Dialog Openers.
+    private void openAboutMeDialog() {
         AboutMeDialog aboutMeDialog = new AboutMeDialog();
         aboutMeDialog.show(getSupportFragmentManager(), "About me");
     }
 
-    private void openSocialBackgroundDialog(){
+    private void openSocialBackgroundDialog() {
         SocialBackgroundDialog socialBackgroundDialog = new SocialBackgroundDialog();
         socialBackgroundDialog.show(getSupportFragmentManager(), "About me");
     }
 
-    private void openContactInformationDialog(){
+    private void openContactInformationDialog() {
         ContactInformationDialog contactInformationDialog = new ContactInformationDialog();
         contactInformationDialog.show(getSupportFragmentManager(), "Contact Information");
     }
 
-    private void openPreferencesDialog(){
+    private void openPreferencesDialog() {
         PreferenceDialog preferenceDialog = new PreferenceDialog();
         preferenceDialog.show(getSupportFragmentManager(), "Preferences");
     }
@@ -116,7 +178,7 @@ public class ProfileRegistration extends AppCompatActivity implements
         progressValue += progressNumber;
 //        updating progressText
 
-        if(progressValue < 100){
+        if (progressValue <= 100) {
             progressText.setText(new StringBuilder().append(progressValue).append("/100").toString());
         }
     }

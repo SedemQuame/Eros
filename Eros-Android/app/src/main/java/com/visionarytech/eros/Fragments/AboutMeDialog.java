@@ -9,15 +9,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-
 import androidx.appcompat.app.AppCompatDialogFragment;
-
+import com.visionarytech.eros.Networks.RequestHandler;
 import com.visionarytech.eros.R;
 
 public class AboutMeDialog extends AppCompatDialogFragment {
     private EditText editTextDialogBio;
     private EditText editTextDialogViews;
     private AboutDialogListener listener;
+    private static String BASE_URL = "";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -26,11 +26,9 @@ public class AboutMeDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_about_me, null);
 
-
 //        attaching view references to variables.
         editTextDialogBio = view.findViewById(R.id.editTextDialogBio);
         editTextDialogViews = view.findViewById(R.id.editTextDialogViews);
-
 
 //        adding to view ro alertDialog
         builder.setView(view)
@@ -50,6 +48,9 @@ public class AboutMeDialog extends AppCompatDialogFragment {
                     editor.putString("Views", editTextDialogViews.getText().toString());
 //                      Saving New User Preferences.
                     editor.apply();
+//                    Building REQUEST_URL
+//                    Passing User Details to RequestHandler.
+                    RequestHandler handler = new RequestHandler(getContext(), "", "");
 //                      Update Registration Progress By 25%;
                     listener.updateProgressBar(25);
                 }

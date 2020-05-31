@@ -26,6 +26,7 @@ import com.visionarytech.eros.R;
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "SignUpActivity";
     private EditText userNameEditText, emailEditText, passwordEditText;
+    private String userName, emailAddress, password;
     private FirebaseAuth mAuth;
 
     @Override
@@ -48,9 +49,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void registerUser() {
-        final String userName = userNameEditText.getText().toString().trim();
-        final String emailAddress = emailEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
+        userName = userNameEditText.getText().toString().trim();
+        emailAddress = emailEditText.getText().toString().trim();
+        password = passwordEditText.getText().toString().trim();
 
 //        validating entered text.
         if (emailAddress.isEmpty()) {
@@ -81,35 +82,46 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 //                      Storing Data In Shared Preferences.
-                    Context context = getApplicationContext();
-                    SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
-//                      Creating Editor For Shared Preferences.
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("Username", userName);
-                    editor.putString("Email", emailAddress);
-//                      Saving New User Preferences.
-                    editor.apply();
+                    storeDataInPreferences();
+
 //                      Sign in success, update UI with the signed-in user's information
-//                    Log.d(TAG, "createUserWithEmail:success");
-                    Intent intent = new Intent(getApplicationContext(), ProfileRegistration.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-//                    Toast.makeText(SignUpActivity.this, "Authentication succeeded.",
-//                            Toast.LENGTH_SHORT).show();
+                    routeToBuilderPage();
                 } else {
-                    // If sign in fails, display a message to the user.
-//                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+//                      If sign in fails, display a message to the user.
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         Toast.makeText(getApplicationContext(), "Email already registered.",
                                 Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(), task.getException().getMessage(),
                                 Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onError: " + task.getException().getMessage());
+
+
+////                        Todo: Remove this code after problem with signup is fixed.
+//                        storeDataInPreferences();
+//                        routeToBuilderPage();
                     }
                 }
             }
         });
+    }
+
+    public void storeDataInPreferences(){
+        Context context = getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
+//                      Creating Editor For Shared Preferences.
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("Username", userName);
+        editor.putString("Email", emailAddress);
+//                      Saving New User Preferences.
+        editor.apply();
+    }
+
+    public void routeToBuilderPage(){
+        Intent intent = new Intent(getApplicationContext(), ProfileRegistration.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
     @Override

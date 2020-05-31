@@ -39,20 +39,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        holder.personName.setText(mData.get(position).getUserName());
-        holder.personLocation.setText(mData.get(position).getUserLocation());
-        holder.personImage.setImageResource(mData.get(position).getUserProfile());
+        holder.personName.setText(mData.get(position).getName());
+        holder.personLocation.setText("location");
+        holder.personImage.setImageResource(R.drawable.gray);
 
 //        creating an onclick item listener
         holder.dateCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, MatchProfileActivity.class);
-                //                adding some extra information to the intent.
-                intent.putExtra("userId", mData.get(position).getUserId());
-                intent.putExtra("userName", mData.get(position).getUserName());
-                intent.putExtra("location", mData.get(position).getUserLocation());
-                intent.putExtra("userProfile", mData.get(position).getUserProfile());
+//                adding some extra information to the intent.
+                intent.putExtra("_ID", mData.get(position).get_id());
+                intent.putExtra("NAME", mData.get(position).getName());
+                intent.putExtra("AGE", mData.get(position).getAge());
+                intent.putExtra("LOCATION", "location");
+                intent.putExtra("ABOUT_ME", mData.get(position).getMe());
+                intent.putExtra("PREFERENCES", mData.get(position).getPreferences());
+                intent.putExtra("SOCIAL_BACKGROUND", mData.get(position).getBackground());
+//                intent.putExtra("CONTACT_INFORMATION", mData.get(position).get);
+//                intent.putExtra("MEDIA_LIST", "location");
+//                intent.putExtra("NOTIFICATIONS", "location");
+                intent.putExtra("USER_PROFILE", R.drawable.gray);
                 mContext.startActivity(intent);
             }
         });

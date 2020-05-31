@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.visionarytech.eros.Models.About;
+import com.visionarytech.eros.Models.Preferences;
+import com.visionarytech.eros.Models.SocialBackGround;
 import com.visionarytech.eros.R;
 
 public class MatchProfileActivity extends AppCompatActivity {
@@ -28,16 +31,21 @@ public class MatchProfileActivity extends AppCompatActivity {
 
 //        Receive data
         Intent intent = getIntent();
-        String userId = intent.getExtras().getString("userId");
-        String userName = intent.getExtras().getString("userName");
-        String userLocation = intent.getExtras().getString("location");
-        int userProfile = intent.getExtras().getInt("userProfile");
+        String _id = intent.getStringExtra("_ID");
+        String name = intent.getStringExtra("NAME");
+        String age = intent.getStringExtra("AGE");
+        String location = intent.getStringExtra("LOCATION");
+        About aboutMe = (About)intent.getSerializableExtra("ABOUT_ME");
+        Preferences preferences = (Preferences)intent.getSerializableExtra("PREFERENCES");
+        SocialBackGround socialBackGround = (SocialBackGround) intent.getSerializableExtra("SOCIAL_BACKGROUND");
+//        Con socialBackGround = (SocialBackGround) intent.getSerializableExtra("SOCIAL_BACKGROUND");
+        int userProfile = intent.getExtras().getInt("USER_PROFILE");
 
-        Toast.makeText(this, userName, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
 
-        userNameTextView.setText(userName + ", ");
-        userAgeTextView.setText("");
-        userLocationTextView.setText(userLocation);
+        userNameTextView.setText(name + ", ");
+        userAgeTextView.setText(age);
+        userLocationTextView.setText(location);
         userMainPicture.setImageResource(userProfile);
     }
 }

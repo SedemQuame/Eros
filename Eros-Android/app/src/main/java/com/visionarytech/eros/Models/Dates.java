@@ -1,63 +1,110 @@
 package com.visionarytech.eros.Models;
 
-public class Dates {
-    private String userId;
-    private String userName;
-    private String userLocation;
-    private int userProfile;
-    private String userInformation;
+import java.io.Serializable;
+
+public class Dates implements Serializable {
+    private String _id;
+    private String name;
+    private String age;
+//    private String location;
+//    private String profilePhoto;
+    private About me;
+    private Preferences preferences;
+    private SocialBackGround background;
 
     public Dates() {
     }
 
-    public Dates(String userId, String userName, String userLocation, int userProfile, String userInformation) {
-        this.userId = userId;
-        this.userName = userName;
-        this.userLocation = userLocation;
-        this.userProfile = userProfile;
-        this.userInformation = userInformation;
+//    Constructors
+
+    public Dates(String _id, String name, String age, About me, Preferences preferences, SocialBackGround background) {
+        this._id = _id;
+        this.name = name;
+        this.age = age;
+        this.me = me;
+        this.preferences = preferences;
+        this.background = background;
     }
+
+
+//    public Dates(String _id, String name, String age, String location, String profilePhoto,
+//                 About me, Preferences preferences, SocialBackGround background) {
+//        this._id = _id;
+//        this.name = name;
+//        this.age = age;
+//        this.location = location;
+//        this.profilePhoto = profilePhoto;
+//        this.me = me;
+//        this.preferences = preferences;
+//        this.background = background;
+//    }
 
     //    Getters
-    public String getUserId() {
-        return userId;
+
+    public String get_id() {
+        return _id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public String getUserLocation() {
-        return userLocation;
+    public String getAge() {
+        return age;
     }
 
-    public int getUserProfile() {
-        return userProfile;
+//    public String getLocation() {
+//        return location;
+//    }
+//
+//    public String getProfilePhoto() {
+//        return profilePhoto;
+//    }
+
+    public About getMe() {
+        return me;
     }
 
-    public String getUserInformation() {
-        return userInformation;
+    public Preferences getPreferences() {
+        return preferences;
+    }
+
+    public SocialBackGround getBackground() {
+        return background;
     }
 
 
-    //    Setters
-    public void setUserId(String userId) {
-        this.userId = userId;
+//    Setters
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setUserLocation(String userLocation) {
-        this.userLocation = userLocation;
+    public void setAge(String age) {
+        this.age = age;
     }
 
-    public void setUserProfile(int userProfile) {
-        this.userProfile = userProfile;
+//    public void setLocation(String location) {
+//        this.location = location;
+//    }
+//
+//    public void setProfilePhoto(String profilePhoto) {
+//        this.profilePhoto = profilePhoto;
+//    }
+
+    public void setMe(About me) {
+        this.me = me;
     }
 
-    public void setUserInformation(String userInformation) {
-        this.userInformation = userInformation;
+    public void setPreferences(Preferences preferences) {
+        this.preferences = preferences;
+    }
+
+    public void setBackground(SocialBackGround background) {
+        this.background = background;
     }
 }

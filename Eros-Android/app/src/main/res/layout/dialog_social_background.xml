@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="My Social Background"
+        android:text="@string/social_background"
         android:textAlignment="textStart"
         android:textColor="#000000"
         android:textSize="20sp" />

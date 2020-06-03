@@ -4,60 +4,35 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.visionarytech.eros.Fragments.AboutMeDialog;
-import com.visionarytech.eros.Fragments.ContactInformationDialog;
-import com.visionarytech.eros.Fragments.PreferenceDialog;
-import com.visionarytech.eros.Fragments.SocialBackgroundDialog;
+import com.visionarytech.eros.Dialog.AboutMeDialog;
+import com.visionarytech.eros.Dialog.ContactInformationDialog;
+import com.visionarytech.eros.Dialog.PreferenceDialog;
+import com.visionarytech.eros.Dialog.ProfilePictureUploadDialog;
+import com.visionarytech.eros.Dialog.SocialBackgroundDialog;
 import com.visionarytech.eros.Networks.RequestHandler;
 import com.visionarytech.eros.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
 import java.net.URLEncoder;
 
 public class ProfileBuilderActivity extends AppCompatActivity implements
         AboutMeDialog.AboutDialogListener, PreferenceDialog.PreferencesDialogListener,
-        ContactInformationDialog.ContactInformationDialogListener, SocialBackgroundDialog.SocialBackgroundDialogListener {
-    private static final String TAG = "ProfileBuilderActivity";
-    private final String BASE_URL = "https://guarded-beach-22346.herokuapp.com";
-    private LinearLayout aboutMe;
-    private LinearLayout socialBackground;
-    private LinearLayout contactInformation;
-    private LinearLayout preferences;
+        ContactInformationDialog.ContactInformationDialogListener, SocialBackgroundDialog.SocialBackgroundDialogListener,
+        ProfilePictureUploadDialog.ProfilePictureUploadDialogListener {
+    private LinearLayout profilePicture, aboutMe, socialBackground, contactInformation, preferences;
     private ProgressBar progressBar;
     private Button buttonNext;
     private TextView progressText;
     private int progressValue;
 
-    // Method to encode a string value using `UTF-8` encoding scheme
-    public static String encode(String url) {
-
-        try {
-
-            String encodeURL = URLEncoder.encode(url, "UTF-8");
-
-            return encodeURL;
-
-        } catch (UnsupportedEncodingException e) {
-
-            return "Issue while encoding" + e.getMessage();
-
-        }
-
-    }
 
     @Override
     public void onBackPressed() {
@@ -73,6 +48,7 @@ public class ProfileBuilderActivity extends AppCompatActivity implements
         progressBar = findViewById(R.id.progressBar);
         progressText = findViewById(R.id.progressText);
 
+        profilePicture = findViewById(R.id.profilePicture);
         aboutMe = findViewById(R.id.aboutMe);
         socialBackground = findViewById(R.id.socialBackground);
         contactInformation = findViewById(R.id.contactInformation);
@@ -80,6 +56,13 @@ public class ProfileBuilderActivity extends AppCompatActivity implements
 
         buttonNext = findViewById(R.id.buttonNext);
 //        adding onClickListeners to buttons
+
+        profilePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openProfilePictureDialog();
+            }
+        });
+
         aboutMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,15 +72,13 @@ public class ProfileBuilderActivity extends AppCompatActivity implements
 
         socialBackground.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                openSocialBackgroundDialog();
+            public void onClick(View view) { openSocialBackgroundDialog();
             }
         });
 
         contactInformation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                openContactInformationDialog();
+            public void onClick(View view) { openContactInformationDialog();
             }
         });
 
@@ -154,6 +135,11 @@ public class ProfileBuilderActivity extends AppCompatActivity implements
     }
 
     //      Creating Dialog Openers.
+    private void openProfilePictureDialog() {
+        ProfilePictureUploadDialog profilePictureDialog = new ProfilePictureUploadDialog();
+        profilePictureDialog.show(getSupportFragmentManager(), "Profile Picture");
+    }
+
     private void openAboutMeDialog() {
         AboutMeDialog aboutMeDialog = new AboutMeDialog();
         aboutMeDialog.show(getSupportFragmentManager(), "About me");
@@ -161,7 +147,7 @@ public class ProfileBuilderActivity extends AppCompatActivity implements
 
     private void openSocialBackgroundDialog() {
         SocialBackgroundDialog socialBackgroundDialog = new SocialBackgroundDialog();
-        socialBackgroundDialog.show(getSupportFragmentManager(), "About me");
+        socialBackgroundDialog.show(getSupportFragmentManager(), "Social Background");
     }
 
     private void openContactInformationDialog() {

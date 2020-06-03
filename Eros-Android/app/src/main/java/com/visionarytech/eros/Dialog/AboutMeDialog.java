@@ -1,4 +1,4 @@
-package com.visionarytech.eros.Fragments;
+package com.visionarytech.eros.Dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -13,17 +13,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
-
 import com.visionarytech.eros.Networks.RequestHandler;
 import com.visionarytech.eros.R;
 
-public class SocialBackgroundDialog extends AppCompatDialogFragment {
-    private EditText editTextDialogWork, editTextDialogSchool, editTextDialogReligion;
-    private Spinner spinnerDialogReligion;
-    private SocialBackgroundDialogListener listener;
-    private static String BASE_URL = "";
-//          Storing Data In Shared Preferences.
+public class AboutMeDialog extends AppCompatDialogFragment {
+    private EditText editTextDialogBio, editTextDialogViews, editTextDialogLocation;
+    private Spinner spinnerDialogGender;
+    private AboutDialogListener listener;
     SharedPreferences sharedPref = null;
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -31,43 +29,48 @@ public class SocialBackgroundDialog extends AppCompatDialogFragment {
         Context context = getActivity();
         sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
 
-//          return super.onCreateDialog(savedInstanceState);
+//        return super.onCreateDialog(savedInstanceState);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_social_background, null);
-//          attaching view references to variables.
-        editTextDialogWork = view.findViewById(R.id.editTextDialogWork);
-        editTextDialogSchool = view.findViewById(R.id.editTextDialogSchool);
-//        editTextDialogReligion = view.findViewById(R.id.editTextDialogReligion);
-        spinnerDialogReligion = view.findViewById(R.id.spinnerDialogReligion);
+        View view = inflater.inflate(R.layout.dialog_about_me, null);
 
+//        attaching view references to variables.
+        editTextDialogBio = view.findViewById(R.id.editTextDialogBio);
+        editTextDialogViews = view.findViewById(R.id.editTextDialogViews);
+        spinnerDialogGender = view.findViewById(R.id.spinnerDialogGender);
+        editTextDialogLocation = view.findViewById(R.id.editTextDialogLocation);
 
-//        creating arrayadapter from string values, GENDER.
+//        creating array adapter from string values, GENDER.
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
-                getResources().getStringArray(R.array.RELIGION_VALUES)
+                getResources().getStringArray(R.array.GENDER_VALUES)
         );
 
 //        drop down layout style - list view with radio button
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerDialogReligion.setAdapter(genderAdapter);
+        spinnerDialogGender.setAdapter(genderAdapter);
 
 //         setting values for view preferences
-        if(sharedPref.contains("Work")){
-            editTextDialogWork.setText(sharedPref.getString("Work",""));
+        if(sharedPref.contains("Bio")){
+            editTextDialogBio.setText(sharedPref.getString("Bio",""));
         }
 
-        if(sharedPref.contains("School")){
-            editTextDialogSchool.setText(sharedPref.getString("School",""));
+        if(sharedPref.contains("Views")){
+            editTextDialogViews.setText(sharedPref.getString("Views",""));
         }
 
-        if(sharedPref.contains("Religion")){
-//            editTextDialogReligion.setText(sharedPref.getString("Religion",""));
-//            spinnerDialogReligion.se
+        if(sharedPref.contains("Gender")){
+//            editTextDialogGender.setText(sharedPref.getString("Gender",""));
+
         }
 
-//          adding to view ro alertDialog
+        if(sharedPref.contains("Location")){
+            editTextDialogLocation.setText(sharedPref.getString("Location",""));
+        }
+
+
+//        adding to view ro alertDialog
         builder.setView(view)
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
@@ -76,39 +79,31 @@ public class SocialBackgroundDialog extends AppCompatDialogFragment {
                 }}).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
 //                      Creating Editor For Shared Preferences.
                     SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("Work", editTextDialogWork.getText().toString());
-                    editor.putString("School", editTextDialogSchool.getText().toString());
-                    editor.putString("Religion", String.valueOf(spinnerDialogReligion.getSelectedItem()));
-
-//                    editor.putString("Religion", editTextDialogReligion.getText().toString());
+                    editor.putString("Bio", editTextDialogBio.getText().toString());
+                    editor.putString("Views", editTextDialogViews.getText().toString());
+                    editor.putString("Gender", String.valueOf(spinnerDialogGender.getSelectedItem()));
+                    editor.putString("Location", editTextDialogLocation.getText().toString());
 //                      Saving New User Preferences.
                     editor.apply();
-//                    Building REQUEST_URL
-//                    Passing User Details to RequestHandler.
-                    RequestHandler handler = new RequestHandler(getContext(), "", "");
-//                      Update Registration Progress By 25%;
-                    listener.updateProgressBar(25);
+                    listener.updateProgressBar(20);
                 }
         });
         return builder.create();
     }
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         try {
-            listener = (SocialBackgroundDialogListener) context;
+            listener = (AboutDialogListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "must implement aboutDialogListener");
         }
     }
 
-    public interface SocialBackgroundDialogListener{
+    public interface AboutDialogListener{
         void updateProgressBar(int progressNumber);
     }
 }

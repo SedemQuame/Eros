@@ -1,4 +1,4 @@
-package com.visionarytech.eros.Fragments;
+package com.visionarytech.eros.Dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

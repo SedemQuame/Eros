@@ -21,9 +21,15 @@ public class ContactInformationDialog extends AppCompatDialogFragment {
     private EditText editTextDialogPhone;
     private ContactInformationDialogListener listener;
     private static String BASE_URL = "";
+//          Storing Data In Shared Preferences.
+    SharedPreferences sharedPref = null;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+//        Storing Data In Shared Preferences.
+        Context context = getActivity();
+        sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
+
 //          return super.onCreateDialog(savedInstanceState);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -31,6 +37,17 @@ public class ContactInformationDialog extends AppCompatDialogFragment {
 //          attaching view references to variables.
         editTextDialogEmail = view.findViewById(R.id.editTextDialogEmail);
         editTextDialogPhone = view.findViewById(R.id.editTextDialogPhone);
+
+//         setting values for view preferences
+        if(sharedPref.contains("Email")){
+            editTextDialogEmail.setText(sharedPref.getString("Email",""));
+        }
+
+        if(sharedPref.contains("Phone")){
+            editTextDialogPhone.setText(sharedPref.getString("Phone",""));
+        }
+
+
 //          adding to view ro alertDialog
         builder.setView(view)
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -40,9 +57,7 @@ public class ContactInformationDialog extends AppCompatDialogFragment {
                 }}).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-//                      Storing Data In Shared Preferences.
-                    Context context = getActivity();
-                    SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
+
 //                      Creating Editor For Shared Preferences.
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putString("Email", editTextDialogEmail.getText().toString());
@@ -51,7 +66,7 @@ public class ContactInformationDialog extends AppCompatDialogFragment {
                     editor.apply();
 //                    Building REQUEST_URL
 //                    Passing User Details to RequestHandler.
-                    RequestHandler handler = new RequestHandler(getContext(), "", "");
+//                    RequestHandler handler = new RequestHandler(getContext(), "", "");
 //                      Update Registration Progress By 25%;
                     listener.updateProgressBar(25);
                 }

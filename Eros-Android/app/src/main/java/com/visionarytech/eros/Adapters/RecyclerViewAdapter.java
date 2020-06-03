@@ -18,6 +18,8 @@ import com.visionarytech.eros.R;
 
 import java.util.List;
 
+import static com.visionarytech.eros.Utils.StringFormatter.capitalizeWord;
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private Context mContext;
@@ -39,8 +41,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        holder.personName.setText(mData.get(position).getName());
-        holder.personLocation.setText("location");
+//        Shorten User Name.
+        String name = capitalizeWord(mData.get(position).getName());
+        if(name.length() < 12){
+            holder.personName.setText(name);
+        }else{
+            String firstName = name.split(" ")[0];
+            String middleName = name.split(" ")[1];
+            holder.personName.setText(String.format("%s %s", firstName, middleName));
+        }
+
+        holder.personLocation.setText(capitalizeWord(mData.get(position).getLocation()));
         holder.personImage.setImageResource(R.drawable.gray);
 
 //        creating an onclick item listener
@@ -52,11 +63,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("_ID", mData.get(position).get_id());
                 intent.putExtra("NAME", mData.get(position).getName());
                 intent.putExtra("AGE", mData.get(position).getAge());
-                intent.putExtra("LOCATION", "location");
-                intent.putExtra("ABOUT_ME", mData.get(position).getMe());
+                intent.putExtra("LOCATION", mData.get(position).getLocation());
                 intent.putExtra("PREFERENCES", mData.get(position).getPreferences());
                 intent.putExtra("SOCIAL_BACKGROUND", mData.get(position).getBackground());
-//                intent.putExtra("CONTACT_INFORMATION", mData.get(position).get);
+                intent.putExtra("CONTACT_INFORMATION", mData.get(position).getContactInfo());
 //                intent.putExtra("MEDIA_LIST", "location");
 //                intent.putExtra("NOTIFICATIONS", "location");
                 intent.putExtra("USER_PROFILE", R.drawable.gray);

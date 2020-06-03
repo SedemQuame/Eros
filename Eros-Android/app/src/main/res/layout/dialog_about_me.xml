@@ -84,6 +84,57 @@
                 android:inputType="textPersonName"
                 android:textSize="24sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/genderDialogTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Gender"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <Spinner
+                android:id="@+id/spinnerDialogGender"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/plain" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/locationDialogTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Location"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/editTextDialogLocation"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/plain"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="24sp" />
+        </LinearLayout>
     </LinearLayout>
 
 

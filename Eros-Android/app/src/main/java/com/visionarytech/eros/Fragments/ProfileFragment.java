@@ -92,17 +92,25 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         return v;
     }
 
+    private void clearPreferences(){
+        Context context = getActivity();
+        sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), Context.MODE_PRIVATE);
+        sharedPref.edit().clear().commit();
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case (R.id.logOutButton):
+                clearPreferences();
                 mAuth.signOut();
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;
             case (R.id.deleteAccountButton):
-//                mAuth.signOut();
+                clearPreferences();
+                mAuth.signOut();
                 FirebaseUser user = mAuth.getCurrentUser();
 //                todo: Must work on successfully deleting user account.
                 user.delete()

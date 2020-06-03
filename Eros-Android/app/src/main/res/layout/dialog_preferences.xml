@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="My Preferences"
+        android:text="Date Preference"
         android:textAlignment="textStart"
         android:textColor="#000000"
         android:textSize="20sp" />
@@ -39,23 +39,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/genderDialogTextView"
+                android:id="@+id/lookingForDialogTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Gender"
+                android:text="Looking For"
                 android:textAlignment="textStart"
                 android:textColor="#000000"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/editTextDialogGender"
+            <Spinner
+                android:id="@+id/spinnerDialogLookingFor"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@drawable/plain"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textSize="24sp" />
+                android:background="@drawable/plain" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -83,33 +81,8 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="24sp" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/lookingForDialogTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Looking For"
-                android:textAlignment="textStart"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/editTextDialogLookingFor"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/plain"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textSize="24sp" />
         </LinearLayout>
 
     </LinearLayout>

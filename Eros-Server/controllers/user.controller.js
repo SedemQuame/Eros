@@ -20,6 +20,7 @@ exports.createNewUserAccount = (req, res) => {
     user.create({
         name: req.params.name,
         age: 10,
+        location: req.params.location,
         aboutMe: {
             bio: req.params.bio,
             views: req.params.views,

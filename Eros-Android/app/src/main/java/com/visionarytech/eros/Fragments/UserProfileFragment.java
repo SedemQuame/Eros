@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.visionarytech.eros.Adapters.RecyclerViewAdapter;
 import com.visionarytech.eros.Models.About;
+import com.visionarytech.eros.Models.Contact;
 import com.visionarytech.eros.Models.Dates;
 import com.visionarytech.eros.Models.Preferences;
 import com.visionarytech.eros.Models.SocialBackGround;
@@ -38,7 +39,7 @@ public class UserProfileFragment extends Fragment {
     private static final String TAG = "UserProfileFragment";
     private final String BASE_URL = "https://guarded-beach-22346.herokuapp.com";
     private final String REQUEST_URL = "/getAllUsers";
-    private final List<Dates> listOfProspectiveDates = new ArrayList<>();
+    private List<Dates> listOfProspectiveDates = null;
     private View v = null;
 
     public UserProfileFragment() {
@@ -67,6 +68,7 @@ public class UserProfileFragment extends Fragment {
                             JSONObject jsonObj = new JSONObject(response);
                             JSONArray jsonArr = jsonObj.getJSONArray("users");
 
+                            listOfProspectiveDates = new ArrayList<>();
                             for (int i = 0; i < jsonArr.length(); i++) {
                                 JSONObject obj = jsonArr.getJSONObject(i);
 
@@ -98,23 +100,36 @@ public class UserProfileFragment extends Fragment {
                                         socialBackgroundObj.getString("religion")
                                 );
 
+                                String contactInformationStr = obj.getString("contactInformation");
+//                                Converting socialBackground to SocialBackGround Object.
+                                JSONObject contactInformationObj = new JSONObject(contactInformationStr);
+                                Contact dateContact = new Contact(
+                                        contactInformationObj.getString("_id"),
+                                        contactInformationObj.getString("emailAddress"),
+                                        contactInformationObj.getString("phoneNumber")
+                                );
+
                                 Dates possibleDates = new Dates(
                                         obj.getString("_id"),
                                         obj.getString("name"),
                                         obj.getString("age"),
+                                        obj.getString("location"),
+                                        "",
                                         aboutDate,
                                         datePreferences,
-                                        dateSocialBackground
+                                        dateSocialBackground,
+                                        dateContact
                                 );
                                 listOfProspectiveDates.add(possibleDates);
                             }
-//                            Log.d(TAG, "onSuccess: " + listOfProspectiveDates.toString());
+                            Log.d(TAG, "onSuccess: " + listOfProspectiveDates.toString());
 
 //                          Dismiss Progress Dialog Upon Error or Response.
                             RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
                             RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), listOfProspectiveDates);
                             recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
                             recyclerView.setAdapter(adapter);
+//                            listOfProspectiveDates = null;
                         } catch (JSONException e) {
                             Log.d(TAG, "onError: Error occurred: " + e.getMessage());
                             e.printStackTrace();
@@ -124,6 +139,7 @@ public class UserProfileFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
+                Log.d(TAG, "onError: Error occurred: " + error.getMessage());
                 Toast.makeText(getContext(), "Error Occurred: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

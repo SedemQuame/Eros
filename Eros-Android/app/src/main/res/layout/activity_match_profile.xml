@@ -29,10 +29,6 @@
                 android:src="@android:drawable/sym_def_app_icon"
                 app:layout_collapseMode="parallax" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -52,7 +48,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -62,7 +57,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:text="@string/textview"
                     android:textColor="#000000"
-                    android:textSize="24sp" />
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/datesAge"
@@ -72,12 +67,12 @@
                     android:fontFamily="@font/roboto_medium"
                     android:text="@string/textview"
                     android:textColor="#000000"
-                    android:textSize="24sp" />
+                    android:textSize="22sp" />
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/datesLocation"
+                android:id="@+id/datesLocationTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -113,7 +108,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/datesBio"
+                    android:id="@+id/bioDescriptionTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
@@ -133,7 +128,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/viewsDescriptionTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
@@ -171,7 +166,7 @@
                         android:id="@+id/textView18"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_medium"
                         android:text="Work"
                         android:textAlignment="textStart"
@@ -179,14 +174,14 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/textView20"
+                        android:id="@+id/workTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4"
+                        android:layout_weight="6"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="TextView"
+                        android:text="none"
                         android:textAlignment="textEnd"
-                        android:textColor="#636e72" />
+                        android:textColor="#000000" />
 
                 </LinearLayout>
 
@@ -200,21 +195,21 @@
                         android:id="@+id/textView22"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_medium"
                         android:text="Religion"
                         android:textColor="#000000"
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/religionTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4"
+                        android:layout_weight="6"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="TextView"
+                        android:text="none"
                         android:textAlignment="textEnd"
-                        android:textColor="#636e72" />
+                        android:textColor="#000000" />
 
                 </LinearLayout>
 
@@ -228,7 +223,7 @@
                         android:id="@+id/textView19"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_medium"
                         android:text="School"
                         android:textAlignment="textStart"
@@ -236,14 +231,14 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/textView21"
+                        android:id="@+id/schoolTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4"
+                        android:layout_weight="6"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="TextView"
+                        android:text="none"
                         android:textAlignment="textEnd"
-                        android:textColor="#636e72" />
+                        android:textColor="#000000" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -275,21 +270,21 @@
                         android:id="@+id/textView25"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4"
+                        android:layout_weight="2"
                         android:fontFamily="@font/roboto_medium"
                         android:text="@string/user_email"
                         android:textColor="#000000"
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/textView26"
+                        android:id="@+id/emaillTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4"
+                        android:layout_weight="6"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="TextView"
+                        android:text="none"
                         android:textAlignment="textEnd"
-                        android:textColor="#636e72" />
+                        android:textColor="#000000" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -309,14 +304,14 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/textView28"
+                        android:id="@+id/phoneNumberTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="TextView"
+                        android:text="none"
                         android:textAlignment="textEnd"
-                        android:textColor="#636e72" />
+                        android:textColor="#000000" />
                 </LinearLayout>
             </LinearLayout>
 

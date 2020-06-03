@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    android:id="@+id/dateCardView"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:layout_width="110dp"
+    android:id="@+id/dateCardView"
+    android:layout_width="wrap_content"
     android:layout_height="200dp"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +30,7 @@
             android:text="Person's name"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/dateLocation"
@@ -40,7 +39,7 @@
             android:fontFamily="@font/roboto_medium"
             android:text="Person's location"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="#636e72"
             android:textSize="12sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ProfileRegistration"></activity>
+        <activity android:name=".Activities.ProfileBuilderActivity"></activity>
         <activity android:name=".Activities.ForgotPassword" />
         <activity android:name=".Activities.PhotoItemActivity" />
         <activity android:name=".Activities.MatchProfileActivity" />

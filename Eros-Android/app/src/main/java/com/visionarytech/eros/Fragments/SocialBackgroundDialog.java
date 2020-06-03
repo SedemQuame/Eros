@@ -8,7 +8,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
@@ -16,14 +18,19 @@ import com.visionarytech.eros.Networks.RequestHandler;
 import com.visionarytech.eros.R;
 
 public class SocialBackgroundDialog extends AppCompatDialogFragment {
-    private EditText editTextDialogWork;
-    private EditText editTextDialogSchool;
-    private EditText editTextDialogReligion;
+    private EditText editTextDialogWork, editTextDialogSchool, editTextDialogReligion;
+    private Spinner spinnerDialogReligion;
     private SocialBackgroundDialogListener listener;
     private static String BASE_URL = "";
+//          Storing Data In Shared Preferences.
+    SharedPreferences sharedPref = null;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+//        Storing Data In Shared Preferences.
+        Context context = getActivity();
+        sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
+
 //          return super.onCreateDialog(savedInstanceState);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -31,7 +38,35 @@ public class SocialBackgroundDialog extends AppCompatDialogFragment {
 //          attaching view references to variables.
         editTextDialogWork = view.findViewById(R.id.editTextDialogWork);
         editTextDialogSchool = view.findViewById(R.id.editTextDialogSchool);
-        editTextDialogReligion = view.findViewById(R.id.editTextDialogReligion);
+//        editTextDialogReligion = view.findViewById(R.id.editTextDialogReligion);
+        spinnerDialogReligion = view.findViewById(R.id.spinnerDialogReligion);
+
+
+//        creating arrayadapter from string values, GENDER.
+        ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.RELIGION_VALUES)
+        );
+
+//        drop down layout style - list view with radio button
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDialogReligion.setAdapter(genderAdapter);
+
+//         setting values for view preferences
+        if(sharedPref.contains("Work")){
+            editTextDialogWork.setText(sharedPref.getString("Work",""));
+        }
+
+        if(sharedPref.contains("School")){
+            editTextDialogSchool.setText(sharedPref.getString("School",""));
+        }
+
+        if(sharedPref.contains("Religion")){
+//            editTextDialogReligion.setText(sharedPref.getString("Religion",""));
+//            spinnerDialogReligion.se
+        }
+
 //          adding to view ro alertDialog
         builder.setView(view)
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -41,14 +76,14 @@ public class SocialBackgroundDialog extends AppCompatDialogFragment {
                 }}).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-//                      Storing Data In Shared Preferences.
-                    Context context = getActivity();
-                    SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
+
 //                      Creating Editor For Shared Preferences.
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putString("Work", editTextDialogWork.getText().toString());
                     editor.putString("School", editTextDialogSchool.getText().toString());
-                    editor.putString("Religion", editTextDialogReligion.getText().toString());
+                    editor.putString("Religion", String.valueOf(spinnerDialogReligion.getSelectedItem()));
+
+//                    editor.putString("Religion", editTextDialogReligion.getText().toString());
 //                      Saving New User Preferences.
                     editor.apply();
 //                    Building REQUEST_URL

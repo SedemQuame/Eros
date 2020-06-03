@@ -28,10 +28,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
 
-public class ProfileRegistration extends AppCompatActivity implements
+public class ProfileBuilderActivity extends AppCompatActivity implements
         AboutMeDialog.AboutDialogListener, PreferenceDialog.PreferencesDialogListener,
         ContactInformationDialog.ContactInformationDialogListener, SocialBackgroundDialog.SocialBackgroundDialogListener {
-    private static final String TAG = "ProfileRegistration";
+    private static final String TAG = "ProfileBuilderActivity";
     private final String BASE_URL = "https://guarded-beach-22346.herokuapp.com";
     private LinearLayout aboutMe;
     private LinearLayout socialBackground;
@@ -122,6 +122,8 @@ public class ProfileRegistration extends AppCompatActivity implements
                         .append(sharedPref.getString("Bio", null))
                         .append(".")
                         .append(sharedPref.getString("Views", null))
+                        .append(".")
+                        .append(sharedPref.getString("Location", null))
                         .append("/preferences/")
                         .append(sharedPref.getString("Gender", null))
                         .append(".")

@@ -40,4 +40,18 @@
     <string name="contact_information_img">contact_information_img</string>
     <string name="social_background_img">social_background_img</string>
     <string name="shared_preferences_of_user">com.visionaryTech.eros.userPreferences</string>
+
+
+    <string-array name="GENDER_VALUES">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+    <string-array name="RELIGION_VALUES">
+        <item>Christian</item>
+        <item>Muslim</item>
+        <item>Traditional</item>
+        <item>Atheist</item>
+        <item>Other</item>
+    </string-array>
 </resources>

@@ -20,7 +20,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseUser;
 import com.visionarytech.eros.R;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
@@ -118,7 +117,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void routeToBuilderPage(){
-        Intent intent = new Intent(getApplicationContext(), ProfileRegistration.class);
+        Intent intent = new Intent(getApplicationContext(), ProfileBuilderActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

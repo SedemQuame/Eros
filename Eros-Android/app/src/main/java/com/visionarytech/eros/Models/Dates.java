@@ -6,38 +6,30 @@ public class Dates implements Serializable {
     private String _id;
     private String name;
     private String age;
-//    private String location;
-//    private String profilePhoto;
+    private String location;
+    private String profilePhoto;
     private About me;
     private Preferences preferences;
     private SocialBackGround background;
+    private Contact contactInfo;
 
     public Dates() {
     }
 
 //    Constructors
 
-    public Dates(String _id, String name, String age, About me, Preferences preferences, SocialBackGround background) {
+    public Dates(String _id, String name, String age, String location, String profilePhoto,
+                 About me, Preferences preferences, SocialBackGround background, Contact contactInfo) {
         this._id = _id;
         this.name = name;
         this.age = age;
+        this.location = location;
+        this.profilePhoto = profilePhoto;
         this.me = me;
         this.preferences = preferences;
         this.background = background;
+        this.contactInfo = contactInfo;
     }
-
-
-//    public Dates(String _id, String name, String age, String location, String profilePhoto,
-//                 About me, Preferences preferences, SocialBackGround background) {
-//        this._id = _id;
-//        this.name = name;
-//        this.age = age;
-//        this.location = location;
-//        this.profilePhoto = profilePhoto;
-//        this.me = me;
-//        this.preferences = preferences;
-//        this.background = background;
-//    }
 
     //    Getters
 
@@ -53,13 +45,13 @@ public class Dates implements Serializable {
         return age;
     }
 
-//    public String getLocation() {
-//        return location;
-//    }
-//
-//    public String getProfilePhoto() {
-//        return profilePhoto;
-//    }
+    public String getLocation() {
+        return location;
+    }
+
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
 
     public About getMe() {
         return me;
@@ -71,6 +63,10 @@ public class Dates implements Serializable {
 
     public SocialBackGround getBackground() {
         return background;
+    }
+
+    public Contact getContactInfo() {
+        return contactInfo;
     }
 
 
@@ -88,13 +84,13 @@ public class Dates implements Serializable {
         this.age = age;
     }
 
-//    public void setLocation(String location) {
-//        this.location = location;
-//    }
-//
-//    public void setProfilePhoto(String profilePhoto) {
-//        this.profilePhoto = profilePhoto;
-//    }
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
 
     public void setMe(About me) {
         this.me = me;
@@ -106,5 +102,9 @@ public class Dates implements Serializable {
 
     public void setBackground(SocialBackGround background) {
         this.background = background;
+    }
+
+    public void setContactInfo(Contact contactInfo) {
+        this.contactInfo = contactInfo;
     }
 }

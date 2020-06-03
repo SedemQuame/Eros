@@ -66,33 +66,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/religionDialogTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Religion"
-                android:textAlignment="textStart"
-                android:textColor="#000000"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/editTextDialogReligion"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/plain"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textSize="24sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:orientation="vertical">
-
-            <TextView
                 android:id="@+id/schoolDialogTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,6 +84,31 @@
                 android:inputType="textPersonName"
                 android:textSize="24sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/religionDialogTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Religion"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <Spinner
+                android:id="@+id/spinnerDialogReligion"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/plain" />
+        </LinearLayout>
+
     </LinearLayout>
 
 

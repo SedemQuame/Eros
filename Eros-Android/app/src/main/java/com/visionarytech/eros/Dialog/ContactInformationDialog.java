@@ -20,7 +20,6 @@ public class ContactInformationDialog extends AppCompatDialogFragment {
     private EditText editTextDialogEmail;
     private EditText editTextDialogPhone;
     private ContactInformationDialogListener listener;
-    private static String BASE_URL = "";
 //          Storing Data In Shared Preferences.
     SharedPreferences sharedPref = null;
 
@@ -64,11 +63,8 @@ public class ContactInformationDialog extends AppCompatDialogFragment {
                     editor.putString("Phone", editTextDialogPhone.getText().toString());
 //                      Saving New User Preferences.
                     editor.apply();
-//                    Building REQUEST_URL
-//                    Passing User Details to RequestHandler.
-//                    RequestHandler handler = new RequestHandler(getContext(), "", "");
-//                      Update Registration Progress By 25%;
-                    listener.updateProgressBar(25);
+//                      Update Registration Progress By 20%;
+                    listener.updateProgressBar(20);
                 }
         });
         return builder.create();

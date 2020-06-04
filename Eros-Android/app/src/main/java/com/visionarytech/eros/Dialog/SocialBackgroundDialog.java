@@ -21,7 +21,6 @@ public class SocialBackgroundDialog extends AppCompatDialogFragment {
     private EditText editTextDialogWork, editTextDialogSchool, editTextDialogReligion;
     private Spinner spinnerDialogReligion;
     private SocialBackgroundDialogListener listener;
-    private static String BASE_URL = "";
 //          Storing Data In Shared Preferences.
     SharedPreferences sharedPref = null;
 
@@ -86,11 +85,8 @@ public class SocialBackgroundDialog extends AppCompatDialogFragment {
 //                    editor.putString("Religion", editTextDialogReligion.getText().toString());
 //                      Saving New User Preferences.
                     editor.apply();
-//                    Building REQUEST_URL
-//                    Passing User Details to RequestHandler.
-                    RequestHandler handler = new RequestHandler(getContext(), "", "");
-//                      Update Registration Progress By 25%;
-                    listener.updateProgressBar(25);
+//                      Update Registration Progress By 20%;
+                    listener.updateProgressBar(20);
                 }
         });
         return builder.create();

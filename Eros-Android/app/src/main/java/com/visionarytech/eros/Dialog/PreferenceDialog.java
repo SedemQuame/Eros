@@ -77,11 +77,7 @@ public class PreferenceDialog extends AppCompatDialogFragment {
                 editor.putString("AgeRange", editTextDialogAgeRange.getText().toString());
 //                      Saving New User Preferences.
                 editor.apply();
-//                    Building REQUEST_URL
-//                    Passing User Details to RequestHandler.
-//                    RequestHandler handler = new RequestHandler(getContext(), "", "");
-//                      Update Registration Progress By 25%;
-                listener.updateProgressBar(25);
+                listener.updateProgressBar(20);
             }
         });
 //          return super.onCreateDialog(savedInstanceState);

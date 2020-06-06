@@ -81,8 +81,6 @@ public class SocialBackgroundDialog extends AppCompatDialogFragment {
                     editor.putString("Work", editTextDialogWork.getText().toString());
                     editor.putString("School", editTextDialogSchool.getText().toString());
                     editor.putString("Religion", String.valueOf(spinnerDialogReligion.getSelectedItem()));
-
-//                    editor.putString("Religion", editTextDialogReligion.getText().toString());
 //                      Saving New User Preferences.
                     editor.apply();
 //                      Update Registration Progress By 20%;

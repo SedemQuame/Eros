@@ -6,12 +6,15 @@ import android.content.Context;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,37 +36,36 @@ import static android.app.Activity.RESULT_OK;
 
 public class ProfilePictureUploadDialog extends AppCompatDialogFragment implements View.OnClickListener {
     private ImageView photoPreview;
+    private ProgressBar progressBar;
+    private Button uploadButton;
     private ProfilePictureUploadDialogListener listener;
     private String FILE_URL = "";
-    private static final int GALLERY_REQUEST_CODE = 1;
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private StorageReference mStorageRef;
     private Uri selectedImage;
+    private static final int GALLERY_REQUEST_CODE = 1;
     private static final String TAG = "ProfilePictureUploadDia";
+    private SharedPreferences sharedPref = null;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+        //        Storing Data In Shared Preferences.
+        Context context = getActivity();
+        sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_profile_photo, null);
 //        initialize views
         photoPreview = view.findViewById(R.id.photoPreviewImageView);
         photoPreview.setOnClickListener(this);
+        progressBar = view.findViewById(R.id.progressBar);
+        uploadButton = view.findViewById(R.id.uploadPictureButton);
+        uploadButton.setOnClickListener(this);
+        progressBar.setVisibility(View.GONE);
 
-//        adding to view ro alertDialog
-        builder.setView(view)
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-//                    todo: do nothing here, just dismiss Dialog Button.
-                }}).setPositiveButton("Upload", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-//                    todo: upload image
-                    listener.updateProgressBar(20);
-                }
-        });
-
+        builder.setView(view);
         return builder.create();
     }
 
@@ -81,11 +83,14 @@ public class ProfilePictureUploadDialog extends AppCompatDialogFragment implemen
     public void onClick(View view) {
         switch(view.getId()) {
             case (R.id.photoPreviewImageView):
-//                todo: Choose new image here
                 pickFromGallery();
+                progressBar.setVisibility(View.VISIBLE);
+            case (R.id.uploadPictureButton):
+                uploadImageToFireBaseStorage();
+                progressBar.setVisibility(View.GONE);
+                listener.updateProgressBar(20);
                 break;
             default:
-                // code block
         }
 
     }
@@ -107,7 +112,6 @@ public class ProfilePictureUploadDialog extends AppCompatDialogFragment implemen
 
     private void uploadImageToFireBaseStorage(){
         mStorageRef = storage.getReference().child("images/" + UUID.randomUUID().toString());
-
         if(selectedImage != null){
             mStorageRef.putFile(selectedImage)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -118,12 +122,15 @@ public class ProfilePictureUploadDialog extends AppCompatDialogFragment implemen
                            public void onSuccess(Uri uri) {
                                //Do what you want with the url
                                 FILE_URL = uri.toString();
-                               Log.d(TAG, "FILE_URL: " + FILE_URL);
+                               Log.d(TAG, "FILE_URL #1: " + FILE_URL);
+                               Toast.makeText(getContext(), "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                               Log.d(TAG, "onUpload: Successfully uploaded.");
+                               SharedPreferences.Editor editor = sharedPref.edit();
+                               editor.putString("PROFILE_IMG", FILE_URL);
+                               editor.apply();
+                               progressBar.setVisibility(View.GONE);
                            }
                        });
-                        Toast.makeText(getContext(), "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onUpload: Successfully uploaded.");
-                        Log.d(TAG, "FILE_URL: " + FILE_URL);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -149,9 +156,6 @@ public class ProfilePictureUploadDialog extends AppCompatDialogFragment implemen
                     selectedImage = data.getData();
                     photoPreview.setImageURI(selectedImage);
                     Log.d(TAG, "Image URL: " + selectedImage.toString());
-//                    Picasso.with(MainActivity.this).load(selectedImageURI).noPlaceholder().centerCrop().fit()
-//                            .into((ImageView)
-                    uploadImageToFireBaseStorage();
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + requestCode);

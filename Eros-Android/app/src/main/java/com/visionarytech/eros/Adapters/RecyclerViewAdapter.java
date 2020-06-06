@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
 import com.visionarytech.eros.Activities.MatchProfileActivity;
 import com.visionarytech.eros.Models.Dates;
 import com.visionarytech.eros.R;
@@ -52,7 +53,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
 
         holder.personLocation.setText(capitalizeWord(mData.get(position).getLocation()));
-        holder.personImage.setImageResource(R.drawable.gray);
+//
+//        if(mData.get(position).getProfilePhoto() == ""){
+//            holder.personImage.setImageResource(R.drawable.gray);
+//        }else{
+////            holder.personImage.
+//        }
+        Picasso.get()
+                .load(mData.get(position).getProfilePhoto())
+                .placeholder(R.drawable.gray)
+                .error(R.drawable.gray)
+                .into(holder.personImage);
 
 //        creating an onclick item listener
         holder.dateCardView.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +80,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("CONTACT_INFORMATION", mData.get(position).getContactInfo());
 //                intent.putExtra("MEDIA_LIST", "location");
 //                intent.putExtra("NOTIFICATIONS", "location");
-                intent.putExtra("USER_PROFILE", R.drawable.gray);
+                intent.putExtra("USER_PROFILE", mData.get(position).getProfilePhoto());
                 mContext.startActivity(intent);
             }
         });

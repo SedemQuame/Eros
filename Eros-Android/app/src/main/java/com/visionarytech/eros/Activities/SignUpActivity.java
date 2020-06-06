@@ -127,9 +127,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.routeToProspects:
+                view.findViewById(R.id.routeToProspects).setClickable(false);
                 registerUser();
                 break;
             case R.id.routeToLogin:
+                view.findViewById(R.id.routeToLogin).setClickable(false);
                 Toast.makeText(this, "Routing to LoginActivity", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);

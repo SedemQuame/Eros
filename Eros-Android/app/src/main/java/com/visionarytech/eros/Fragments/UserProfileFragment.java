@@ -114,7 +114,7 @@ public class UserProfileFragment extends Fragment {
                                         obj.getString("name"),
                                         obj.getString("age"),
                                         obj.getString("location"),
-                                        "",
+                                        obj.getString("profileImg"),
                                         aboutDate,
                                         datePreferences,
                                         dateSocialBackground,

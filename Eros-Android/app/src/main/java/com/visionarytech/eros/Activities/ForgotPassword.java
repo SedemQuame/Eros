@@ -18,8 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.visionarytech.eros.R;
 
 public class ForgotPassword extends AppCompatActivity implements View.OnClickListener {
-
-
     private EditText emailAddressEdtView;
     private Button resetPasswordBtn;
     private FirebaseAuth mAuth;

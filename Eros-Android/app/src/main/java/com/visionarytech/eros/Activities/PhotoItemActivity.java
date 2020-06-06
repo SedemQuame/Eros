@@ -23,6 +23,5 @@ public class PhotoItemActivity extends AppCompatActivity {
 
 //        Getting image Id from intent, and setting up the imageView
         fullPhotoImageView.setImageResource(photoId);
-
     }
 }

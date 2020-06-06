@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.visionarytech.eros.Models.About;
 import com.visionarytech.eros.Models.Contact;
 import com.visionarytech.eros.Models.Preferences;
@@ -36,8 +37,7 @@ public class MatchProfileActivity extends AppCompatActivity {
         Preferences preferences = (Preferences)intent.getSerializableExtra("PREFERENCES");
         SocialBackGround socialBackGround = (SocialBackGround) intent.getSerializableExtra("SOCIAL_BACKGROUND");
         Contact contactNumber = (Contact) intent.getSerializableExtra("CONTACT_INFORMATION");
-        int userProfile = intent.getExtras().getInt("USER_PROFILE");
-
+        String userProfile = intent.getExtras().getString("USER_PROFILE");
 
         userMainPicture = findViewById(R.id.app_bar_image);
 
@@ -84,6 +84,11 @@ public class MatchProfileActivity extends AppCompatActivity {
             this.uPhone.setText(contactNumber.getPhoneNumber());
         }
 
-        userMainPicture.setImageResource(userProfile);
+        Picasso.get()
+                .load(userProfile)
+                .placeholder(R.drawable.gray)
+                .error(R.drawable.gray)
+                .into(userMainPicture);
+//        userMainPicture.setImageResource(userProfile);
     }
 }

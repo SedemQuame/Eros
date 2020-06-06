@@ -103,14 +103,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = null;
         switch (view.getId()) {
             case R.id.routeToProspects:
+                view.findViewById(R.id.routeToProspects).setClickable(false);
                 userLogin();
                 break;
             case R.id.routeToSignUp:
+                view.findViewById(R.id.routeToSignUp).setClickable(false);
                 Toast.makeText(this, "Routing to SignUPActivity", Toast.LENGTH_SHORT).show();
                 intent = new Intent(this, SignUpActivity.class);
                 startActivity(intent);
                 break;
             case R.id.routeToForgotPassword:
+                view.findViewById(R.id.routeToForgotPassword).setClickable(false);
                 Toast.makeText(this, "Routing to ForgotPasswordActivity", Toast.LENGTH_SHORT).show();
                 intent = new Intent(this, ForgotPassword.class);
                 startActivity(intent);

@@ -3,6 +3,7 @@ package com.visionarytech.eros.Activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import com.visionarytech.eros.R;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class ProfileBuilderActivity extends AppCompatActivity implements
         AboutMeDialog.AboutDialogListener, PreferenceDialog.PreferencesDialogListener,
@@ -33,6 +35,15 @@ public class ProfileBuilderActivity extends AppCompatActivity implements
     private TextView progressText;
     private int progressValue;
 
+    // Method to encode a string value using `UTF-8` encoding scheme
+    private String encodeValue(String value) {
+        try {
+            return URLEncoder.encode(value, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
     @Override
     public void onBackPressed() {
@@ -99,6 +110,8 @@ public class ProfileBuilderActivity extends AppCompatActivity implements
                 StringBuilder REQUEST_URL = new StringBuilder("");
                 REQUEST_URL.append("/createNewUserAccount/userName/")
                         .append(sharedPref.getString("Username", null))
+                        .append("/profileImg/")
+                        .append(encodeValue(sharedPref.getString("PROFILE_IMG", null)))
                         .append("/aboutMe/")
                         .append(sharedPref.getString("Bio", null))
                         .append(".")

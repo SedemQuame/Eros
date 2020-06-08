@@ -53,12 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
 
         holder.personLocation.setText(capitalizeWord(mData.get(position).getLocation()));
-//
-//        if(mData.get(position).getProfilePhoto() == ""){
-//            holder.personImage.setImageResource(R.drawable.gray);
-//        }else{
-////            holder.personImage.
-//        }
+
         Picasso.get()
                 .load(mData.get(position).getProfilePhoto())
                 .placeholder(R.drawable.gray)
@@ -78,7 +73,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("PREFERENCES", mData.get(position).getPreferences());
                 intent.putExtra("SOCIAL_BACKGROUND", mData.get(position).getBackground());
                 intent.putExtra("CONTACT_INFORMATION", mData.get(position).getContactInfo());
-//                intent.putExtra("MEDIA_LIST", "location");
+                intent.putExtra("MEDIA_LIST", mData.get(position).getMedia());
+//                Only load notifications for user's viewing their own profile walls.
 //                intent.putExtra("NOTIFICATIONS", "location");
                 intent.putExtra("USER_PROFILE", mData.get(position).getProfilePhoto());
                 mContext.startActivity(intent);

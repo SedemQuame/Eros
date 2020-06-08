@@ -9,6 +9,7 @@ module.exports = app => {
         });
 
 //     //========================================== app users routes ============================================//
+    //Implemented
     app.route(`/createNewUserAccount/userName/:name/profileImg/:image/aboutMe/:bio.:views.:location/preferences/:gender.:ageRange.:lookingFor/socialBackground/:work.:religion.:school/contactInformation/:email.:phone`)
        .post(user.createNewUserAccount);
 
@@ -19,7 +20,8 @@ module.exports = app => {
         .post(user.deleteExistingAccount);
 
 // ==================================================
-    app.route(`/getAllUsers`)
+    //Implemented
+    app.route(`/getAllUsers`) 
         .post(user.getAllUsers);
 
     app.route(`/getAllUsersWithMatchingPreferences`)

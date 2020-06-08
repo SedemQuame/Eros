@@ -4,12 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+import com.visionarytech.eros.Models.Media;
 import com.visionarytech.eros.R;
 
-public class PhotoItemActivity extends AppCompatActivity {
-    ImageView fullPhotoImageView;
+import java.util.List;
+
+public class PhotoItemActivity extends AppCompatActivity implements View.OnClickListener{
+    private ImageView fullPhotoImageView;
+    private String photoUrl = "";
+    private int elementPosition = -1, listSize = -1;
+    private List<Media> Media = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +27,42 @@ public class PhotoItemActivity extends AppCompatActivity {
 
 //        Getting picture id sent from gallery activity
         Intent intent = getIntent();
-        int photoId = intent.getExtras().getInt("photoId");
+        photoUrl = intent.getExtras().getString("MEDIA_ELEMENT");
+        elementPosition = intent.getExtras().getInt("MEDIA_ELEMENT_POSITION");
+        listSize = intent.getExtras().getInt ("MEDIA_LIST_SIZE");
+        Media = (List<Media>) intent.getExtras().getSerializable("MEDIA_LIST");
 
+//        Setting picture resource using picasso
+        setImage(photoUrl);
+
+//        Setting event listener.
+        fullPhotoImageView.setOnClickListener(this);
+    }
+
+    private void setImage(String photoUrl){
 //        Getting image Id from intent, and setting up the imageView
-        fullPhotoImageView.setImageResource(photoId);
+        Picasso.get()
+            .load(photoUrl)
+            .placeholder(R.drawable.gray)
+            .error(R.drawable.gray)
+            .into(fullPhotoImageView);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case (R.id.galleryImageFullView):
+                elementPosition = elementPosition + 1;
+                if(elementPosition == listSize || elementPosition < 0){
+                    elementPosition = 0;
+                }
+                photoUrl = Media.get(elementPosition).getAssetUrl();
+//                  Setting picture resource using picasso
+                setImage(photoUrl);
+                break;
+            default:
+//                do nothing
+                break;
+        }
     }
 }

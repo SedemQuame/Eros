@@ -17,8 +17,8 @@
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-            app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
-            app:toolbarId="@+id/toolbar">
+            app:layout_scrollInterpolator="@android:anim/decelerate_interpolator">
+<!--            app:toolbarId="@+id/toolbar"-->
 
             <ImageView
                 android:id="@+id/app_bar_image"
@@ -332,11 +332,11 @@
                     android:textColor="#636e72"
                     android:textSize="20sp" />
 
-                <fragment
+                <FrameLayout
                     android:id="@+id/gallery"
-                    android:name="com.visionarytech.eros.Fragments.MatchGallery"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+<!--                android:name="com.visionarytech.eros.Fragments.MatchGallery"-->
 
             </LinearLayout>
 

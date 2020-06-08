@@ -1,6 +1,8 @@
 package com.visionarytech.eros.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.visionarytech.eros.Fragments.MatchGallery;
 import com.visionarytech.eros.Models.About;
 import com.visionarytech.eros.Models.Contact;
 import com.visionarytech.eros.Models.Preferences;
@@ -21,11 +24,18 @@ public class MatchProfileActivity extends AppCompatActivity {
     private TextView uNname, uAge, uLocation;
     private TextView uBio, uViews, uWork, uReligion, uSchool, uEmail, uPhone;
     private ImageView userMainPicture;
+    private String mediaList;
+    private Bundle results;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_profile);
+
+//          Get reference of the child fragment.
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        final MatchGallery gallery = new MatchGallery();
 
 //          Receive data
         Intent intent = getIntent();
@@ -38,6 +48,7 @@ public class MatchProfileActivity extends AppCompatActivity {
         SocialBackGround socialBackGround = (SocialBackGround) intent.getSerializableExtra("SOCIAL_BACKGROUND");
         Contact contactNumber = (Contact) intent.getSerializableExtra("CONTACT_INFORMATION");
         String userProfile = intent.getExtras().getString("USER_PROFILE");
+        mediaList = intent.getExtras().getString("MEDIA_LIST");
 
         userMainPicture = findViewById(R.id.app_bar_image);
 
@@ -53,6 +64,13 @@ public class MatchProfileActivity extends AppCompatActivity {
 
         uEmail = findViewById(R.id.emaillTextView);
         uPhone = findViewById(R.id.phoneNumberTextView);
+
+//          Downloading and setting, user profile image using Picasso.
+        Picasso.get()
+                .load(userProfile)
+                .placeholder(R.drawable.gray)
+                .error(R.drawable.gray)
+                .into(userMainPicture);
 
         String nameComma = name + ", ";
         this.uNname.setText(capitalizeWord(nameComma));
@@ -84,11 +102,12 @@ public class MatchProfileActivity extends AppCompatActivity {
             this.uPhone.setText(contactNumber.getPhoneNumber());
         }
 
-        Picasso.get()
-                .load(userProfile)
-                .placeholder(R.drawable.gray)
-                .error(R.drawable.gray)
-                .into(userMainPicture);
-//        userMainPicture.setImageResource(userProfile);
+//          Creating a bundle.
+        Bundle mediaListBundle = new Bundle();
+        mediaListBundle.putString("mediaList", mediaList);
+        gallery.setArguments(mediaListBundle);
+
+        transaction.add(R.id.gallery, gallery);
+        transaction.commit();
     }
 }

@@ -109,6 +109,9 @@ public class UserProfileFragment extends Fragment {
                                         contactInformationObj.getString("phoneNumber")
                                 );
 
+//                                String mediaListStr = obj.getString("mediaList");
+//                                Converting mediaList string to mediaList Objects
+
                                 Dates possibleDates = new Dates(
                                         obj.getString("_id"),
                                         obj.getString("name"),
@@ -118,7 +121,9 @@ public class UserProfileFragment extends Fragment {
                                         aboutDate,
                                         datePreferences,
                                         dateSocialBackground,
-                                        dateContact
+                                        dateContact,
+                                        obj.getString("mediaList")
+
                                 );
                                 listOfProspectiveDates.add(possibleDates);
                             }
@@ -129,7 +134,6 @@ public class UserProfileFragment extends Fragment {
                             RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), listOfProspectiveDates);
                             recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
                             recyclerView.setAdapter(adapter);
-//                            listOfProspectiveDates = null;
                         } catch (JSONException e) {
                             Log.d(TAG, "onError: Error occurred: " + e.getMessage());
                             e.printStackTrace();

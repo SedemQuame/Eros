@@ -1,6 +1,7 @@
 package com.visionarytech.eros.Models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Dates implements Serializable {
     private String _id;
@@ -12,14 +13,14 @@ public class Dates implements Serializable {
     private Preferences preferences;
     private SocialBackGround background;
     private Contact contactInfo;
+    private String media;
 
     public Dates() {
     }
 
-//    Constructors
+    //    Constructors
 
-    public Dates(String _id, String name, String age, String location, String profilePhoto,
-                 About me, Preferences preferences, SocialBackGround background, Contact contactInfo) {
+    public Dates(String _id, String name, String age, String location, String profilePhoto, About me, Preferences preferences, SocialBackGround background, Contact contactInfo, String media) {
         this._id = _id;
         this.name = name;
         this.age = age;
@@ -29,7 +30,9 @@ public class Dates implements Serializable {
         this.preferences = preferences;
         this.background = background;
         this.contactInfo = contactInfo;
+        this.media = media;
     }
+
 
     //    Getters
 
@@ -69,6 +72,9 @@ public class Dates implements Serializable {
         return contactInfo;
     }
 
+    public String getMedia() {
+        return media;
+    }
 
 //    Setters
 
@@ -106,5 +112,9 @@ public class Dates implements Serializable {
 
     public void setContactInfo(Contact contactInfo) {
         this.contactInfo = contactInfo;
+    }
+
+    public void setMedia(String media) {
+        this.media = media;
     }
 }

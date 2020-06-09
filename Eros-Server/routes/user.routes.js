@@ -33,6 +33,12 @@ module.exports = app => {
 
     app.route(`/likePictureOfPossibleMatch`)
         .post(user.likePictureOfPossibleMatch);
+
+    app.route(`/likePossibleMatch`)
+        .post(user.likePictureOfPossibleMatch);
+        
+    app.route(`/lovePossibleMatch`)
+        .post(user.likePictureOfPossibleMatch);        
         
     app.route(`/deletePicturePostedOnPlatform`)
         .post(user.deletePicturePostedOnPlatform);

@@ -28,6 +28,9 @@ public class MatchProfileActivity extends AppCompatActivity implements View.OnCl
     private TextView uBio, uViews, uWork, uReligion, uSchool, uEmail, uPhone;
     private ImageView userMainPicture;
     private String mediaList;
+    private static final String LIKE_MATCH = "/likePossibleMatch",
+            LOVE_MATCH = "/lovePossibleMatch",
+            REQUEST_MESSAGE = "/requestMessageFromPossibleMatch";
     private Bundle results;
     private CardView like, love, message;
 
@@ -53,6 +56,8 @@ public class MatchProfileActivity extends AppCompatActivity implements View.OnCl
         SocialBackGround socialBackGround = (SocialBackGround) intent.getSerializableExtra("SOCIAL_BACKGROUND");
         Contact contactNumber = (Contact) intent.getSerializableExtra("CONTACT_INFORMATION");
         String userProfile = intent.getExtras().getString("USER_PROFILE");
+
+
         mediaList = intent.getExtras().getString("MEDIA_LIST");
 
         userMainPicture = findViewById(R.id.app_bar_image);

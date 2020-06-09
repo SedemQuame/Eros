@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,7 +36,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserProfileFragment extends Fragment {
+public class UserProfileFragment extends Fragment{
     private static final String TAG = "UserProfileFragment";
     private final String BASE_URL = "https://guarded-beach-22346.herokuapp.com";
     private final String REQUEST_URL = "/getAllUsers";
@@ -50,6 +51,7 @@ public class UserProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.users_fragment, container, false);
 
+
 //        Create New Progress Dialog.
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Fetching likely matches ...");
@@ -57,7 +59,7 @@ public class UserProfileFragment extends Fragment {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
-        // Request a string response from the provided URL.
+//        Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, BASE_URL + this.REQUEST_URL,
                 new Response.Listener<String>() {
                     @Override
@@ -152,4 +154,5 @@ public class UserProfileFragment extends Fragment {
         queue.add(stringRequest);
         return v;
     }
+
 }

@@ -1,13 +1,16 @@
 package com.visionarytech.eros.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.visionarytech.eros.Fragments.MatchGallery;
@@ -19,13 +22,15 @@ import com.visionarytech.eros.R;
 
 import static com.visionarytech.eros.Utils.StringFormatter.capitalizeWord;
 
-public class MatchProfileActivity extends AppCompatActivity {
+public class MatchProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView uNname, uAge, uLocation;
     private TextView uBio, uViews, uWork, uReligion, uSchool, uEmail, uPhone;
     private ImageView userMainPicture;
     private String mediaList;
     private Bundle results;
+    private CardView like, love, message;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,15 @@ public class MatchProfileActivity extends AppCompatActivity {
 
         uEmail = findViewById(R.id.emaillTextView);
         uPhone = findViewById(R.id.phoneNumberTextView);
+
+        like = findViewById(R.id.like);
+        love = findViewById(R.id.love);
+        message = findViewById(R.id.message);
+
+//        Setting OnClickListeners
+        like.setOnClickListener(this);
+        love.setOnClickListener(this);
+        message.setOnClickListener(this);
 
 //          Downloading and setting, user profile image using Picasso.
         Picasso.get()
@@ -109,5 +123,23 @@ public class MatchProfileActivity extends AppCompatActivity {
 
         transaction.add(R.id.gallery, gallery);
         transaction.commit();
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case(R.id.like):
+                Toast.makeText(this, "Like", Toast.LENGTH_SHORT).show();
+                break;
+            case(R.id.love):
+                Toast.makeText(this, "Love", Toast.LENGTH_SHORT).show();
+                break;
+            case(R.id.message):
+                Toast.makeText(this, "Requested Message From ", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -46,27 +46,12 @@ exports.createNewUserAccount = (req, res) => {
             msg: `Successfully created user account.`,
             // return id of user's mongo collection.
             _id: docs._id,
-        })
+        });
     }).catch(err => {
         res.send({
             err: err
         })
     });
-};
-
-// todo => optimise function.
-exports.deleteExistingAccount = (req, res) => {
-    console.log(req.params.Id);
-    user.findByIdAndDelete(req.params.Id)
-        .then(
-            res.send({
-                msg: `Successfully deleted`
-            })
-        ).catch(
-            res.send({
-                msg: `Unable to successfully delete account.`
-            })            
-        );
 };
 
 exports.addNewPicture = (req, res) => {
@@ -89,9 +74,23 @@ exports.addNewPicture = (req, res) => {
         );
 };
 
+// todo => optimise function.
+exports.deleteExistingAccount = (req, res) => {
+    console.log(req.params.Id);
+    user.findByIdAndDelete(req.params.Id)
+        .then(
+            res.send({
+                msg: `Successfully deleted`
+            })
+        ).catch(
+            res.send({
+                msg: `Unable to successfully delete account.`
+            })            
+        );
+};
+
 // Querying User Accounts
 // ======================
-// todo => optimise function.
 exports.getAllUsers = (req, res) => {   
     user.find({})
         .then(docs => {
@@ -114,27 +113,25 @@ exports.getAllUsersWithMatchingPreferences = (req, res) => {
         });
 };
 
-// Person To Person Requests
-// =========================
-exports.requestMessageFromPossibleMatch = (req, res) => {   
-    user.findById({_id: req.params.Id})
-        .then(doc => {
-            doc.notifications.push({
-                from: `5ec38b7828d1071be8bb19ec`,
-                subject: `Love profession then things.`,
-            });
-            doc.save();
+exports.getUserNotification = (req, res) => {
+    user.findById({_id: req.params.userId})
+        .then((user) => {
             res.send({
-                msg: `Successfully added request to queue.`
+                notifications: user.notifications,
+                msg: `Returned all notifications`
             });
-        }).catch(err => {
+        })
+        .catch((err) => {
             res.send({
-                msg: `Unable to request message from user.`,
+                notifications: [],
+                msg: "Failed to return all notifications",
                 err: err
             });
         });
 };
 
+// Person To Person Requests
+// =========================
 exports.likePictureOfPossibleMatch = (req, res) => {   
     user.findById({_id: req.params.Id})
         .then(doc => {
@@ -153,6 +150,99 @@ exports.likePictureOfPossibleMatch = (req, res) => {
         }).catch(err => {
             res.send({
                 msg: `Unable to like Image.`,
+                err: err
+            });
+        });
+};
+
+exports.requestMessageFromPossibleMatch = (req, res) => {   
+    user.findById({_id: req.params.requesteeId})
+        .then(requestee => {
+            // Getting requester details.
+            user.findById({_id: req.params.requesteeId})
+                .then(requesterInfo => {
+                    let msg = `${requesterInfo.name}, sent you a message request.`;
+                    requestee.notifications.push({
+                        from: req.params.requesterId,
+                        subject: msg,
+                        requesterImg: requesterInfo.profileImg
+                    });
+                    requestee.save();
+                    res.send({
+                        msg: `Successfully requested a message from ${requestee.name}.`
+                    });
+                }).catch((err) => {
+                    res.send({
+                        msg: `Unable to request a message from ${requestee.name}.`,
+                        err: err
+                    });
+                });
+        }).catch(err => {
+            res.send({
+                msg: `Unable to request a message from ${requestee.name}.`,
+                err: err
+            });
+        });
+};
+
+exports.likePossibleMatch = (req, res) => { 
+    // append likeeId to list of liked people.  
+    user.findById({_id: req.params.likeeId})
+        .then(likee => {
+            likee.numberOfLikes++;
+            // Getting requester details.
+            user.findById({_id: req.params.likerId})
+                .then(likerInfo => {
+                    let msg = `${likerInfo.name}, likes you.`;
+                    likee.notifications.push({
+                        from: req.params.likerId,
+                        subject: msg,
+                        requesterImg: likerInfo.profileImg
+                    });
+                    likee.save();
+                    res.send({
+                        msg: `Successfully liked ${likee.name}'s profile.`
+                    });
+                }).catch((err) => {
+                    res.send({
+                        msg: `Unable to like ${likee.name}'s profile.`,
+                        err: err
+                    });
+                });
+        }).catch(err => {
+            res.send({
+                msg: `Unable to like ${likee.name}'s profile.`,
+                err: err
+            });
+        });
+};
+
+exports.lovePossibleMatch = (req, res) => {   
+    user.findById({_id: req.params.loveeId})
+        .then(lovee => {
+            lovee.numberOfLoves++;
+            // Getting requester details.
+            user.findById({_id: req.params.loverId})
+                .then(loverInfo => {
+                    let msg = `${loverInfo.name}, has a crush on you.`;
+                    lovee.notifications.push({
+                        from: req.params.loverId,
+                        subject: msg,
+                        requesterImg: loverInfo.profileImg
+                    });
+                    lovee.save();
+                    res.send({
+                        msg: `Successfully professed to ${lovee.name}.`
+                    });
+                }).catch((err) => {
+                    res.send({
+                        msg: `Unable, to profess to ${lovee.name}. Try again later.`,
+                        err: err
+                    });
+                });
+        }).catch(err => {
+            res.send({
+                msg: `Unable, to profess to ${lovee.name}. Try again later.`,
                 err: err
             });
         });

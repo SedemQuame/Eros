@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.visionarytech.eros">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,19 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ProfileBuilderActivity"></activity>
-        <activity android:name=".Activities.ForgotPassword" />
-        <activity android:name=".Activities.PhotoItemActivity" />
-        <activity android:name=".Activities.MatchProfileActivity" />
-        <activity android:name=".Activities.ProspectsActivity" />
-        <activity android:name=".Activities.LoginActivity">
+        <activity android:name=".Activities.UserProfile" />
+        <activity android:name=".Activities.Notifications" />
+        <activity android:name=".Activities.ProfileBuilder" />
+        <activity android:name=".Activities.PasswordReset" />
+        <activity android:name=".Activities.PhotoViewer" />
+        <activity android:name=".Activities.DatesProfile" />
+        <activity android:name=".Activities.PossibleMatches" />
+        <activity android:name=".Activities.UserLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.SignUpActivity" />
+        <activity android:name=".Activities.UserSignUp" />
 
         <meta-data
             android:name="preloaded_fonts"

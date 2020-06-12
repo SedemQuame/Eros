@@ -14,26 +14,29 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import com.visionarytech.eros.Networks.RequestHandler;
 import com.visionarytech.eros.R;
 
+import static com.visionarytech.eros.R.layout.dialog_social_background;
+
 public class SocialBackgroundDialog extends AppCompatDialogFragment {
-    private EditText editTextDialogWork, editTextDialogSchool, editTextDialogReligion;
+    //          Storing Data In Shared Preferences.
+    private SharedPreferences sharedPref = null;
+    private EditText editTextDialogWork, editTextDialogSchool;
     private Spinner spinnerDialogReligion;
     private SocialBackgroundDialogListener listener;
-//          Storing Data In Shared Preferences.
-    SharedPreferences sharedPref = null;
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 //        Storing Data In Shared Preferences.
         Context context = getActivity();
-        sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), context.MODE_PRIVATE);
+        assert context != null;
+        sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), Context.MODE_PRIVATE);
 
 //          return super.onCreateDialog(savedInstanceState);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_social_background, null);
+        View view = inflater.inflate(dialog_social_background, null);
 //          attaching view references to variables.
         editTextDialogWork = view.findViewById(R.id.editTextDialogWork);
         editTextDialogSchool = view.findViewById(R.id.editTextDialogSchool);
@@ -53,39 +56,40 @@ public class SocialBackgroundDialog extends AppCompatDialogFragment {
         spinnerDialogReligion.setAdapter(genderAdapter);
 
 //         setting values for view preferences
-        if(sharedPref.contains("Work")){
-            editTextDialogWork.setText(sharedPref.getString("Work",""));
+        if (sharedPref.contains("Work")) {
+            editTextDialogWork.setText(sharedPref.getString("Work", ""));
         }
 
-        if(sharedPref.contains("School")){
-            editTextDialogSchool.setText(sharedPref.getString("School",""));
+        if (sharedPref.contains("School")) {
+            editTextDialogSchool.setText(sharedPref.getString("School", ""));
         }
 
-        if(sharedPref.contains("Religion")){
-//            editTextDialogReligion.setText(sharedPref.getString("Religion",""));
-//            spinnerDialogReligion.se
-        }
+//        if (sharedPref.contains("Religion")) {
+////            editTextDialogReligion.setText(sharedPref.getString("Religion",""));
+////            spinnerDialogReligion.se
+//        }
 
 //          adding to view ro alertDialog
         builder.setView(view)
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                }}).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                }).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
 //                      Creating Editor For Shared Preferences.
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("Work", editTextDialogWork.getText().toString());
-                    editor.putString("School", editTextDialogSchool.getText().toString());
-                    editor.putString("Religion", String.valueOf(spinnerDialogReligion.getSelectedItem()));
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("Work", editTextDialogWork.getText().toString());
+                editor.putString("School", editTextDialogSchool.getText().toString());
+                editor.putString("Religion", String.valueOf(spinnerDialogReligion.getSelectedItem()));
 //                      Saving New User Preferences.
-                    editor.apply();
+                editor.apply();
 //                      Update Registration Progress By 20%;
-                    listener.updateProgressBar(20);
-                }
+                listener.updateProgressBar(20);
+            }
         });
         return builder.create();
     }
@@ -102,7 +106,7 @@ public class SocialBackgroundDialog extends AppCompatDialogFragment {
         }
     }
 
-    public interface SocialBackgroundDialogListener{
+    public interface SocialBackgroundDialogListener {
         void updateProgressBar(int progressNumber);
     }
 }

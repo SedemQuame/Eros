@@ -35,6 +35,7 @@ const notificationSchema = mongoose.Schema({
     from: {type: String},
     subject: {type: String},
     date: { type: Date, default: Date.now },
+    requesterImg: {type: String}
 });
 
 
@@ -46,6 +47,8 @@ const userSchema = mongoose.Schema({
     location: {type: String},
     profileImg: {type: String},
     firebaseUID: {type: String},
+    numberOfLikes: {type: Number, default: 0},
+    numberOfLoves: {type: Number, default: 0},
     aboutMe: aboutMeSchema,
     preferences: preferenceSchema,
     socialBackground: socialBackgroundSchema,

@@ -30,7 +30,6 @@
     <string name="profile_builder">Profile Builder</string>
     <string name="completion_progress">Completion Progress</string>
     <string name="_0_100">0/100</string>
-    <string name="about_me">About Me</string>
     <string name="social_background">Social Background</string>
     <string name="contact_information">Contact Information</string>
     <string name="next">next</string>
@@ -40,6 +39,18 @@
     <string name="contact_information_img">contact_information_img</string>
     <string name="social_background_img">social_background_img</string>
     <string name="shared_preferences_of_user">com.visionaryTech.eros.userPreferences</string>
+    <string name="dateprofilepicture">dateProfilePicture</string>
+    <string name="person_s_name">Person\'s name</string>
+    <string name="person_s_location">Person\'s location</string>
+    <string name="picture_of_possible_match">Picture Of Possible Match</string>
+    <string name="possibleMatches">Possible Matches</string>
+    <string name="addNewPicture">Add New Picture</string>
+    <string name="profileText">Profile</string>
+    <string name="about_me">About Me</string>
+    <string name="deleteAccount">delete account</string>
+    <string name="logout">logout</string>
+    <string name="views">Views</string>
+    <string name="bio">Bio</string>
 
 
     <string-array name="GENDER_VALUES">

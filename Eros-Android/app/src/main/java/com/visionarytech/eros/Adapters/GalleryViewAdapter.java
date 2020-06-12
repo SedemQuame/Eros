@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
-import com.visionarytech.eros.Activities.PhotoItemActivity;
+import com.visionarytech.eros.Activities.PhotoViewer;
 import com.visionarytech.eros.Models.Media;
 import com.visionarytech.eros.R;
 
@@ -31,7 +31,7 @@ public class GalleryViewAdapter extends RecyclerView.Adapter<GalleryViewAdapter.
         this.mDataLength = mData.size();
     }
 
-    public List<Media> getmData() {
+    private List<Media> getmData() {
         return mData;
     }
 
@@ -55,7 +55,7 @@ public class GalleryViewAdapter extends RecyclerView.Adapter<GalleryViewAdapter.
         holder.datesPhotoItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, PhotoItemActivity.class);
+                Intent intent = new Intent(mContext, PhotoViewer.class);
                 intent.putExtra("MEDIA_ELEMENT", mData.get(position).getAssetUrl());
                 intent.putExtra("MEDIA_ELEMENT_POSITION", position);
                 intent.putExtra("MEDIA_LIST_SIZE", mDataLength);
@@ -70,10 +70,10 @@ public class GalleryViewAdapter extends RecyclerView.Adapter<GalleryViewAdapter.
         return mData.size();
     }
 
-    public static class ItemHolder extends RecyclerView.ViewHolder{
+    static class ItemHolder extends RecyclerView.ViewHolder{
         ImageView datesPhotoItem;
 
-        public ItemHolder(@NonNull View itemView) {
+        ItemHolder(@NonNull View itemView) {
             super(itemView);
 
             datesPhotoItem = itemView.findViewById(R.id.galleryPhoto);

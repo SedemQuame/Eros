@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
-import com.visionarytech.eros.Activities.MatchProfileActivity;
+import com.visionarytech.eros.Activities.DatesProfile;
 import com.visionarytech.eros.Models.Dates;
 import com.visionarytech.eros.R;
 
@@ -47,9 +47,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if(name.length() < 12){
             holder.personName.setText(name);
         }else{
-            String firstName = name.split(" ")[0];
-            String middleName = name.split(" ")[1];
-            holder.personName.setText(String.format("%s %s", firstName, middleName));
+            if(name.contains(" ")){
+                String firstName = name.split(" ")[0];
+                String middleName = name.split(" ")[1];
+                holder.personName.setText(String.format("%s %s", firstName, middleName));
+            }
         }
 
         holder.personLocation.setText(capitalizeWord(mData.get(position).getLocation()));
@@ -64,7 +66,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.dateCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, MatchProfileActivity.class);
+                Intent intent = new Intent(mContext, DatesProfile.class);
 //                adding some extra information to the intent.
                 intent.putExtra("_ID", mData.get(position).get_id());
                 intent.putExtra("NAME", mData.get(position).getName());
@@ -77,6 +79,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 //                Only load notifications for user's viewing their own profile walls.
 //                intent.putExtra("NOTIFICATIONS", "location");
                 intent.putExtra("USER_PROFILE", mData.get(position).getProfilePhoto());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
             }
         });
@@ -87,14 +90,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mData.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+
+    static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView personName;
         TextView personLocation;
         ImageView personImage;
         CardView dateCardView;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
 
             personName = itemView.findViewById(R.id.dateUserName);

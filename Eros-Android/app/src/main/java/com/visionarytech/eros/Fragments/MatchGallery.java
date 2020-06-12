@@ -29,8 +29,7 @@ import java.util.List;
  */
 public class MatchGallery extends Fragment {
     private static final String TAG = "MatchGallery";
-    List<Media> mediaList;
-    View v;
+
     public MatchGallery() {
         // Required empty public constructor
     }
@@ -40,14 +39,14 @@ public class MatchGallery extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_match_gallery, container, false);
+        View v = inflater.inflate(R.layout.fragment_match_gallery, container, false);
 
         Bundle mediaListBundle = getArguments();
         assert mediaListBundle != null;
         String mediaListString = mediaListBundle.getString("mediaList");
         Log.d(TAG, "onCreateView: " + mediaListString);
 
-        mediaList = new ArrayList<>();
+        List<Media> mediaList = new ArrayList<>();
         try {
             JSONArray jsonArr = new JSONArray(mediaListString);
 

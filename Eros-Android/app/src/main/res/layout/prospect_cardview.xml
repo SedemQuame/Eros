@@ -7,18 +7,21 @@
     android:layout_height="200dp"
     android:layout_margin="5dp"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground">
+    android:foreground="?android:attr/selectableItemBackground"
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#fff">
 
         <ImageView
             android:id="@+id/dateMainImage"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:background="#2d2d2d"
+            android:contentDescription="@string/picture_of_possible_match"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/backgrounds/scenic[5]" />
 
@@ -27,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="Person's name"
+            android:text="@string/person_s_name"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="13sp" />
@@ -37,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="Person's location"
+            android:text="@string/person_s_location"
             android:textAlignment="center"
             android:textColor="#636e72"
             android:textSize="12sp" />

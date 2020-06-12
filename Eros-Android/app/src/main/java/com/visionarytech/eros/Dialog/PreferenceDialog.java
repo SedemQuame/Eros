@@ -16,8 +16,10 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.visionarytech.eros.R;
 
+import static com.visionarytech.eros.R.layout.dialog_preferences;
+
 public class PreferenceDialog extends AppCompatDialogFragment {
-    SharedPreferences sharedPref = null;
+    private SharedPreferences sharedPref = null;
     private EditText editTextDialogAgeRange;
     private Spinner spinnerDialogLookingFor;
     private PreferencesDialogListener listener;
@@ -26,14 +28,15 @@ public class PreferenceDialog extends AppCompatDialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 //        Storing Data In Shared Preferences.
         Context context = getActivity();
+        assert context != null;
         sharedPref = context.getSharedPreferences(getString(R.string.shared_preferences_of_user), Context.MODE_PRIVATE);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_preferences, null);
+        View view = inflater.inflate(dialog_preferences, null);
 
 //          attaching view references to variables.
-//        editTextDialogLookingFor = view.findViewById(R.id.editTextDialogLookingFor);
+//          editTextDialogLookingFor = view.findViewById(R.id.editTextDialogLookingFor);
         editTextDialogAgeRange = view.findViewById(R.id.editTextDialogAgeRange);
         spinnerDialogLookingFor = view.findViewById(R.id.spinnerDialogLookingFor);
 
@@ -44,15 +47,15 @@ public class PreferenceDialog extends AppCompatDialogFragment {
                 getResources().getStringArray(R.array.GENDER_VALUES)
         );
 
-//        drop down layout style - list view with radio button
+//          drop down layout style - list view with radio button
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDialogLookingFor.setAdapter(genderAdapter);
 
-        //         setting values for view preferences
-        if (sharedPref.contains("LookingFor")) {
-
-//            editTextDialogLookingFor.setText(sharedPref.getString("LookingFor",""));
-        }
+//          setting values for view preferences
+//        if (sharedPref.contains("LookingFor")) {
+//
+////            editTextDialogLookingFor.setText(sharedPref.getString("LookingFor",""));
+//        }
 
 
         if (sharedPref.contains("AgeRange")) {
@@ -75,12 +78,13 @@ public class PreferenceDialog extends AppCompatDialogFragment {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("LookingFor", String.valueOf(spinnerDialogLookingFor.getSelectedItem()));
                 editor.putString("AgeRange", editTextDialogAgeRange.getText().toString());
+
 //                      Saving New User Preferences.
                 editor.apply();
                 listener.updateProgressBar(20);
             }
         });
-//          return super.onCreateDialog(savedInstanceState);
+
         return builder.create();
     }
 

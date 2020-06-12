@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -18,7 +18,7 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
             app:layout_scrollInterpolator="@android:anim/decelerate_interpolator">
-<!--            app:toolbarId="@+id/toolbar"-->
+            <!--            app:toolbarId="@+id/toolbar"-->
 
             <ImageView
                 android:id="@+id/app_bar_image"
@@ -76,43 +76,17 @@
                 android:id="@+id/datesLocationTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
+                android:layout_marginBottom="6dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/location"
                 android:textColor="#636e72"
                 android:textSize="18sp" />
 
-            <LinearLayout
-                android:id="@+id/Gallery"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="12dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/gallery"
-                    android:textAlignment="textStart"
-                    android:textColor="#636e72"
-                    android:textSize="18sp" />
-
-                <FrameLayout
-                    android:id="@+id/gallery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <!--                android:name="com.visionarytech.eros.Fragments.MatchGallery"-->
-
-            </LinearLayout>
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/AboutMe"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="6dp"
                 app:cardBackgroundColor="#f1f2f6"
                 app:cardCornerRadius="4dp"
@@ -195,6 +169,32 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/Gallery"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/gallery"
+                    android:textAlignment="textStart"
+                    android:textColor="#636e72"
+                    android:textSize="18sp" />
+
+                <FrameLayout
+                    android:id="@+id/gallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <!--                android:name="com.visionarytech.eros.Fragments.MatchGallery"-->
+
+            </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/SocialBackground"

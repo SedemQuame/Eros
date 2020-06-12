@@ -1,17 +1,14 @@
-package com.visionarytech.eros.Fragments;
+package com.visionarytech.eros.Activities;
 
-import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,35 +33,41 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserProfileFragment extends Fragment{
+public class PossibleMatches extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "UserProfileFragment";
-    private final String BASE_URL = "https://guarded-beach-22346.herokuapp.com";
-    private final String REQUEST_URL = "/getAllUsers";
     private List<Dates> listOfProspectiveDates = null;
-    private View v = null;
+    private Context context = null;
+    private ImageButton homeButton, notificationButton, profileSettingButton;
 
-    public UserProfileFragment() {
-    }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.users_fragment, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_possible_matches);
 
+        context = getApplicationContext();
+        homeButton = findViewById(R.id.home);
+        homeButton.setOnClickListener(this);
+        notificationButton = findViewById(R.id.notification);
+        notificationButton.setOnClickListener(this);
+        profileSettingButton = findViewById(R.id.profile);
+        profileSettingButton.setOnClickListener(this);
 
-//        Create New Progress Dialog.
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Fetching likely matches ...");
-        progressDialog.show();
+////        Create New Progress Dialog.
+//        final ProgressDialog progressDialog = new ProgressDialog(context);
+//        progressDialog.setMessage("Fetching likely matches ...");
+//        progressDialog.show();
 
-        RequestQueue queue = Volley.newRequestQueue(getContext());
+        RequestQueue queue = Volley.newRequestQueue(context);
 
-//        Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, BASE_URL + this.REQUEST_URL,
+        //        Request a string response from the provided URL.
+        String BASE_URL = "https://guarded-beach-22346.herokuapp.com";
+        String REQUEST_URL = "/getAllUsers";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, BASE_URL + REQUEST_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressDialog.dismiss();
+//                        progressDialog.dismiss();
                         Log.d(TAG, "onResponse: " + response);
                         try {
                             JSONObject jsonObj = new JSONObject(response);
@@ -113,7 +116,6 @@ public class UserProfileFragment extends Fragment{
 
 //                                String mediaListStr = obj.getString("mediaList");
 //                                Converting mediaList string to mediaList Objects
-
                                 Dates possibleDates = new Dates(
                                         obj.getString("_id"),
                                         obj.getString("name"),
@@ -132,9 +134,9 @@ public class UserProfileFragment extends Fragment{
                             Log.d(TAG, "onSuccess: " + listOfProspectiveDates.toString());
 
 //                          Dismiss Progress Dialog Upon Error or Response.
-                            RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
-                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), listOfProspectiveDates);
-                            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(context, listOfProspectiveDates);
+                            recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             Log.d(TAG, "onError: Error occurred: " + e.getMessage());
@@ -144,15 +146,34 @@ public class UserProfileFragment extends Fragment{
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
                 Log.d(TAG, "onError: Error occurred: " + error.getMessage());
-                Toast.makeText(getContext(), "Error Occurred: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error Occurred: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Add the request to the RequestQueue.
         queue.add(stringRequest);
-        return v;
+
     }
 
+    @Override
+    public void onClick(View view) {
+        Intent intent = null;
+        switch (view.getId()) {
+            case (R.id.home):
+                intent = new Intent(context, PossibleMatches.class);
+                startActivity(intent);
+                break;
+            case (R.id.notification):
+                intent = new Intent(context, Notifications.class);
+                startActivity(intent);
+                break;
+            case (R.id.profile):
+                intent = new Intent(context, UserProfile.class);
+                startActivity(intent);
+                break;
+            default:
+//                do nothing
+        }
+    }
 }

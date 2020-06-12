@@ -11,7 +11,7 @@ public class Preferences implements Serializable {
     public Preferences() {
     }
 
-//    Constructor
+    //    Constructor
     public Preferences(String _id, String gender, String lookingFor, String ageRange) {
         this._id = _id;
         this.gender = gender;
@@ -19,7 +19,7 @@ public class Preferences implements Serializable {
         this.ageRange = ageRange;
     }
 
-//    Getters
+    //    Getters
     public String get_id() {
         return _id;
     }
@@ -36,7 +36,7 @@ public class Preferences implements Serializable {
         return ageRange;
     }
 
-//    Setters
+    //    Setters
     public void set_id(String _id) {
         this._id = _id;
     }

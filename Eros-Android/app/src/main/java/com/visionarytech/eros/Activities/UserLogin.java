@@ -19,8 +19,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.visionarytech.eros.R;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "LoginActivity";
+public class UserLogin extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "UserLogin";
     private EditText emailEditText, passwordEditText;
     private FirebaseAuth mAuth;
 
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 //                              Sign in success, update UI with the signed-in user's information
-                            Intent intent = new Intent(getApplicationContext(), ProspectsActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), PossibleMatches.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             finish();
                             startActivity(intent);
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        Intent intent = null;
+        Intent intent;
         switch (view.getId()) {
             case R.id.routeToProspects:
                 view.findViewById(R.id.routeToProspects).setClickable(false);
@@ -109,13 +109,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.routeToSignUp:
                 view.findViewById(R.id.routeToSignUp).setClickable(false);
                 Toast.makeText(this, "Routing to SignUPActivity", Toast.LENGTH_SHORT).show();
-                intent = new Intent(this, SignUpActivity.class);
+                intent = new Intent(this, UserSignUp.class);
                 startActivity(intent);
                 break;
             case R.id.routeToForgotPassword:
                 view.findViewById(R.id.routeToForgotPassword).setClickable(false);
                 Toast.makeText(this, "Routing to ForgotPasswordActivity", Toast.LENGTH_SHORT).show();
-                intent = new Intent(this, ForgotPassword.class);
+                intent = new Intent(this, PasswordReset.class);
                 startActivity(intent);
                 break;
         }
@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
         if (mAuth.getCurrentUser() != null) {
             finish();
-            startActivity(new Intent(getApplicationContext(), ProspectsActivity.class));
+            startActivity(new Intent(getApplicationContext(), PossibleMatches.class));
         }
     }
 }

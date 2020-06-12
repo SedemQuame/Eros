@@ -13,7 +13,7 @@ import com.visionarytech.eros.R;
 
 import java.util.List;
 
-public class PhotoItemActivity extends AppCompatActivity implements View.OnClickListener{
+public class PhotoViewer extends AppCompatActivity implements View.OnClickListener{
     private ImageView fullPhotoImageView;
     private String photoUrl = "";
     private int elementPosition = -1, listSize = -1;
@@ -50,19 +50,15 @@ public class PhotoItemActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case (R.id.galleryImageFullView):
-                elementPosition = elementPosition + 1;
-                if(elementPosition == listSize || elementPosition < 0){
-                    elementPosition = 0;
-                }
-                photoUrl = Media.get(elementPosition).getAssetUrl();
+        //                do nothing
+        if (view.getId() == R.id.galleryImageFullView) {
+            elementPosition = elementPosition + 1;
+            if (elementPosition == listSize || elementPosition < 0) {
+                elementPosition = 0;
+            }
+            photoUrl = Media.get(elementPosition).getAssetUrl();
 //                  Setting picture resource using picasso
-                setImage(photoUrl);
-                break;
-            default:
-//                do nothing
-                break;
+            setImage(photoUrl);
         }
     }
 }

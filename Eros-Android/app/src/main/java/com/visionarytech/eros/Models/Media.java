@@ -7,16 +7,14 @@ public class Media implements Serializable {
     private String assetType;
     private String assetUrl;
 
-    public Media() {
-    }
-
+    //      Constructor
     public Media(int numberOfLikes, String assetType, String assetUrl) {
         this.numberOfLikes = numberOfLikes;
         this.assetType = assetType;
         this.assetUrl = assetUrl;
     }
 
-//      Getters
+    //      Getters
     public int getNumberOfLikes() {
         return numberOfLikes;
     }
@@ -29,7 +27,7 @@ public class Media implements Serializable {
         return assetUrl;
     }
 
-//      Setters
+    //      Setters
     public void setAssetType(String assetType) {
         this.assetType = assetType;
     }

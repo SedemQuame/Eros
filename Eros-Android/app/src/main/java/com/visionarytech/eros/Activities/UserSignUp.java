@@ -22,8 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.visionarytech.eros.R;
 
-public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "SignUpActivity";
+public class UserSignUp extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "UserSignUp";
     private EditText userNameEditText, emailEditText, passwordEditText;
     private String userName, emailAddress, password;
     private FirebaseAuth mAuth;
@@ -112,12 +112,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("Username", userName);
         editor.putString("Email", emailAddress);
+        editor.putString("Password", password);
 //                      Saving New User Preferences.
         editor.apply();
     }
 
     public void routeToBuilderPage(){
-        Intent intent = new Intent(getApplicationContext(), ProfileBuilderActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ProfileBuilder.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
@@ -132,8 +133,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.routeToLogin:
                 view.findViewById(R.id.routeToLogin).setClickable(false);
-                Toast.makeText(this, "Routing to LoginActivity", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, LoginActivity.class);
+                Toast.makeText(this, "Routing to UserLogin", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, UserLogin.class);
                 startActivity(intent);
                 break;
         }

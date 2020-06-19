@@ -69,7 +69,7 @@ public class MatchGallery extends Fragment {
 
         RecyclerView galleryItems = v.findViewById(R.id.galleryRecyclerView);
         GalleryViewAdapter galleryAdapter = new GalleryViewAdapter(getContext(), mediaList);
-        galleryItems.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        galleryItems.setLayoutManager(new GridLayoutManager(getContext(), 3));
         galleryItems.setAdapter(galleryAdapter);
         return v;
     }

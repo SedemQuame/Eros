@@ -43,16 +43,18 @@ public class UserProfile extends AppCompatActivity implements
         View.OnClickListener,
         ProfilePictureUploadDialog.ProfilePictureUploadDialogListener {
     private static final String TAG = "ProfileFragment";
+
     private MatchGallery gallery = new MatchGallery();
-    private SharedPreferences sharedPref;
-    private FirebaseAuth mAuth;
+
     private Context context = null;
+    private SharedPreferences sharedPref;
+
+    private FirebaseAuth mAuth;
     private FragmentManager manager = getSupportFragmentManager();
-    private String mediaList = "";
     private FragmentTransaction transaction = manager.beginTransaction();
-    private String REQUEST_URL = "/addNewPicture/";
-    private String REQUEST_URL_MEDIA = "/getUserMediaList/";
-    private String DELETE_ACCOUNT_REQUEST_URL = "/deleteExistingAccount/";
+
+    private String mediaList = "", REQUEST_URL = "/addNewPicture/", REQUEST_URL_MEDIA = "/getUserMediaList/",
+            DELETE_ACCOUNT_REQUEST_URL = "/deleteExistingAccount/";
 
 
     @Override
@@ -63,31 +65,34 @@ public class UserProfile extends AppCompatActivity implements
 
         ImageButton imageUploadButton = findViewById(R.id.imageUploadButton);
         imageUploadButton.setOnClickListener(this);
+
         ImageButton homeButton = findViewById(R.id.home);
         homeButton.setOnClickListener(this);
+
         ImageButton notificationButton = findViewById(R.id.notification);
         notificationButton.setOnClickListener(this);
+
         ImageButton profileSettingButton = findViewById(R.id.profile);
         profileSettingButton.setOnClickListener(this);
+
         ImageView userProfilePicture = findViewById(R.id.userProfilePicture);
 
         mAuth = FirebaseAuth.getInstance();
 
 //        Referencing views in the fragment view.
-        TextView username = findViewById(R.id.usernameTextView);
+        TextView username = findViewById(R.id.username);
 
         EditText bio = findViewById(R.id.bioEditText);
         EditText views = findViewById(R.id.viewsEditText);
-        //    ==========================
+
         EditText work = findViewById(R.id.workEditText);
         EditText school = findViewById(R.id.schoolEditText);
         EditText religion = findViewById(R.id.religionEditText);
-        //    ==========================
+
         EditText email = findViewById(R.id.emailAddressEditView);
         EditText phone = findViewById(R.id.phoneEditText);
 
 //        Setting value for editTextViews in fragment with values from shared preferences.
-        Context context = getApplicationContext();
         assert context != null;
         sharedPref = context.getSharedPreferences(getString((R.string.shared_preferences_of_user)), MODE_PRIVATE);
         REQUEST_URL += sharedPref.getString("UserId", null) + "/";
@@ -100,7 +105,7 @@ public class UserProfile extends AppCompatActivity implements
                 .error(R.drawable.gray)
                 .into(userProfilePicture);
 
-        username.setText(sharedPref.getString("Username", null));
+        username.setText(sharedPref.getString("Username", null) + ", ");
         bio.setText(sharedPref.getString("Bio", null));
         views.setText(sharedPref.getString("Views", null));
         work.setText(sharedPref.getString("Work", null));
@@ -186,7 +191,6 @@ public class UserProfile extends AppCompatActivity implements
     public void updateProgressBar(int progressNumber) {
 //        do nothing
     }
-
 
     @Override
     public void returnFileUrl(String fileUrl) {

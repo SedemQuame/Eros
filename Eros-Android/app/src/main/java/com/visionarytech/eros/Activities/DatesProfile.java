@@ -51,11 +51,9 @@ public class DatesProfile extends AppCompatActivity implements View.OnClickListe
         String age = intent.getStringExtra("AGE");
         String location = intent.getStringExtra("LOCATION");
         About aboutMe = (About) intent.getSerializableExtra("ABOUT_ME");
-//        Preferences preferences = (Preferences) intent.getSerializableExtra("PREFERENCES");
         SocialBackGround socialBackGround = (SocialBackGround) intent.getSerializableExtra("SOCIAL_BACKGROUND");
         Contact contactNumber = (Contact) intent.getSerializableExtra("CONTACT_INFORMATION");
         String userProfile = intent.getExtras().getString("USER_PROFILE");
-
 
         String mediaList = intent.getExtras().getString("MEDIA_LIST");
 
@@ -64,7 +62,6 @@ public class DatesProfile extends AppCompatActivity implements View.OnClickListe
         TextView uNname = findViewById(R.id.datesName);
         TextView uAge = findViewById(R.id.datesAge);
         TextView uLocation = findViewById(R.id.datesLocationTextView);
-
         TextView uBio = findViewById(R.id.bioDescriptionTextView);
         TextView uViews = findViewById(R.id.viewsDescriptionTextView);
         TextView uWork = findViewById(R.id.workTextView);

@@ -38,7 +38,7 @@
                     <ImageView
                         android:id="@+id/userProfilePicture"
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
+                        android:layout_height="350dp"
                         android:background="#000000"
                         android:contentDescription="@string/addNewPicture"
                         android:scaleType="fitXY"
@@ -61,36 +61,71 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/usernameTextView"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/user_name"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/user_name"
+                            android:textAlignment="textStart"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="#000000"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="TextView"
+                            android:textColor="#000000"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Current Location"
+                        android:textSize="18sp" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/Gallery"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="12dp"
                     android:orientation="vertical"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp">
 
                     <TextView
-                        android:id="@+id/textView13"
+                        android:id="@+id/gallerySubHeader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:text="@string/gallery"
                         android:textAlignment="textStart"
                         android:textColor="#636e72"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                     <FrameLayout
                         android:id="@+id/gallery"
@@ -101,22 +136,24 @@
 
 
                 <LinearLayout
+                    android:id="@+id/About"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="4"
                     android:orientation="vertical"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp">
 
                     <TextView
-                        android:id="@+id/about"
+                        android:id="@+id/aboutSubHeader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:text="@string/about_me"
                         android:textAlignment="textStart"
                         android:textColor="#636e72"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -130,6 +167,7 @@
                             android:fontFamily="@font/roboto_medium"
                             android:text="@string/bio"
                             android:textAlignment="textStart"
+                            android:textAllCaps="true"
                             android:textColor="#000000"
                             android:textSize="14sp" />
 
@@ -137,11 +175,14 @@
                             android:id="@+id/bioEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
                             android:background="@drawable/plain"
                             android:ems="10"
+                            android:fontFamily="@font/roboto"
                             android:gravity="start|top"
                             android:inputType="textMultiLine"
-                            android:textSize="24sp" />
+                            android:minHeight="75dp"
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -153,9 +194,11 @@
                             android:id="@+id/views"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:capitalize="characters"
                             android:fontFamily="@font/roboto_medium"
                             android:text="@string/views"
                             android:textAlignment="textStart"
+                            android:textAllCaps="true"
                             android:textColor="#000000"
                             android:textSize="14sp" />
 
@@ -163,31 +206,36 @@
                             android:id="@+id/viewsEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
                             android:autofillHints="@string/views"
                             android:background="@drawable/plain"
                             android:ems="10"
+                            android:fontFamily="@font/roboto"
                             android:gravity="start|top"
                             android:inputType="textMultiLine"
-                            android:textSize="24sp" />
+                            android:minHeight="75dp"
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/Social"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp">
 
                     <TextView
-                        android:id="@+id/meta"
+                        android:id="@+id/socialSubHeader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:text="Social Background"
                         android:textAlignment="textStart"
                         android:textColor="#636e72"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -195,12 +243,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView9"
+                            android:id="@+id/work"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:capitalize="characters"
                             android:fontFamily="@font/roboto_medium"
                             android:text="Work"
                             android:textAlignment="textStart"
+                            android:textAllCaps="true"
                             android:textColor="#000000"
                             android:textSize="14sp" />
 
@@ -208,10 +258,12 @@
                             android:id="@+id/workEditText"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
+                            android:layout_marginBottom="8dp"
                             android:background="@drawable/plain"
                             android:ems="10"
+                            android:fontFamily="@font/roboto"
                             android:inputType="textPersonName"
-                            android:textSize="24sp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -221,12 +273,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView10"
+                            android:id="@+id/school"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:capitalize="characters"
                             android:fontFamily="@font/roboto_medium"
                             android:text="School"
                             android:textAlignment="textStart"
+                            android:textAllCaps="true"
                             android:textColor="#000000"
                             android:textSize="14sp" />
 
@@ -234,10 +288,12 @@
                             android:id="@+id/schoolEditText"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
+                            android:layout_marginBottom="8dp"
                             android:background="@drawable/plain"
                             android:ems="10"
+                            android:fontFamily="@font/roboto"
                             android:inputType="textPersonName"
-                            android:textSize="24sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -246,12 +302,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView15"
+                            android:id="@+id/religion"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:capitalize="characters"
                             android:fontFamily="@font/roboto_medium"
                             android:text="Religion"
                             android:textAlignment="textStart"
+                            android:textAllCaps="true"
                             android:textColor="#000000"
                             android:textSize="14sp" />
 
@@ -259,30 +317,34 @@
                             android:id="@+id/religionEditText"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
+                            android:layout_marginBottom="8dp"
                             android:background="@drawable/plain"
                             android:ems="10"
+                            android:fontFamily="@font/roboto"
                             android:inputType="textPersonName"
-                            android:textSize="24sp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/Contact"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp">
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/contactSubHeader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:text="Contact Information"
                         android:textAlignment="textStart"
                         android:textColor="#636e72"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -290,12 +352,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView11"
+                            android:id="@+id/email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:capitalize="characters"
                             android:fontFamily="@font/roboto_medium"
                             android:text="@string/user_email"
                             android:textAlignment="textStart"
+                            android:textAllCaps="true"
                             android:textColor="#000000"
                             android:textSize="14sp" />
 
@@ -303,10 +367,12 @@
                             android:id="@+id/emailAddressEditView"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
+                            android:layout_marginBottom="8dp"
                             android:background="@drawable/plain"
                             android:ems="10"
+                            android:fontFamily="@font/roboto"
                             android:inputType="textPersonName"
-                            android:textSize="24sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -315,12 +381,14 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView12"
+                            android:id="@+id/phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:capitalize="characters"
                             android:fontFamily="@font/roboto_medium"
                             android:text="Phone"
                             android:textAlignment="textStart"
+                            android:textAllCaps="true"
                             android:textColor="#000000"
                             android:textSize="14sp" />
 
@@ -328,19 +396,22 @@
                             android:id="@+id/phoneEditText"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
+                            android:layout_marginBottom="8dp"
                             android:background="@drawable/plain"
                             android:ems="10"
+                            android:fontFamily="@font/roboto"
                             android:inputType="textPersonName"
-                            android:textSize="24sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/Actions"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
                     android:paddingLeft="8dp"

@@ -52,6 +52,8 @@
     <string name="views">Views</string>
     <string name="bio">Bio</string>
     <string name="requesterprofileimage">requesterProfileImage</string>
+    <string name="notification_details">Notification details</string>
+    <string name="time">time</string>
 
 
     <string-array name="GENDER_VALUES">

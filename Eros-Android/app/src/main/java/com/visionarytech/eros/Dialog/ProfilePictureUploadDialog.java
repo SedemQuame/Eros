@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,6 +34,7 @@ import static android.app.Activity.RESULT_OK;
 public class ProfilePictureUploadDialog extends AppCompatDialogFragment implements View.OnClickListener {
     private static final int GALLERY_REQUEST_CODE = 1;
     private static final String TAG = "ProfilePictureUploadDia";
+    private CardView progressBarContainer;
     private ImageView photoPreview;
     private ProgressBar progressBar;
     private ProfilePictureUploadDialogListener listener;
@@ -40,6 +43,7 @@ public class ProfilePictureUploadDialog extends AppCompatDialogFragment implemen
     private StorageReference mStorageRef;
     private Uri selectedImage;
     private SharedPreferences sharedPref = null;
+    private View view;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -53,41 +57,20 @@ public class ProfilePictureUploadDialog extends AppCompatDialogFragment implemen
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_profile_photo, null);
 //        initialize views
-        photoPreview = view.findViewById(R.id.photoPreviewImageView);
+        CardView photoPreviewContainer = view.findViewById(R.id.photoPreviewImageView);
+        photoPreviewContainer.setOnClickListener(this);
+
+        photoPreview = view.findViewById(R.id.photoReview);
         photoPreview.setOnClickListener(this);
+
+        progressBarContainer = view.findViewById(R.id.progressBarContainer);
+
         progressBar = view.findViewById(R.id.progressBar);
         Button uploadButton = view.findViewById(R.id.uploadPictureButton);
         uploadButton.setOnClickListener(this);
-        progressBar.setVisibility(View.GONE);
 
         builder.setView(view);
         return builder.create();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            listener = (ProfilePictureUploadDialogListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement ProfilePictureUploadDialogListener");
-        }
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case (R.id.photoPreviewImageView):
-                pickFromGallery();
-                progressBar.setVisibility(View.VISIBLE);
-            case (R.id.uploadPictureButton):
-                uploadImageToFireBaseStorage();
-                progressBar.setVisibility(View.GONE);
-                listener.updateProgressBar(20);
-                break;
-            default:
-        }
-
     }
 
     private void pickFromGallery() {
@@ -114,12 +97,10 @@ public class ProfilePictureUploadDialog extends AppCompatDialogFragment implemen
                                     //Do what you want with the url
                                     FILE_URL = uri.toString();
                                     Log.d(TAG, "FILE_URL #1: " + FILE_URL);
-                                    Toast.makeText(getContext(), "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                                    Log.d(TAG, "onUpload: Successfully uploaded.");
-                                    SharedPreferences.Editor editor = sharedPref.edit();
-                                    editor.putString("PROFILE_IMG", FILE_URL);
-                                    editor.apply();
+                                    Toast.makeText(getActivity(), "Image Uploaded Successfully", Toast.LENGTH_SHORT).show();
                                     progressBar.setVisibility(View.GONE);
+                                    listener.updateProgressBar(20);
+                                    listener.returnFileUrl(FILE_URL);
                                 }
                             });
                         }
@@ -146,10 +127,43 @@ public class ProfilePictureUploadDialog extends AppCompatDialogFragment implemen
             photoPreview.setImageURI(selectedImage);
             Log.d(TAG, "Image URL: " + selectedImage.toString());
         }
-
+        ViewGroup.LayoutParams params =  photoPreview.getLayoutParams();
+        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        photoPreview.setLayoutParams(params);
     }
 
     public interface ProfilePictureUploadDialogListener {
+        void returnFileUrl(String fileUrl);
         void updateProgressBar(int progressNumber);
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            listener = (ProfilePictureUploadDialogListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement ProfilePictureUploadDialogListener");
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+//        ViewGroup.LayoutParams params = null;
+        switch (view.getId()) {
+            case (R.id.photoPreviewImageView):
+                pickFromGallery();
+            case (R.id.photoReview):
+                pickFromGallery();
+            case (R.id.uploadPictureButton):
+                progressBarContainer.setVisibility(View.VISIBLE);
+                uploadImageToFireBaseStorage();
+                progressBarContainer.setVisibility(View.GONE);
+                break;
+            default:
+        }
+
+    }
+
 }

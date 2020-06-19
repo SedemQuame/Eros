@@ -61,6 +61,10 @@ public class RequestHandler {
                                 ).show();
                             }
 
+                            if (jsonObj.has("mediaList")) {
+                                setReturnedValue(jsonObj.get("mediaList").toString());
+                            }
+
                         } catch (JSONException e) {
                             Log.d("Error", e.toString());
                             e.printStackTrace();

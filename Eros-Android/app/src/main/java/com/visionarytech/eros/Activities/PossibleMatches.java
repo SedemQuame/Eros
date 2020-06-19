@@ -2,6 +2,7 @@ package com.visionarytech.eros.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,37 +40,43 @@ public class PossibleMatches extends AppCompatActivity implements View.OnClickLi
     private List<Dates> listOfProspectiveDates = null;
     private Context context = null;
     private ImageButton homeButton, notificationButton, profileSettingButton;
+    private SharedPreferences sharedPref;
+    private CardView progressIndicator;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_possible_matches);
+        sharedPref = getSharedPreferences(getString((R.string.shared_preferences_of_user)), MODE_PRIVATE);
+
 
         context = getApplicationContext();
         homeButton = findViewById(R.id.home);
         homeButton.setOnClickListener(this);
+
         notificationButton = findViewById(R.id.notification);
         notificationButton.setOnClickListener(this);
+
         profileSettingButton = findViewById(R.id.profile);
         profileSettingButton.setOnClickListener(this);
 
-////        Create New Progress Dialog.
-//        final ProgressDialog progressDialog = new ProgressDialog(context);
-//        progressDialog.setMessage("Fetching likely matches ...");
-//        progressDialog.show();
+        progressIndicator = findViewById(R.id.progressIndicator);
 
         RequestQueue queue = Volley.newRequestQueue(context);
 
         //        Request a string response from the provided URL.
         String BASE_URL = "https://guarded-beach-22346.herokuapp.com";
-        String REQUEST_URL = "/getAllUsers";
+        String REQUEST_URL = "/getAllUsers/";
+        REQUEST_URL += sharedPref.getString("UserId", null);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, BASE_URL + REQUEST_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 //                        progressDialog.dismiss();
                         Log.d(TAG, "onResponse: " + response);
+                        progressIndicator.setVisibility(View.GONE);
+
                         try {
                             JSONObject jsonObj = new JSONObject(response);
                             JSONArray jsonArr = jsonObj.getJSONArray("users");
@@ -136,7 +144,7 @@ public class PossibleMatches extends AppCompatActivity implements View.OnClickLi
 //                          Dismiss Progress Dialog Upon Error or Response.
                             RecyclerView recyclerView = findViewById(R.id.recyclerView);
                             RecyclerViewAdapter adapter = new RecyclerViewAdapter(context, listOfProspectiveDates);
-                            recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
+                            recyclerView.setLayoutManager(new GridLayoutManager(context, 1));
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             Log.d(TAG, "onError: Error occurred: " + e.getMessage());

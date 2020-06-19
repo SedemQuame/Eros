@@ -17,12 +17,11 @@ import com.squareup.picasso.Picasso;
 import com.visionarytech.eros.Fragments.MatchGallery;
 import com.visionarytech.eros.Models.About;
 import com.visionarytech.eros.Models.Contact;
-import com.visionarytech.eros.Models.Preferences;
 import com.visionarytech.eros.Models.SocialBackGround;
 import com.visionarytech.eros.Networks.RequestHandler;
 import com.visionarytech.eros.R;
 
-import static com.visionarytech.eros.Utils.StringFormatter.capitalizeWord;
+import static com.visionarytech.eros.Utils.RequestFormatter.capitalizeWord;
 
 public class DatesProfile extends AppCompatActivity implements View.OnClickListener {
     private static final String LIKE_MATCH = "/likePossibleMatch",
@@ -126,6 +125,9 @@ public class DatesProfile extends AppCompatActivity implements View.OnClickListe
 //          Creating a bundle.
         Bundle mediaListBundle = new Bundle();
         mediaListBundle.putString("mediaList", mediaList);
+        mediaListBundle.putString("mediaList", mediaList);
+        mediaListBundle.putString("VIEWER_ID", _id);
+
         gallery.setArguments(mediaListBundle);
 
         transaction.add(R.id.gallery, gallery);

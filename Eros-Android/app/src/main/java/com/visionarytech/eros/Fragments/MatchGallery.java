@@ -29,11 +29,10 @@ import java.util.List;
  */
 public class MatchGallery extends Fragment {
     private static final String TAG = "MatchGallery";
-
+    private String mediaListString = "", viewerId = "";
     public MatchGallery() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +42,8 @@ public class MatchGallery extends Fragment {
 
         Bundle mediaListBundle = getArguments();
         assert mediaListBundle != null;
-        String mediaListString = mediaListBundle.getString("mediaList");
+        viewerId =  mediaListBundle.getString("VIEWER_ID ");
+        mediaListString = mediaListBundle.getString("mediaList");
         Log.d(TAG, "onCreateView: " + mediaListString);
 
         List<Media> mediaList = new ArrayList<>();
@@ -53,9 +53,11 @@ public class MatchGallery extends Fragment {
             for (int i = 0; i < jsonArr.length(); i++) {
                 JSONObject obj = jsonArr.getJSONObject(i);
                 Media media = new Media(
+                        obj.getString("_id"),
                         obj.getInt("numberOfLikes"),
                         obj.getString("assetType"),
-                        obj.getString("assetUrl")
+                        obj.getString("assetUrl"),
+                        viewerId
                 );
 
                 mediaList.add(media);
@@ -67,7 +69,7 @@ public class MatchGallery extends Fragment {
 
         RecyclerView galleryItems = v.findViewById(R.id.galleryRecyclerView);
         GalleryViewAdapter galleryAdapter = new GalleryViewAdapter(getContext(), mediaList);
-        galleryItems.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        galleryItems.setLayoutManager(new GridLayoutManager(getContext(), 4));
         galleryItems.setAdapter(galleryAdapter);
         return v;
     }

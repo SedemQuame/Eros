@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/galleryPhoto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:contentDescription="@string/gallery_photo"
         android:scaleType="centerCrop"></ImageView>
 

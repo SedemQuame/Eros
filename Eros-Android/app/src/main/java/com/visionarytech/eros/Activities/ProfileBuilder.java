@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,12 +42,16 @@ public class ProfileBuilder extends AppCompatActivity implements
         ProfilePictureUploadDialog.ProfilePictureUploadDialogListener {
     private ProgressBar progressBar;
     private TextView progressText;
-    private int progressValue;
+    private int progressValue = 0;
+    private SharedPreferences sharedPref;
+    private Button buttonNext;
+    private String profileURL = "";
+
 
     // Method to encode a string value using `UTF-8` encoding scheme
     private String encodeValue(String value) {
         try {
-            return URLEncoder.encode(value, "UTF-8");
+            return URLEncoder.encode(value.replace(" ", "%20"), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -66,13 +71,15 @@ public class ProfileBuilder extends AppCompatActivity implements
         progressBar = findViewById(R.id.progressBar);
         progressText = findViewById(R.id.progressText);
 
-        LinearLayout profilePicture = findViewById(R.id.profilePicture);
-        LinearLayout aboutMe = findViewById(R.id.aboutMe);
-        LinearLayout socialBackground = findViewById(R.id.socialBackground);
-        LinearLayout contactInformation = findViewById(R.id.contactInformation);
-        LinearLayout preferences = findViewById(R.id.preferences);
+        CardView profilePicture = findViewById(R.id.profilePicture);
+        CardView aboutMe = findViewById(R.id.aboutMe);
+        CardView socialBackground = findViewById(R.id.socialBackground);
+        CardView contactInformation = findViewById(R.id.contactInformation);
+        CardView preferences = findViewById(R.id.preferences);
+        sharedPref = getSharedPreferences(getString((R.string.shared_preferences_of_user)), MODE_PRIVATE);
 
-        Button buttonNext = findViewById(R.id.buttonNext);
+
+        buttonNext = findViewById(R.id.buttonNext);
 //        adding onClickListeners to buttons
 
         profilePicture.setOnClickListener(new View.OnClickListener() {
@@ -117,34 +124,31 @@ public class ProfileBuilder extends AppCompatActivity implements
                 SharedPreferences sharedPref = getSharedPreferences(getString((R.string.shared_preferences_of_user)), Context.MODE_PRIVATE);
 
                 String REQUEST_URL = "/createNewUserAccount/userName/" +
-                        sharedPref.getString("Username", null) +
+                        encodeValue(sharedPref.getString("Username", null) )+
                         "/profileImg/" +
-                        encodeValue(sharedPref.getString("PROFILE_IMG", null)) +
+                        encodeValue(profileURL) +
                         "/aboutMe/" +
-                        sharedPref.getString("Bio", null) +
+                        encodeValue(sharedPref.getString("Bio", null) )+
                         "." +
-                        sharedPref.getString("Views", null) +
+                        encodeValue(sharedPref.getString("Views", null) )+
                         "." +
-                        sharedPref.getString("Location", null) +
+                        encodeValue(sharedPref.getString("Location", null) )+
                         "/preferences/" +
-                        sharedPref.getString("Gender", null) +
+                        encodeValue(sharedPref.getString("Gender", null) )+
                         "." +
-                        sharedPref.getString("AgeRange", null) +
+                        encodeValue(sharedPref.getString("AgeRange", null) )+
                         "." +
-                        sharedPref.getString("LookingFor", null) +
+                        encodeValue(sharedPref.getString("LookingFor", null) )+
                         "/socialBackground/" +
-                        sharedPref.getString("Work", null) +
+                        encodeValue(sharedPref.getString("Work", null) )+
                         "." +
-                        sharedPref.getString("Religion", null) +
+                        encodeValue(sharedPref.getString("Religion", null) )+
                         "." +
-                        sharedPref.getString("School", null) +
+                        encodeValue(sharedPref.getString("School", null) )+
                         "/contactInformation/" +
-                        sharedPref.getString("Email", null) +
+                        encodeValue(sharedPref.getString("Email", null) )+
                         "." +
-                        sharedPref.getString("Phone", null);
-
-//                RequestHandler handler = new RequestHandler(getApplicationContext(), REQUEST_URL);
-////                handler.execute();
+                        encodeValue(sharedPref.getString("Phone", null));
 
                 String BASE_URL = "https://guarded-beach-22346.herokuapp.com";
 
@@ -168,6 +172,14 @@ public class ProfileBuilder extends AppCompatActivity implements
                                         editor.putString("UserId", jsonObj.get("_id").toString());
 //                                          Saving New User Preferences.
                                         editor.apply();
+
+
+                                        Intent intent = new Intent(getApplicationContext(), PossibleMatches.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(intent);
+                                        finish();
+                                    }else{
+//                                        Route User to the page that says no network.
                                     }
 
                                     if (jsonObj.has("msg")) {
@@ -191,12 +203,6 @@ public class ProfileBuilder extends AppCompatActivity implements
 
                 // Add the request to the RequestQueue.
                 queue.add(stringRequest);
-
-
-                Intent intent = new Intent(getApplicationContext(), PossibleMatches.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
             }
         });
     }
@@ -231,11 +237,26 @@ public class ProfileBuilder extends AppCompatActivity implements
     @Override
     public void updateProgressBar(int progressNumber) {
         progressBar.incrementProgressBy(progressNumber);
-        progressValue += progressNumber;
-//        updating progressText
+
 
         if (progressValue <= 100) {
+            progressValue += progressNumber;
+//              updating progressText
             progressText.setText(String.format("%d/100", progressValue));
+        }if(progressValue == 100){
+            buttonNext.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void returnFileUrl(String fileUrl) {
+        profileURL = fileUrl;
+        Toast.makeText(this, "PROFILE_URL: " + profileURL , Toast.LENGTH_SHORT).show();
+
+//        Creating Editor For Shared Preferences.
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("PROFILE_IMG", encodeValue(fileUrl));
+//        Saving New User Preferences.
+        editor.apply();
     }
 }

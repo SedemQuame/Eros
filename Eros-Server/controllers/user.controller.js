@@ -55,10 +55,10 @@ exports.createNewUserAccount = (req, res) => {
 };
 
 exports.addNewPicture = (req, res) => {
-    user.findById(req.params.Id)
+    user.findById(req.params.userId)
         .then(doc => {
             doc.mediaList.push({
-                assetUrl: `https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60`,
+                assetUrl: req.params.newImgUrl,
                 assetType: `Image`,
                 numberOfLikes: 0
             });
@@ -76,8 +76,8 @@ exports.addNewPicture = (req, res) => {
 
 // todo => optimise function.
 exports.deleteExistingAccount = (req, res) => {
-    console.log(req.params.Id);
-    user.findByIdAndDelete(req.params.Id)
+    console.log(req.params.userId);
+    user.findByIdAndDelete(req.params.userId)
         .then(
             res.send({
                 msg: `Successfully deleted`
@@ -94,9 +94,15 @@ exports.deleteExistingAccount = (req, res) => {
 exports.getAllUsers = (req, res) => {   
     user.find({})
         .then(docs => {
+            docs = docs.filter(doc => {
+                return (doc._id != req.params.userId );
+            });
             res.send({users: docs});
         }).catch(err => {
-            res.send({msg: `Unable fetch user data. Try again later`});
+            res.send({
+                msg: `Unable to fetch user data. Try again later`,
+                err: err
+            });
         });
 };
 
@@ -125,6 +131,23 @@ exports.getUserNotification = (req, res) => {
             res.send({
                 notifications: [],
                 msg: "Failed to return all notifications",
+                err: err
+            });
+        });
+};
+
+exports.getUserMediaList = (req, res) => {
+    user.findById({_id: req.params.userId})
+        .then((user) => {
+            res.send({
+                mediaList: user.mediaList,
+                msg: `Returned all media lists.`
+            });
+        })
+        .catch((err) => {
+            res.send({
+                mediaList: [],
+                msg: "Failed to return media list",
                 err: err
             });
         });
@@ -252,19 +275,27 @@ exports.lovePossibleMatch = (req, res) => {
 // Manipulating Account Assets & Details
 // =====================================
 exports.deletePicturePostedOnPlatform = (req, res) => {   
-    user.findById({_id: req.params.Id})
+    user.findById({_id: req.params.userId})
         .then(doc => {
-        _.remove(doc.mediaList, (media) => {
-            return (media[`_id`] == `5ec3a556f9d0142890737bbe`);
-        });
-        // doc.save();
-        console.log(doc);
 
+        let mediaList = doc.mediaList;
+        console.log(`Unchanged: ${mediaList}`);
+            
+        mediaList = _.remove(mediaList, (media) => {
+            return (media[`_id`] != req.params.pictureImgId);
+        });
+
+        console.log(`Changed: ${mediaList}`);
+
+        doc.mediaList = mediaList;
+
+        doc.save();
         // todo: write server side code for deleting the picture
         // on the storage platform.
         
         res.send({
-                msg: `Image Deleted.`
+                msg: `Image Deleted.`,
+                doc: mediaList
         });
         }).catch(err => {
             res.send({
@@ -307,11 +338,20 @@ exports.modifyContactDetails = (req, res) => {
 };
 
 exports.changeProfileImg = (req, res) => {   
-    user.findById({_id: req.params.Id})
+    user.findById({_id: req.params.userId})
         .then(doc => {
-
+            doc.profileImg = req.params.newProfilePictureUrl;
+            doc.save();
+            res.send({
+                msg: `Successfully changed profile picture.`
+            });
         })
-        .catch();
+        .catch(err => {
+            res.send({
+                msg: `Unable to change profile picture.`,
+                err: err
+            });
+        });
 };
 
 exports.modifyPreferences = (req, res) => {   

@@ -9,26 +9,51 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 import com.visionarytech.eros.Dialog.ProfilePictureUploadDialog;
+import com.visionarytech.eros.Fragments.MatchGallery;
+import com.visionarytech.eros.Networks.RequestHandler;
 import com.visionarytech.eros.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import static com.visionarytech.eros.Utils.RequestFormatter.encodeValue;
 
 public class UserProfile extends AppCompatActivity implements
         View.OnClickListener,
         ProfilePictureUploadDialog.ProfilePictureUploadDialogListener {
     private static final String TAG = "ProfileFragment";
+    private MatchGallery gallery = new MatchGallery();
     private SharedPreferences sharedPref;
     private FirebaseAuth mAuth;
     private Context context = null;
-    private ImageButton imageUploadButton;
+    private FragmentManager manager = getSupportFragmentManager();
+    private String mediaList = "";
+    private FragmentTransaction transaction = manager.beginTransaction();
+    private String REQUEST_URL = "/addNewPicture/";
+    private String REQUEST_URL_MEDIA = "/getUserMediaList/";
+    private String DELETE_ACCOUNT_REQUEST_URL = "/deleteExistingAccount/";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +61,7 @@ public class UserProfile extends AppCompatActivity implements
         setContentView(R.layout.activity_user_profile);
         context = getApplicationContext();
 
-        imageUploadButton = findViewById(R.id.imageUploadButton);
+        ImageButton imageUploadButton = findViewById(R.id.imageUploadButton);
         imageUploadButton.setOnClickListener(this);
         ImageButton homeButton = findViewById(R.id.home);
         homeButton.setOnClickListener(this);
@@ -44,6 +69,7 @@ public class UserProfile extends AppCompatActivity implements
         notificationButton.setOnClickListener(this);
         ImageButton profileSettingButton = findViewById(R.id.profile);
         profileSettingButton.setOnClickListener(this);
+        ImageView userProfilePicture = findViewById(R.id.userProfilePicture);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -64,10 +90,17 @@ public class UserProfile extends AppCompatActivity implements
         Context context = getApplicationContext();
         assert context != null;
         sharedPref = context.getSharedPreferences(getString((R.string.shared_preferences_of_user)), MODE_PRIVATE);
+        REQUEST_URL += sharedPref.getString("UserId", null) + "/";
+        REQUEST_URL_MEDIA += sharedPref.getString("UserId", null) + "/";
+        DELETE_ACCOUNT_REQUEST_URL += sharedPref.getString("UserId", null);
+
+        Picasso.get()
+                .load(sharedPref.getString("PROFILE_IMG", null))
+                .placeholder(R.drawable.gray)
+                .error(R.drawable.gray)
+                .into(userProfilePicture);
 
         username.setText(sharedPref.getString("Username", null));
-//        username.setText(sharedPref.getString("UserId", null));
-
         bio.setText(sharedPref.getString("Bio", null));
         views.setText(sharedPref.getString("Views", null));
         work.setText(sharedPref.getString("Work", null));
@@ -77,13 +110,16 @@ public class UserProfile extends AppCompatActivity implements
         phone.setText(sharedPref.getString("Phone", null));
 
         Button logOut = findViewById(R.id.logOutButton);
-        Button deleteAccount = findViewById(R.id.deleteAccountButton);
         logOut.setOnClickListener(this);
+
+        Button deleteAccount = findViewById(R.id.deleteAccountButton);
         deleteAccount.setOnClickListener(this);
+
+//        Getting user's mediaList from api
+        getMediaList(REQUEST_URL_MEDIA);
     }
 
     private void clearPreferences() {
-//        sharedPref = context.getSharedPreferences(String.valueOf(R.string.shared_preferences_of_user), MODE_PRIVATE);
         sharedPref = context.getSharedPreferences(getString((R.string.shared_preferences_of_user)), MODE_PRIVATE);
         sharedPref.edit().clear().apply();
     }
@@ -99,27 +135,35 @@ public class UserProfile extends AppCompatActivity implements
                 startActivity(intent);
                 break;
             case (R.id.deleteAccountButton):
+//                todo: Must work on successfully deleting user account.
+                RequestHandler handler = new RequestHandler(getApplicationContext(), DELETE_ACCOUNT_REQUEST_URL);
+                handler.execute();
+
+//                todo: Clear User Preferences.
                 clearPreferences();
+
+//                todo: Delete User Authentication credentials on fireBase.
                 mAuth.signOut();
                 FirebaseUser user = mAuth.getCurrentUser();
-//                todo: Must work on successfully deleting user account.
+
                 assert user != null;
-                user.delete()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "onComplete: Account deleted.");
-                                    Intent intent = new Intent(context, UserLogin.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                } else {
-                                    Log.d(TAG, "onComplete: Account not deleted.");
-                                }
-                            }
-                        });
+//                user.delete()
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()) {
+//                                    Log.d(TAG, "onComplete: Account deleted.");
+//                                    Intent intent = new Intent(context, UserLogin.class);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    startActivity(intent);
+//                                } else {
+//                                    Log.d(TAG, "onComplete: Account not deleted.");
+//                                }
+//                            }
+//                        });
+
                 break;
-            case(R.id.imageUploadButton):
+            case (R.id.imageUploadButton):
                 openProfilePictureDialog();
                 break;
             case (R.id.home):
@@ -143,9 +187,75 @@ public class UserProfile extends AppCompatActivity implements
 //        do nothing
     }
 
-//      Creating Dialog Openers.
+
+    @Override
+    public void returnFileUrl(String fileUrl) {
+//        append file url to API REQUEST string and send a request.
+        REQUEST_URL = REQUEST_URL + encodeValue(fileUrl);
+        Toast.makeText(context, "REQUEST_URL: " + REQUEST_URL, Toast.LENGTH_SHORT).show();
+
+//        Send request to API to get NOTIFICATION LIST
+        RequestHandler handler = new RequestHandler(getApplicationContext(), REQUEST_URL);
+        handler.execute();
+
+//      Todo: Restart Activity
+
+    }
+
+//          Creating Dialog Openers.
     private void openProfilePictureDialog() {
         ProfilePictureUploadDialog profilePictureDialog = new ProfilePictureUploadDialog();
         profilePictureDialog.show(getSupportFragmentManager(), "Profile Picture");
+    }
+
+    private void getMediaList(String REQUEST_URL_MEDIA) {
+//          Send Request to API to get MEDIA LIST
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+//          Request a string response from the provided URL.
+        String BASE_URL = "https://guarded-beach-22346.herokuapp.com";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, BASE_URL + REQUEST_URL_MEDIA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, "onResponse: " + response);
+                        //                Converting string to json and storing values.
+                        try {
+                            JSONObject jsonObj = new JSONObject(response);
+
+                            if (jsonObj.has("msg")) {
+                                Toast.makeText(context,
+                                        "" + jsonObj.get("msg").toString(),
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                            }
+
+                            if (jsonObj.has("mediaList")) {
+                                mediaList = jsonObj.get("mediaList").toString();
+                                Log.d(TAG, "getMediaList: " + mediaList);
+
+//          Creating a bundle.
+                                Bundle mediaListBundle = new Bundle();
+                                mediaListBundle.putString("mediaList", mediaList);
+                                mediaListBundle.putString("VIEWER_ID", sharedPref.getString("UserId", null));
+                                gallery.setArguments(mediaListBundle);
+                                transaction.add(R.id.gallery, gallery);
+                                transaction.commit();
+                            }
+
+                        } catch (JSONException e) {
+                            Log.d("Error", e.toString());
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 }

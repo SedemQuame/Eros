@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +28,6 @@ public class GalleryViewAdapter extends RecyclerView.Adapter<GalleryViewAdapter.
     public GalleryViewAdapter(Context mContext, List<Media> mData) {
         this.mContext = mContext;
         this.mData = mData;
-        System.out.println(mData);
         this.mDataLength = mData.size();
     }
 
@@ -52,14 +52,19 @@ public class GalleryViewAdapter extends RecyclerView.Adapter<GalleryViewAdapter.
                 .placeholder(R.drawable.gray)
                 .error(R.drawable.gray)
                 .into(holder.datesPhotoItem);
+
         holder.datesPhotoItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+//                Toast.makeText(mContext, "VIEWER_ID: " + mData.get(position).getViewerId(), Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(mContext, PhotoViewer.class);
                 intent.putExtra("MEDIA_ELEMENT", mData.get(position).getAssetUrl());
                 intent.putExtra("MEDIA_ELEMENT_POSITION", position);
                 intent.putExtra("MEDIA_LIST_SIZE", mDataLength);
                 intent.putExtra("MEDIA_LIST", (Serializable) getmData());
+                intent.putExtra("VIEWER_ID", mData.get(position).getViewerId());
                 mContext.startActivity(intent);
             }
         });

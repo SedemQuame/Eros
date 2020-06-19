@@ -1,6 +1,7 @@
 package com.visionarytech.eros.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +33,7 @@ public class Notifications extends AppCompatActivity implements View.OnClickList
     private static final String TAG = "NotificationsFragment";
     private List<com.visionarytech.eros.Models.Notifications> notificationsList = null;
     private Context context = null;
+    private CardView progressIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +43,14 @@ public class Notifications extends AppCompatActivity implements View.OnClickList
         context = getApplicationContext();
         ImageButton homeButton = findViewById(R.id.home);
         homeButton.setOnClickListener(this);
+
         ImageButton notificationButton = findViewById(R.id.notification);
         notificationButton.setOnClickListener(this);
+
         ImageButton profileSettingButton = findViewById(R.id.profile);
         profileSettingButton.setOnClickListener(this);
+
+        progressIndicator = findViewById(R.id.progressIndicator);
 
         SharedPreferences sharedPref = context.getSharedPreferences(getString((R.string.shared_preferences_of_user)), MODE_PRIVATE);
 
@@ -62,6 +68,7 @@ public class Notifications extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, "onNotification: " + response);
+                        progressIndicator.setVisibility(View.GONE);
 
 //                          Converting string to json and storing values.
                         notificationsList = new ArrayList<>();

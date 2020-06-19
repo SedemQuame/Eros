@@ -51,6 +51,7 @@
     <string name="logout">logout</string>
     <string name="views">Views</string>
     <string name="bio">Bio</string>
+    <string name="requesterprofileimage">requesterProfileImage</string>
 
 
     <string-array name="GENDER_VALUES">

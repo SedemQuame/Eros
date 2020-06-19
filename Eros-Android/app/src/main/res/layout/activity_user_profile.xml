@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
@@ -22,327 +20,355 @@
             app:layout_constraintTop_toTopOf="parent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="30dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/userProfilePicture"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:background="#000000"
+                        android:contentDescription="@string/addNewPicture"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/woman10"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/imageUploadButton"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:background="#000000"
+                        android:contentDescription="@string/addNewPicture"
+                        android:src="@drawable/ic_add_black_24dp"
+                        app:layout_constraintEnd_toEndOf="@+id/userProfilePicture"
+                        app:layout_constraintTop_toTopOf="@+id/userProfilePicture" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/usernameTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/user_name"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:id="@+id/Gallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="12dp"
                     android:orientation="vertical"
-                    android:paddingBottom="30dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <ImageView
-                            android:id="@+id/userProfilePicture"
-                            android:layout_width="match_parent"
-                            android:layout_height="300dp"
-                            android:background="#000000"
-                            android:contentDescription="@string/addNewPicture"
-                            android:scaleType="fitXY"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/woman10" />
-
-                        <ImageButton
-                            android:id="@+id/imageUploadButton"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_margin="8dp"
-                            android:background="#000000"
-                            android:contentDescription="@string/addNewPicture"
-                            android:src="@drawable/ic_add_black_24dp"
-                            app:layout_constraintEnd_toEndOf="@+id/userProfilePicture"
-                            app:layout_constraintTop_toTopOf="@+id/userProfilePicture" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
 
                     <TextView
-                        android:id="@+id/usernameTextView"
+                        android:id="@+id/textView13"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="@string/user_name"
-                        android:textAlignment="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#000000"
-                        android:textSize="20sp" />
+                        android:text="@string/gallery"
+                        android:textAlignment="textStart"
+                        android:textColor="#636e72"
+                        android:textSize="16sp" />
+
+                    <FrameLayout
+                        android:id="@+id/gallery"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
+
+                    <TextView
+                        android:id="@+id/about"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/about_me"
+                        android:textAlignment="textStart"
+                        android:textColor="#636e72"
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="4"
-                        android:orientation="vertical"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/about"
+                            android:id="@+id/bio"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_medium"
-                            android:text="@string/about_me"
+                            android:text="@string/bio"
                             android:textAlignment="textStart"
-                            android:textColor="#636e72"
-                            android:textSize="16sp" />
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
 
-                        <LinearLayout
+                        <EditText
+                            android:id="@+id/bioEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/bio"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="@string/bio"
-                                android:textAlignment="textStart"
-                                android:textColor="#000000"
-                                android:textSize="14sp" />
-
-                            <EditText
-                                android:id="@+id/bioEditText"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/plain"
-                                android:ems="10"
-                                android:gravity="start|top"
-                                android:inputType="textMultiLine"
-                                android:textSize="24sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/views"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="@string/views"
-                                android:textAlignment="textStart"
-                                android:textColor="#000000"
-                                android:textSize="14sp" />
-
-                            <EditText
-                                android:id="@+id/viewsEditText"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/plain"
-                                android:ems="10"
-                                android:gravity="start|top"
-                                android:inputType="textMultiLine"
-                                android:textSize="24sp"
-                                android:autofillHints="@string/views" />
-                        </LinearLayout>
+                            android:background="@drawable/plain"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:inputType="textMultiLine"
+                            android:textSize="24sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/meta"
+                            android:id="@+id/views"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_medium"
-                            android:text="Social Background"
+                            android:text="@string/views"
                             android:textAlignment="textStart"
-                            android:textColor="#636e72"
-                            android:textSize="16sp" />
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
 
-                        <LinearLayout
+                        <EditText
+                            android:id="@+id/viewsEditText"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/textView9"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="Work"
-                                android:textAlignment="textStart"
-                                android:textColor="#000000"
-                                android:textSize="14sp" />
-
-                            <EditText
-                                android:id="@+id/workEditText"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:background="@drawable/plain"
-                                android:ems="10"
-                                android:inputType="textPersonName"
-                                android:textSize="24sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/textView10"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="School"
-                                android:textAlignment="textStart"
-                                android:textColor="#000000"
-                                android:textSize="14sp" />
-
-                            <EditText
-                                android:id="@+id/schoolEditText"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:background="@drawable/plain"
-                                android:ems="10"
-                                android:inputType="textPersonName"
-                                android:textSize="24sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/textView15"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="Religion"
-                                android:textAlignment="textStart"
-                                android:textColor="#000000"
-                                android:textSize="14sp" />
-
-                            <EditText
-                                android:id="@+id/religionEditText"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:background="@drawable/plain"
-                                android:ems="10"
-                                android:inputType="textPersonName"
-                                android:textSize="24sp" />
-
-                        </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:autofillHints="@string/views"
+                            android:background="@drawable/plain"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:inputType="textMultiLine"
+                            android:textSize="24sp" />
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
+
+                    <TextView
+                        android:id="@+id/meta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Social Background"
+                        android:textAlignment="textStart"
+                        android:textColor="#636e72"
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp">
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView4"
+                            android:id="@+id/textView9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_medium"
-                            android:text="Contact Information"
+                            android:text="Work"
                             android:textAlignment="textStart"
-                            android:textColor="#636e72"
-                            android:textSize="16sp" />
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
 
-                        <LinearLayout
+                        <EditText
+                            android:id="@+id/workEditText"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/textView11"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="@string/user_email"
-                                android:textAlignment="textStart"
-                                android:textColor="#000000"
-                                android:textSize="14sp" />
-
-                            <EditText
-                                android:id="@+id/emailAddressEditView"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:background="@drawable/plain"
-                                android:ems="10"
-                                android:inputType="textPersonName"
-                                android:textSize="24sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/textView12"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="Phone"
-                                android:textAlignment="textStart"
-                                android:textColor="#000000"
-                                android:textSize="14sp" />
-
-                            <EditText
-                                android:id="@+id/phoneEditText"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:background="@drawable/plain"
-                                android:ems="10"
-                                android:inputType="textPersonName"
-                                android:textSize="24sp" />
-                        </LinearLayout>
+                            android:layout_height="40dp"
+                            android:background="@drawable/plain"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:textSize="24sp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="15dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:weightSum="8">
+                        android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/logOutButton"
-                            android:layout_width="0dp"
-                            android:layout_height="45dp"
-                            android:layout_weight="4"
-                            android:text="@string/logout"
-                            android:textAlignment="center"
-                            android:textColor="#000000" />
+                        <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="School"
+                            android:textAlignment="textStart"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
 
-                        <Button
-                            android:id="@+id/deleteAccountButton"
-                            android:layout_width="0dp"
-                            android:layout_height="45dp"
-                            android:layout_weight="4"
-                            android:text="@string/deleteAccount"
-                            android:textAlignment="center"
-                            android:textColor="#000000" />
+                        <EditText
+                            android:id="@+id/schoolEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/plain"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:textSize="24sp" />
+                    </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Religion"
+                            android:textAlignment="textStart"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
+
+                        <EditText
+                            android:id="@+id/religionEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/plain"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:textSize="24sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Contact Information"
+                        android:textAlignment="textStart"
+                        android:textColor="#636e72"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/user_email"
+                            android:textAlignment="textStart"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
+
+                        <EditText
+                            android:id="@+id/emailAddressEditView"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/plain"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Phone"
+                            android:textAlignment="textStart"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
+
+                        <EditText
+                            android:id="@+id/phoneEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/plain"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:textSize="24sp" />
                     </LinearLayout>
 
                 </LinearLayout>
-            </ScrollView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:weightSum="8">
+
+                    <Button
+                        android:id="@+id/logOutButton"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="4"
+                        android:text="@string/logout"
+                        android:textAlignment="center"
+                        android:textColor="#000000" />
+
+                    <Button
+                        android:id="@+id/deleteAccountButton"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_weight="4"
+                        android:text="@string/deleteAccount"
+                        android:textAlignment="center"
+                        android:textColor="#000000" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,46 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dateCardView"
-    android:layout_width="wrap_content"
-    android:layout_height="200dp"
-    android:layout_margin="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="9dp"
+    android:layout_marginBottom="9dp"
     android:clickable="true"
+    android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:focusable="true">
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#fff">
+        android:background="#fff"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/dateMainImage"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="350dp"
             android:background="#2d2d2d"
             android:contentDescription="@string/picture_of_possible_match"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             tools:srcCompat="@tools:sample/backgrounds/scenic[5]" />
 
         <TextView
             android:id="@+id/dateUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/person_s_name"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="#000000"
-            android:textSize="13sp" />
+            android:textSize="21sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/dateLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/roboto"
             android:text="@string/person_s_location"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textColor="#636e72"
-            android:textSize="12sp" />
+            android:textSize="15sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

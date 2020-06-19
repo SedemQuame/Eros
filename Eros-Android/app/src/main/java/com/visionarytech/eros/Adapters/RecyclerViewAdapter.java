@@ -19,7 +19,7 @@ import com.visionarytech.eros.R;
 
 import java.util.List;
 
-import static com.visionarytech.eros.Utils.StringFormatter.capitalizeWord;
+import static com.visionarytech.eros.Utils.RequestFormatter.capitalizeWord;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
@@ -42,17 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-//        Shorten User Name.
-        String name = capitalizeWord(mData.get(position).getName());
-        if(name.length() < 12){
-            holder.personName.setText(name);
-        }else{
-            if(name.contains(" ")){
-                String firstName = name.split(" ")[0];
-                String middleName = name.split(" ")[1];
-                holder.personName.setText(String.format("%s %s", firstName, middleName));
-            }
-        }
+        holder.personName.setText(capitalizeWord(mData.get(position).getName()));
 
         holder.personLocation.setText(capitalizeWord(mData.get(position).getLocation()));
 

@@ -13,15 +13,15 @@ module.exports = app => {
     app.route(`/createNewUserAccount/userName/:name/profileImg/:image/aboutMe/:bio.:views.:location/preferences/:gender.:ageRange.:lookingFor/socialBackground/:work.:religion.:school/contactInformation/:email.:phone`)
        .post(user.createNewUserAccount);
 
-    app.route(`/addNewPicture`)
+    app.route(`/addNewPicture/:userId/:newImgUrl`)
        .post(user.addNewPicture);
 
-    app.route(`/deleteExistingAccount/userDocId/:id`)
+    app.route(`/deleteExistingAccount/:userId`)
         .post(user.deleteExistingAccount);
 
 // ==================================================
     //Implemented
-    app.route(`/getAllUsers`) 
+    app.route(`/getAllUsers/:userId`) 
         .post(user.getAllUsers);
 
     app.route(`/getAllUsersWithMatchingPreferences`)
@@ -29,6 +29,9 @@ module.exports = app => {
 
     app.route(`/getUserNotifications/:userId/`)
         .post(user.getUserNotification);
+
+    app.route(`/getUserMediaList/:userId`)
+        .post(user.getUserMediaList);
 
 // ==================================================
     app.route(`/requestMessageFromPossibleMatch/:requesterId/:requesteeId`)
@@ -43,7 +46,7 @@ module.exports = app => {
     app.route(`/lovePossibleMatch/:loverId/:loveeId`)
         .post(user.lovePossibleMatch);        
         
-    app.route(`/deletePicturePostedOnPlatform`)
+    app.route(`/deletePicturePostedOnPlatform/:userId/:pictureImgId`)
         .post(user.deletePicturePostedOnPlatform);
 
 // ==================================================
@@ -54,7 +57,7 @@ module.exports = app => {
     app.route(`/modifyContactDetails`)
         .post(user.modifyContactDetails);
 
-    app.route(`/changeProfileImg`)
+    app.route(`/changeProfileImg/:userId/:newProfilePictureUrl`)
         .post(user.changeProfileImg);
 
     app.route(`/modifyPreferences`)
